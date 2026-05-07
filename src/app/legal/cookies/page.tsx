@@ -9,7 +9,7 @@ export default function CookiesPage() {
   return (
     <>
       <h1>Politique cookies</h1>
-      <p className="lead">Dernière mise à jour : 14 avril 2026</p>
+      <p className="lead">Dernière mise à jour : 6 mai 2026</p>
 
       <h2>1. Qu&apos;est-ce qu&apos;un cookie ?</h2>
       <p>
@@ -27,15 +27,20 @@ export default function CookiesPage() {
         Whop). Ils ne requièrent pas votre consentement.
       </p>
       <ul>
-        <li><strong>Whop</strong> — session de paiement</li>
-        <li><strong>Next.js / Vercel</strong> — session technique</li>
+        <li>
+          <strong>Whop</strong> — session de paiement
+        </li>
+        <li>
+          <strong>Cloudflare</strong> — sécurité, anti-bot, équilibrage de
+          charge
+        </li>
       </ul>
 
       <h3>Cookies de mesure d&apos;audience</h3>
       <p>
-        Nous utilisons <strong>PostHog</strong> et <strong>Vercel Analytics</strong>{" "}
-        pour mesurer l&apos;audience de façon anonymisée et améliorer le site.
-        Ces cookies sont déposés uniquement avec votre consentement.
+        Lorsqu&apos;ils sont activés, nous utilisons des outils anonymisés pour
+        mesurer l&apos;audience et améliorer le site. Ces cookies sont déposés
+        uniquement avec votre consentement.
       </p>
 
       <h3>Cookies de préférences</h3>
@@ -56,7 +61,14 @@ export default function CookiesPage() {
           instructions varient selon Chrome, Firefox, Safari, Edge)
         </li>
         <li>
-          Utiliser des outils tiers type <a href="https://www.youronlinechoices.com/fr/" target="_blank" rel="noopener noreferrer">Your Online Choices</a>
+          Utiliser des outils tiers type{" "}
+          <a
+            href="https://www.youronlinechoices.com/fr/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Your Online Choices
+          </a>
         </li>
       </ul>
       <p>
@@ -74,7 +86,9 @@ export default function CookiesPage() {
 
       <h2>5. Contact</h2>
       <p>
-        <a href="mailto:lucas@aicreativeacademy.com">lucas@aicreativeacademy.com</a>
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </p>
     </>
   );

@@ -22,15 +22,14 @@ export function Footer() {
           {/* Brand block */}
           <div>
             <div className="display text-white text-2xl md:text-3xl leading-none">
-              REVO <span className="text-gold glow-gold">LAB</span>
+              AI CREATIVE <span className="text-gold glow-gold">ACADEMY</span>
             </div>
             <p className="mt-4 text-sm text-white/60 max-w-sm">
               La formation pour créer et monétiser ton avatar IA. Éditée par
-              Costa Coaching LLC (Wyoming, USA) en partenariat avec AI CREATIVE ACADEMY
-              (France).
+              REVO LAB, micro-entreprise française. SIRET 102 749 942 00011.
             </p>
             <p className="mono mt-5 text-[10px] uppercase tracking-[0.22em] text-white/35">
-              lucas@aicreativeacademy.com
+              lucas.socialcontact@gmail.com
             </p>
           </div>
 

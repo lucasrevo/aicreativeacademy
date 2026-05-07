@@ -2,21 +2,19 @@
 
 import { WhopCheckoutEmbed } from "@whop/checkout/react";
 import { useEffect, useState } from "react";
-import { createCheckout } from "@/app/actions/checkout";
 
-const HOSTED_CHECKOUT_URL = "https://whop.com/checkout/plan_ntpJj1VOt5KTM";
+const PLAN_ID = process.env.NEXT_PUBLIC_WHOP_LT_PLAN_ID || "plan_ntpJj1VOt5KTM";
+const HOSTED_CHECKOUT_URL = `https://whop.com/checkout/${PLAN_ID}`;
 
 type State =
   | { status: "loading" }
   | {
       status: "ready";
-      mode: "session" | "plan";
-      sessionId?: string;
-      planId?: string;
+      mode: "plan";
+      planId: string;
       utm: Record<string, string>;
       affiliateCode?: string;
     }
-  | { status: "unconfigured" }
   | { status: "error"; message: string };
 
 export function WhopCheckout() {
@@ -40,42 +38,7 @@ export function WhopCheckout() {
     if (utm_content) utm.utm_content = utm_content;
     if (ig && !utm.utm_content) utm.utm_content = ig;
 
-    let cancelled = false;
-    createCheckout({
-      ig_handle: ig,
-      utm_source,
-      utm_medium,
-      utm_content,
-      utm_campaign,
-    })
-      .then((r) => {
-        if (cancelled) return;
-        if (!r.ok) {
-          setState({ status: "error", message: r.error });
-          return;
-        }
-        const res = r.result;
-        if (res.mode === "unconfigured") {
-          setState({ status: "unconfigured" });
-          return;
-        }
-        if (res.mode === "session") {
-          setState({ status: "ready", mode: "session", sessionId: res.sessionId, utm, affiliateCode });
-          return;
-        }
-        setState({ status: "ready", mode: "plan", planId: res.planId, utm, affiliateCode });
-      })
-      .catch((err) => {
-        if (cancelled) return;
-        setState({
-          status: "error",
-          message: err instanceof Error ? err.message : "unknown",
-        });
-      });
-
-    return () => {
-      cancelled = true;
-    };
+    setState({ status: "ready", mode: "plan", planId: PLAN_ID, utm, affiliateCode });
   }, []);
 
   return (
@@ -94,36 +57,11 @@ export function WhopCheckout() {
       <div className="bg-ink p-2 sm:p-3">
         {state.status === "loading" && <CheckoutSkeleton />}
 
-        {state.status === "unconfigured" && (
-          <div className="rounded-lg border border-dashed border-white/20 bg-burgundy-deep/30 p-6 text-center text-sm text-white/70">
-            <div className="mb-2 font-semibold text-gold">
-              Checkout en cours de configuration
-            </div>
-            <p>Revenez dans quelques minutes.</p>
-          </div>
-        )}
-
         {state.status === "error" && (
           <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-6 text-center text-sm text-red-300">
             <div className="mb-2 font-semibold">Erreur de chargement du paiement</div>
             <p className="font-mono text-xs">{state.message}</p>
           </div>
-        )}
-
-        {/* Do NOT pass onComplete — the Whop embed forces skipRedirect=true when onComplete is set,
-            which silently filters out 3DS card payments (Apple Pay still works). We rely on the
-            returnUrl redirect to /merci instead. */}
-        {state.status === "ready" && state.mode === "session" && state.sessionId && returnUrl && (
-          <WhopCheckoutEmbed
-            sessionId={state.sessionId}
-            utm={state.utm}
-            affiliateCode={state.affiliateCode}
-            returnUrl={returnUrl}
-            theme="dark"
-            themeOptions={{ accentColor: "yellow" }}
-            fallback={<CheckoutSkeleton />}
-            onStateChange={(s) => console.log("[whop] state", s)}
-          />
         )}
 
         {state.status === "ready" && state.mode === "plan" && state.planId && returnUrl && (

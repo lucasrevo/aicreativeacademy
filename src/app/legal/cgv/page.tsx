@@ -9,27 +9,32 @@ export default function CGVPage() {
   return (
     <>
       <h1>Conditions générales de vente</h1>
-      <p className="lead">Dernière mise à jour : 14 avril 2026</p>
+      <p className="lead">Dernière mise à jour : 6 mai 2026</p>
 
       <h2>Article 1 — Objet</h2>
       <p>
         Les présentes Conditions Générales de Vente (ci-après « CGV »)
-        régissent les ventes de la formation en ligne <strong>AI CREATIVE ACADEMY</strong>{" "}
-        (ci-après « la Formation ») commercialisée sur aicreativeacademy.com par Costa
-        Payments LLC, en partenariat commercial avec AI CREATIVE ACADEMY.
+        régissent les ventes de la formation en ligne{" "}
+        <strong>AI CREATIVE ACADEMY</strong> (ci-après « la Formation »)
+        commercialisée sur aicreativeacademy.com par REVO LAB.
       </p>
 
       <h2>Article 2 — Vendeur</h2>
       <div className="info-card">
-        Costa Payments LLC — Wyoming LLC
+        <strong>REVO LAB</strong>
         <br />
-        5830 E 2nd St, Ste 7000 #31855, Casper, WY 82609, USA
+        Entrepreneur individuel — Micro-entreprise (France)
         <br />
-        Tél. : +1 (307) 301-7385
+        Représenté par : Lucas Alleix
         <br />
-        Support : lucas@aicreativeacademy.com
+        SIRET : 102 749 942 00011
         <br />
-        Éditeur : adrien@costa-payments.com
+        Adresse : [ADRESSE — À COMPLÉTER]
+        <br />
+        Email :{" "}
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </div>
 
       <h2>Article 3 — Produit</h2>
@@ -48,25 +53,27 @@ export default function CGVPage() {
         paiement. Aucun support physique n&apos;est expédié.
       </p>
 
-      <h2>Article 4 — Prix</h2>
+      <h2>Article 4 — Prix et TVA</h2>
       <p>
-        Le prix de la Formation est de <strong>97 € TTC</strong> (prix de
+        Le prix de la Formation est de <strong>97 € net</strong> (prix de
         lancement sur les 100 premières places, prix public à 197 €
         ultérieurement). Le prix est payable en une seule fois, en euros.
       </p>
       <p>
-        La TVA applicable aux acheteurs résidant dans l&apos;Union européenne
-        est collectée et reversée aux administrations fiscales compétentes,
-        conformément à la réglementation européenne sur les services
-        électroniques.
+        REVO LAB est une micro-entreprise française relevant du régime de la
+        franchise en base de TVA :{" "}
+        <strong>
+          TVA non applicable, art. 293 B du Code général des impôts.
+        </strong>{" "}
+        Les prix affichés sont nets, sans TVA à ajouter.
       </p>
 
       <h2>Article 5 — Commande et paiement</h2>
       <p>
         Les commandes sont passées sur la plateforme de paiement{" "}
         <strong>Whop</strong>, intégrée au site. Les moyens de paiement
-        acceptés sont : carte bancaire (Visa, Mastercard, American Express) et
-        virement SEPA (selon disponibilité).
+        acceptés sont : carte bancaire (Visa, Mastercard, American Express),
+        Apple Pay, et virement SEPA (selon disponibilité).
       </p>
       <p>
         La commande est réputée conclue au débit effectif du compte de
@@ -82,7 +89,10 @@ export default function CGVPage() {
         conformément à notre engagement, tout acheteur peut demander un
         remboursement intégral dans les 14 jours suivant son achat, sans
         justification, en écrivant à{" "}
-        <a href="mailto:lucas@aicreativeacademy.com">lucas@aicreativeacademy.com</a>.
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
+        .
       </p>
       <p>
         Conformément aux articles L.221-18 et suivants du Code de la
@@ -125,24 +135,24 @@ export default function CGVPage() {
 
       <h2>Article 11 — Force majeure</h2>
       <p>
-        Costa Payments LLC ne saurait être tenue responsable d&apos;un retard
-        ou d&apos;une inexécution résultant d&apos;un cas de force majeure tel
-        que défini par la jurisprudence française.
+        REVO LAB ne saurait être tenue responsable d&apos;un retard ou
+        d&apos;une inexécution résultant d&apos;un cas de force majeure tel que
+        défini par la jurisprudence française.
       </p>
 
       <h2>Article 12 — Médiation et litiges</h2>
       <p>
         En cas de litige, l&apos;acheteur consommateur peut recourir à une
         procédure de médiation conventionnelle. À défaut de résolution
-        amiable, les litiges relèveront des tribunaux français pour les
-        consommateurs résidant en France, et des tribunaux de l&apos;État du
-        Wyoming pour les autres cas.
+        amiable, les litiges relèveront des tribunaux français.
       </p>
 
       <h2>Article 13 — Contact</h2>
       <p>
         Pour toute question :{" "}
-        <a href="mailto:lucas@aicreativeacademy.com">lucas@aicreativeacademy.com</a>
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </p>
     </>
   );

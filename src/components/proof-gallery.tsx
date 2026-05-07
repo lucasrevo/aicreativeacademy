@@ -123,7 +123,7 @@ function ProofCard({
   );
 }
 
-/** Default mock slots — REPLACE src values with real screenshots from Adrien */
+/** Default mock slots — REPLACE src values with real screenshots when ready */
 export const defaultProofSlots: ProofSlot[] = [
   { caption: "STRIPE · +97€", Icon: DollarSign },
   { caption: "IG · 1.2M VUES", Icon: Eye },

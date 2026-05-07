@@ -123,7 +123,7 @@ export function Header() {
         </nav>
 
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-white/10 mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-          AI CREATIVE ACADEMY · by Lucas & Adri
+          AI CREATIVE ACADEMY · by Lucas Alleix
         </div>
       </aside>
     </>

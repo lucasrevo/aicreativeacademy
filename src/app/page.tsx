@@ -95,7 +95,7 @@ export default function Page() {
               <div className="relative aspect-[16/9] md:aspect-[4/5] w-full overflow-hidden rounded-2xl md:rounded-3xl">
                 <Image
                   src="/brand/hero-rooftop.png"
-                  alt="AI CREATIVE ACADEMY — Lucas & Adri"
+                  alt="AI CREATIVE ACADEMY"
                   fill
                   priority
                   sizes="(min-width: 768px) 40vw, 100vw"

@@ -9,27 +9,32 @@ export default function ConfidentialitePage() {
   return (
     <>
       <h1>Politique de confidentialité</h1>
-      <p className="lead">Dernière mise à jour : 14 avril 2026</p>
+      <p className="lead">Dernière mise à jour : 6 mai 2026</p>
 
       <p>
-        Costa Payments LLC (ci-après « nous ») attache une importance
-        particulière à la protection de vos données personnelles. La présente
-        politique explique quelles données sont collectées, dans quel but, et
-        vos droits, conformément au Règlement (UE) 2016/679 (RGPD) et à la loi
-        française Informatique et Libertés.
+        REVO LAB (ci-après « nous ») attache une importance particulière à la
+        protection de vos données personnelles. La présente politique explique
+        quelles données sont collectées, dans quel but, et vos droits,
+        conformément au Règlement (UE) 2016/679 (RGPD) et à la loi française
+        Informatique et Libertés.
       </p>
 
       <h2>1. Responsable du traitement</h2>
       <div className="info-card">
-        Costa Payments LLC
+        <strong>REVO LAB</strong>
         <br />
-        5830 E 2nd St, Ste 7000 #31855, Casper, WY 82609, USA
+        Entrepreneur individuel — Micro-entreprise (France)
         <br />
-        Tél. : +1 (307) 301-7385
+        Représenté par : Lucas Alleix
         <br />
-        Contact éditeur : adrien@costa-payments.com
+        SIRET : 102 749 942 00011
         <br />
-        Support utilisateur : lucas@aicreativeacademy.com
+        Adresse : [ADRESSE — À COMPLÉTER]
+        <br />
+        Email :{" "}
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </div>
 
       <h2>2. Données collectées</h2>
@@ -37,14 +42,19 @@ export default function ConfidentialitePage() {
       <ul>
         <li>Nom, prénom</li>
         <li>Adresse email</li>
-        <li>Pays de résidence (pour la TVA)</li>
-        <li>Données de paiement (gérées par Whop, nous n&apos;y avons pas accès)</li>
+        <li>Pays de résidence</li>
+        <li>
+          Données de paiement (gérées par Whop, nous n&apos;y avons pas accès)
+        </li>
       </ul>
 
       <h3>Lors de la navigation</h3>
       <ul>
         <li>Adresse IP, type de navigateur, pages visitées, durée de visite</li>
-        <li>Identifiants de cookies (voir notre <a href="/legal/cookies">politique cookies</a>)</li>
+        <li>
+          Identifiants de cookies (voir notre{" "}
+          <a href="/legal/cookies">politique cookies</a>)
+        </li>
       </ul>
 
       <h2>3. Finalités et bases légales</h2>
@@ -69,7 +79,10 @@ export default function ConfidentialitePage() {
 
       <h2>4. Durée de conservation</h2>
       <ul>
-        <li>Données de compte : pendant toute la durée de votre accès à la Formation</li>
+        <li>
+          Données de compte : pendant toute la durée de votre accès à la
+          Formation
+        </li>
         <li>Données de facturation : 10 ans (obligation comptable)</li>
         <li>Données de navigation / analytics : 13 mois maximum</li>
         <li>Emails marketing : jusqu&apos;au retrait du consentement</li>
@@ -78,11 +91,16 @@ export default function ConfidentialitePage() {
       <h2>5. Destinataires</h2>
       <p>Vos données sont partagées uniquement avec :</p>
       <ul>
-        <li><strong>Whop Inc.</strong> (paiement, accès produit) — USA</li>
-        <li><strong>Vercel Inc.</strong> (hébergement) — USA</li>
-        <li><strong>PostHog</strong> (analytics) — USA / UE</li>
-        <li><strong>Discord Inc.</strong> (communauté privée, si vous y adhérez) — USA</li>
-        <li>Notre partenaire commercial <strong>AI CREATIVE ACADEMY</strong> (France) pour l&apos;exécution de la Formation</li>
+        <li>
+          <strong>Whop, Inc.</strong> (paiement, accès produit) — USA
+        </li>
+        <li>
+          <strong>Cloudflare, Inc.</strong> (hébergement et CDN) — USA
+        </li>
+        <li>
+          <strong>Discord, Inc.</strong> (communauté privée, si vous y adhérez)
+          — USA
+        </li>
       </ul>
       <p>
         Aucune donnée n&apos;est vendue. Les transferts hors UE sont encadrés
@@ -100,8 +118,10 @@ export default function ConfidentialitePage() {
       </ul>
       <p>
         Pour exercer vos droits :{" "}
-        <a href="mailto:lucas@aicreativeacademy.com">lucas@aicreativeacademy.com</a>. Nous
-        répondons sous 30 jours maximum.
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
+        . Nous répondons sous 30 jours maximum.
       </p>
       <p>
         Vous pouvez également introduire une réclamation auprès de la{" "}
@@ -119,8 +139,8 @@ export default function ConfidentialitePage() {
       <p>
         Nous mettons en œuvre des mesures techniques et organisationnelles
         appropriées (chiffrement HTTPS, hébergeurs certifiés, accès
-        restreints) pour protéger vos données contre tout accès, altération ou
-        destruction non autorisés.
+        restreints) pour protéger vos données contre tout accès, altération
+        ou destruction non autorisés.
       </p>
 
       <h2>8. Modifications</h2>
@@ -131,7 +151,9 @@ export default function ConfidentialitePage() {
 
       <h2>9. Contact</h2>
       <p>
-        <a href="mailto:lucas@aicreativeacademy.com">lucas@aicreativeacademy.com</a>
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </p>
     </>
   );

@@ -1,7 +1,7 @@
 const badges = [
-  { label: "VU SUR INSTAGRAM", sub: "@byrevo.ai · @adri.scale" },
+  { label: "VU SUR INSTAGRAM", sub: "@byrevo.ai" },
   { label: "100+ EARLY ACCESS", sub: "Places lancement" },
-  { label: "LANCÉ PAR REVO & ADRI", sub: "2026" },
+  { label: "LANCÉ PAR REVO LAB", sub: "2026" },
 ];
 
 export function TrustBadges() {

@@ -1,0 +1,1399 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>AI Creative Academy — REVO LAB</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0405;
+  --ink-2:#120708;
+  --burgundy:#8B1A1A;
+  --burgundy-deep:#5A0F10;
+  --burgundy-bright:#B52424;
+  --silver-1:#F5F5F5;
+  --silver-2:#E0E0E0;
+  --silver-3:#B8B8B8;
+  --silver-4:#7A7A7A;
+  --silver-5:#3a3a3a;
+  --white:#ffffff;
+  --w-70:rgba(255,255,255,.72);
+  --w-50:rgba(255,255,255,.5);
+  --w-30:rgba(255,255,255,.3);
+  --w-15:rgba(255,255,255,.15);
+  --w-08:rgba(255,255,255,.08);
+  --gutter: clamp(16px, 3vw, 32px);
+  --max:1200px;
+  --display:'Bebas Neue', 'Helvetica Neue', sans-serif;
+  --body:'Inter', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html, body{ background:var(--ink); color:var(--white); font-family:var(--body); -webkit-font-smoothing:antialiased; }
+html{ scroll-behavior:smooth; }
+body{ overflow-x:hidden; }
+img,video{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+/* ============ MERCURY / CHROME PRIMITIVES ============ */
+.mono{ font-family:var(--mono); text-transform:uppercase; letter-spacing:.22em; font-size:11px; color:var(--w-50); }
+.mono-tag{ font-family:var(--mono); text-transform:uppercase; letter-spacing:.18em; font-size:10.5px; }
+.display{ font-family:var(--display); font-weight:400; letter-spacing:.005em; line-height:.92; }
+
+/* Silver mercury text fill */
+.mercury-text{
+  background: linear-gradient(180deg,
+    #ffffff 0%,
+    #e9e9ec 18%,
+    #b6b6bb 38%,
+    #f4f4f6 50%,
+    #6f6f74 62%,
+    #cfcfd2 78%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 28px rgba(220,220,235,.18);
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,.4));
+}
+.mercury-text.glow{
+  text-shadow: 0 0 24px rgba(220,220,235,.28), 0 0 60px rgba(180,180,200,.15);
+}
+
+/* Outline stroke */
+.stroke-text{
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255,255,255,.85);
+}
+
+/* Silver chrome bubble — for section headers */
+.chrome-bubble{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 9px 22px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #f3f3f3 0%, #ffffff 18%, #cfcfd2 50%, #8e8e92 78%, #d6d6d8 100%);
+  color:#0A0405;
+  font-family:var(--mono);
+  text-transform:uppercase; letter-spacing:.22em; font-size:11.5px; font-weight:600;
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:
+    0 12px 30px -10px rgba(0,0,0,.6),
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 -1px 0 rgba(0,0,0,.25) inset,
+    0 0 0 1px rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
+}
+.chrome-bubble::before{
+  content:""; position:absolute; inset:1px; border-radius:inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0) 35%);
+  pointer-events:none;
+}
+
+/* Chrome pill (CTA) */
+.chrome-cta{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center; gap:14px;
+  padding: 18px 34px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #f8f8f8 0%, #ffffff 12%, #d4d4d6 48%, #8a8a8e 70%, #cfcfd2 90%, #ffffff 100%);
+  color:#0A0405;
+  font-family:var(--mono);
+  text-transform:uppercase; letter-spacing:.22em; font-size:13px; font-weight:700;
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow:
+    0 18px 50px -14px rgba(180,180,200,.5),
+    0 6px 14px -6px rgba(0,0,0,.7),
+    0 1px 0 rgba(255,255,255,.7) inset,
+    0 -1px 0 rgba(0,0,0,.3) inset;
+  overflow:hidden;
+  isolation:isolate;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.chrome-cta::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.85) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform .9s ease;
+  pointer-events:none;
+}
+.chrome-cta:hover{ transform: translateY(-1px); }
+.chrome-cta:hover::after{ transform: translateX(130%); }
+.chrome-cta.lg{ padding:20px 38px; font-size:14px; }
+.chrome-cta.sm{ padding: 11px 18px; font-size:11px; }
+.chrome-cta .arrow{ font-family:var(--mono); }
+
+/* Glass card with silver hairline */
+.glass{
+  background: rgba(20,8,10,.55);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  position:relative;
+  overflow:hidden;
+}
+.glass::before{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0) 30%),
+    radial-gradient(120% 80% at 50% -10%, rgba(255,255,255,.18), transparent 60%);
+  mix-blend-mode: screen;
+  opacity:.7;
+}
+.glass.silver-edge{
+  border:1px solid transparent;
+  background:
+    linear-gradient(rgba(20,8,10,.55), rgba(20,8,10,.55)) padding-box,
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.05) 30%, rgba(255,255,255,.4) 100%) border-box;
+}
+
+/* Section base */
+section{ position:relative; }
+.wrap{ max-width:var(--max); margin:0 auto; padding:0 var(--gutter); }
+.section-pad{ padding: clamp(64px, 8vw, 120px) 0; }
+
+.section-head{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:18px; margin-bottom: clamp(36px, 4vw, 64px);
+}
+.section-head .h2{
+  font-family:var(--display); font-size: clamp(48px, 8.5vw, 110px);
+  line-height:.9; letter-spacing:.005em;
+}
+.section-head .sub{ color:var(--w-50); font-size:14px; max-width:560px; }
+
+/* Background w/ radial burgundy */
+.bg-mood{
+  background:
+    radial-gradient(60% 60% at 50% 0%, rgba(139,26,26,.35) 0%, rgba(139,26,26,0) 60%),
+    radial-gradient(50% 50% at 50% 100%, rgba(90,15,16,.25) 0%, rgba(90,15,16,0) 60%),
+    var(--ink);
+}
+.divider{
+  height:1px; width:100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+}
+
+/* ============ HEADER ============ */
+.header{
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  padding: 14px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  transition: background .25s ease, backdrop-filter .25s ease, padding .25s ease, border-color .25s ease;
+  border-bottom:1px solid transparent;
+}
+.header.scrolled{
+  background: rgba(8,3,4,.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom-color: rgba(255,255,255,.07);
+  padding: 10px 20px;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-weight:700; letter-spacing:.18em; font-size:12px;
+  color:#fff;
+}
+.brand .mark{
+  width:28px; height:28px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #cfcfd2 35%, #6a6a6e 70%, #1a1a1c 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.6);
+  position:relative;
+}
+.brand .mark::after{
+  content:""; position:absolute; inset:6px; border-radius:50%;
+  background: linear-gradient(180deg, #fff, #b8b8bb 50%, #2a2a2c);
+  opacity:.9;
+}
+.nav{ display:flex; gap:28px; }
+.nav a{
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.2em;
+  font-size:11px; color: var(--w-70);
+  position:relative; padding:8px 2px;
+  transition: color .2s ease;
+}
+.nav a:hover{ color:#fff; }
+.nav a::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.7), transparent);
+  transform: scaleX(0); transform-origin:center;
+  transition: transform .35s ease;
+}
+.nav a:hover::after{ transform: scaleX(1); }
+.burger{ display:none; width:40px; height:40px; border-radius:50%; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.18); }
+.burger span{ display:block; width:14px; height:1.4px; background:#fff; box-shadow:0 5px 0 #fff, 0 -5px 0 #fff; }
+@media (max-width: 880px){
+  .nav{ display:none; }
+  .burger{ display:flex; }
+  .header .chrome-cta.sm{ display:none; }
+}
+
+/* Mobile drawer */
+.drawer{
+  position:fixed; inset:0; z-index:60; pointer-events:none; opacity:0;
+  background: rgba(0,0,0,.6);
+  transition: opacity .3s ease;
+}
+.drawer .panel{
+  position:absolute; right:0; top:0; bottom:0; width:min(360px, 84%);
+  background: var(--ink-2);
+  border-left:1px solid rgba(255,255,255,.1);
+  transform: translateX(100%);
+  transition: transform .35s cubic-bezier(.6,.05,.2,1);
+  padding:22px;
+  display:flex; flex-direction:column; gap:18px;
+}
+.drawer.open{ pointer-events:auto; opacity:1; }
+.drawer.open .panel{ transform: translateX(0); }
+.drawer .row{ display:flex; align-items:center; justify-content:space-between; }
+.drawer .x{ width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; }
+.drawer .links{ display:flex; flex-direction:column; gap:2px; margin-top:8px; }
+.drawer .links a{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 4px;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-family:var(--display); font-size:24px;
+}
+.drawer .links a .arr{ font-family:var(--mono); font-size:13px; color:var(--w-50); }
+.drawer .foot{ margin-top:auto; }
+.drawer .foot p{ font-family:var(--mono); text-transform:uppercase; letter-spacing:.18em; font-size:10.5px; color:var(--w-50); line-height:1.6; }
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  width:100%;
+  height: 100svh;
+  min-height: 720px;
+  overflow:hidden;
+  background: var(--ink);
+}
+.hero .bg{
+  position:absolute; inset:0; z-index:0;
+  background-image:url('public/hero/hero-chrome-bath.jpg');
+  background-size: cover; background-position: center 35%;
+  will-change: transform;
+}
+.hero .bg::after{
+  content:""; position:absolute; inset:0;
+  background:
+    linear-gradient(180deg, rgba(10,4,5,.55) 0%, rgba(10,4,5,0) 22%, rgba(10,4,5,0) 60%, rgba(10,4,5,.85) 100%);
+}
+.hero-bottom{
+  position:absolute; left:0; right:0; bottom: clamp(28px, 6vh, 60px); z-index:5;
+  display:flex; flex-direction:column; align-items:center; gap:18px; padding: 0 20px;
+}
+.hero-meta{
+  display:flex; gap:26px; align-items:center;
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.22em; font-size:10.5px; color:var(--w-50);
+  flex-wrap:wrap; justify-content:center;
+}
+.hero-meta .dot{ width:5px; height:5px; border-radius:50%; background:#fff; opacity:.4; }
+.scroll-cue{
+  position:absolute; left:50%; top: calc(100% - 18px); transform:translateX(-50%);
+  font-family:var(--mono); font-size:10px; letter-spacing:.3em; color:var(--w-50);
+  text-transform:uppercase;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+@media (max-width: 700px){
+  .hero{ min-height: 620px; }
+  .hero .bg{ background-position: center 30%; }
+}
+
+/* ============ TESTIMONIAL IMAGE ============ */
+.testimonials{
+  padding: clamp(60px, 8vw, 100px) 0;
+  background:
+    radial-gradient(60% 50% at 50% 50%, rgba(139,26,26,.18) 0%, rgba(139,26,26,0) 70%),
+    var(--ink);
+}
+.testimonials .frame{
+  border-radius: 22px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
+  position:relative;
+}
+.testimonials .frame img{ width:100%; height:auto; display:block; }
+.testimonials .head-row{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; flex-wrap:wrap;
+}
+.testimonials .head-row .mono-tag{ color:var(--w-50); }
+
+/* ============ METHODE 3 ETAPES ============ */
+.method-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 24px);
+  position:relative;
+}
+@media (max-width: 880px){ .method-grid{ grid-template-columns:1fr; } }
+.step{
+  position:relative;
+  border-radius: 22px;
+  overflow:hidden;
+  background: var(--ink-2);
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow: 0 25px 60px -22px rgba(0,0,0,.8);
+}
+.step .media{
+  position:relative; aspect-ratio: 4 / 5; overflow:hidden; background:#000;
+}
+.step .media img, .step .media video{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.step .media::after{
+  content:""; position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(10,4,5,.85) 100%);
+  pointer-events:none;
+}
+.step .num-bar{
+  position:absolute; left:18px; top:18px; z-index:2;
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--mono); font-size:11px; letter-spacing:.25em; color:#fff; text-transform:uppercase;
+}
+.step .num-bar .pill{
+  display:inline-flex; align-items:center; padding: 5px 10px;
+  background: rgba(10,4,5,.6); border:1px solid rgba(255,255,255,.18);
+  border-radius:999px; backdrop-filter: blur(6px);
+}
+.step .body{ padding: 22px 24px 26px; background: var(--ink-2); position:relative; z-index:2; }
+.step .body h3{
+  font-family:var(--display); font-weight:400;
+  font-size: clamp(28px, 3vw, 36px); line-height:.95; margin-bottom:10px;
+}
+.step .body p{ color:var(--w-70); font-size:14px; line-height:1.55; }
+.connector{
+  position:absolute; top:50%; transform: translateY(-50%);
+  width:38px; height:38px; border-radius:50%;
+  background: linear-gradient(180deg, #fff, #c0c0c4 45%, #6a6a6e 100%);
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow: 0 6px 18px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.7);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); color:#0A0405; font-weight:800;
+  z-index:5;
+}
+.connector.c1{ left: calc(33.333% - 19px); }
+.connector.c2{ left: calc(66.666% - 19px); }
+@media (max-width: 880px){ .connector{ display:none; } }
+
+/* ============ APPRENDRE — 4 reels ============ */
+.reels{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap: clamp(12px, 1.6vw, 18px);
+}
+@media (max-width: 980px){ .reels{ grid-template-columns: repeat(2, 1fr); } }
+.reel{
+  position:relative; border-radius: 18px; overflow:hidden;
+  aspect-ratio: 9 / 16; background:#000;
+  border:1px solid rgba(255,255,255,.1);
+  box-shadow: 0 20px 50px -22px rgba(0,0,0,.8);
+}
+.reel video{ width:100%; height:100%; object-fit:cover; }
+.reel .overlay{
+  position:absolute; inset:0; pointer-events:none;
+  background: linear-gradient(180deg, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 60%, rgba(0,0,0,.85) 100%);
+}
+.reel .topline{
+  position:absolute; top:14px; left:14px; right:14px; z-index:2;
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); font-size:10px; letter-spacing:.24em; text-transform:uppercase; color:#fff;
+}
+.reel .topline .tag{
+  background: rgba(10,4,5,.55); border:1px solid rgba(255,255,255,.2);
+  padding:5px 9px; border-radius:999px; backdrop-filter: blur(6px);
+}
+.reel .topline .num{
+  font-family:var(--display); font-size:18px; letter-spacing:0;
+  background: linear-gradient(180deg,#fff,#c0c0c4 50%,#6a6a6e);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow: 0 0 10px rgba(220,220,235,.3);
+}
+.reel .titleline{
+  position:absolute; left:14px; right:14px; bottom:14px; z-index:2;
+  font-family:var(--mono); font-size:11px; letter-spacing:.18em; color:#fff; text-transform:uppercase;
+  line-height:1.4;
+}
+.reel .titleline .t{ display:block; font-family:var(--body); font-size:13px; letter-spacing:0; text-transform:none; color:var(--w-70); margin-top:4px; font-weight:400; }
+.reel .placeholder{
+  position:absolute; inset:0; display:none; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+  background: linear-gradient(180deg, #150709, #0A0405);
+}
+.reel .placeholder .play{ width:46px; height:46px; border-radius:50%;
+  background: linear-gradient(180deg,#fff,#c0c0c4 50%,#6a6a6e); display:flex; align-items:center; justify-content:center;
+  color:#0A0405; box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+.reel.fallback .placeholder{ display:flex; }
+
+/* ============ TOUT CE QUE TU REÇOIS ============ */
+.loadout-head{ text-align:left; align-items:flex-start; }
+.loadout-head .h2{ font-size: clamp(64px, 13vw, 168px); line-height:.86; }
+.loadout-head .h2 .l1{ display:block; }
+.loadout-head .h2 .l2{ display:block; }
+.subhead-row{
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  margin: 24px 0 20px;
+}
+.subhead-row .left{ display:flex; align-items:baseline; gap:14px; }
+.subhead-row .num{ font-family:var(--display); font-size: clamp(34px, 4vw, 52px); color: var(--silver-3); }
+.subhead-row .title{ font-family:var(--display); font-size: clamp(28px, 3.4vw, 44px); }
+.subhead-row .meta{ color:var(--w-50); font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; }
+
+/* Bento */
+.bento{
+  display:grid; grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: clamp(150px, 14vw, 200px);
+  gap: 14px;
+}
+.bento .m{
+  position:relative; border-radius:18px; overflow:hidden;
+  background:#0e0507;
+  border:1px solid rgba(255,255,255,.08);
+  transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+.bento .m::before{
+  content:""; position:absolute; inset:0; background:
+    linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(10,4,5,.95) 100%),
+    linear-gradient(160deg, rgba(139,26,26,.35), rgba(0,0,0,0) 55%);
+  z-index:2;
+}
+.bento .m img{ width:100%; height:100%; object-fit:cover; transition: transform .8s ease; }
+.bento .m:hover{ border-color: rgba(255,255,255,.35); box-shadow: 0 18px 60px -22px rgba(220,220,235,.35); }
+.bento .m:hover img{ transform: scale(1.06); }
+.bento .m .corner{
+  position:absolute; top:14px; right:14px; z-index:5;
+  font-family:var(--mono); font-size:11px; letter-spacing:.24em; color:#fff; opacity:.85;
+  text-transform:uppercase;
+}
+.bento .m .stamp{
+  position:absolute; top:14px; left:14px; z-index:5;
+  display:inline-flex; align-items:center; padding: 5px 11px; border-radius:999px;
+  background: linear-gradient(180deg,#fff,#c8c8cc 55%,#7c7c7f);
+  color:#0A0405;
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; font-weight:700; text-transform:uppercase;
+  border:1px solid rgba(255,255,255,.5);
+  box-shadow: 0 6px 14px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.7);
+  transform: rotate(-3deg);
+}
+.bento .m .info{
+  position:absolute; left:0; right:0; bottom:0; z-index:6;
+  padding: 18px 20px 18px;
+  display:flex; flex-direction:column; gap:6px;
+}
+.bento .m .info h3{
+  font-family:var(--display); font-weight:400;
+  font-size: clamp(22px, 2.4vw, 34px); line-height:.95;
+}
+.bento .m .info h3 .key{ display:inline; }
+.bento .m .info p{
+  color:var(--w-70); font-size:13px; line-height:1.5;
+  display:none;
+}
+.bento .m.large .info p{ display:block; max-width: 540px; }
+.bento .m .price{
+  position:absolute; right:18px; bottom:18px; z-index:7;
+  font-family:var(--mono); font-size:12px; letter-spacing:.18em; color:var(--w-50);
+  text-decoration: line-through;
+  text-decoration-color: rgba(255,255,255,.5);
+}
+.bento .m.large .price{ bottom:24px; right:24px; font-size:14px; }
+
+/* Spans */
+.bento .m1{ grid-column: span 4; grid-row: span 2; }
+.bento .m2{ grid-column: span 2; grid-row: span 1; }
+.bento .m3{ grid-column: span 2; grid-row: span 1; }
+.bento .m4{ grid-column: span 4; grid-row: span 2; }
+.bento .m5{ grid-column: span 2; grid-row: span 1; }
+.bento .m6{ grid-column: span 2; grid-row: span 1; }
+.bento .m7{ grid-column: span 6; grid-row: span 2; }
+@media (max-width: 980px){
+  .bento{ grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(140px, 22vw, 180px); }
+  .bento .m1{ grid-column: span 4; grid-row: span 2; }
+  .bento .m2{ grid-column: span 2; }
+  .bento .m3{ grid-column: span 2; }
+  .bento .m4{ grid-column: span 4; grid-row: span 2; }
+  .bento .m5{ grid-column: span 2; }
+  .bento .m6{ grid-column: span 2; }
+  .bento .m7{ grid-column: span 4; grid-row: span 2; }
+}
+@media (max-width: 600px){
+  .bento{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .bento .m1, .bento .m4, .bento .m7{ grid-column: span 2; grid-row: span 2; }
+  .bento .m2, .bento .m3, .bento .m5, .bento .m6{ grid-column: span 1; grid-row: span 1; }
+}
+
+/* ============ BONUS ============ */
+.bonus{
+  margin-top: 28px;
+  display:flex; flex-direction:column; gap: 22px;
+}
+.bonus-card{
+  position:relative; padding: clamp(24px, 3vw, 44px);
+  border-radius: 22px; overflow:hidden;
+  background:
+    radial-gradient(60% 100% at 80% 0%, rgba(139,26,26,.25), transparent 70%),
+    rgba(20,8,10,.65);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 25px 70px -25px rgba(0,0,0,.8);
+}
+.bonus-card::before{
+  content:""; position:absolute; inset:0; padding:1px; border-radius:inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.05) 30%, rgba(255,255,255,.4) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events:none;
+}
+.ribbon{
+  position:absolute; top:18px; right:-44px; z-index:5;
+  transform: rotate(8deg);
+  padding: 8px 56px;
+  background: linear-gradient(180deg,#fff,#c0c0c4 55%,#6a6a6e);
+  color:#0A0405;
+  font-family:var(--mono); font-size:11px; letter-spacing:.28em; font-weight:800;
+  border-top:1px solid rgba(255,255,255,.7); border-bottom:1px solid rgba(0,0,0,.25);
+  box-shadow: 0 10px 24px rgba(0,0,0,.6);
+}
+.bonus-card .pill-tag{
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 7px 14px; border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.18);
+  font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; color:#fff;
+}
+.bonus-card h3{
+  font-family:var(--display); font-weight:400;
+  font-size: clamp(40px, 6vw, 76px); line-height:.92; margin-top:18px;
+}
+.bonus-card .lede{
+  color:var(--w-70); font-size: clamp(15px, 1.5vw, 17px); line-height:1.6; margin-top:14px; max-width: 720px;
+}
+.bonus-card .hook{
+  margin-top: 22px;
+  border-left: 3px solid rgba(255,255,255,.5);
+  padding: 6px 0 6px 16px;
+  color:#fff; font-family:var(--display); font-size: clamp(20px, 2.4vw, 28px);
+}
+.compare{
+  margin-top: 26px;
+  display:grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items:stretch;
+}
+@media (max-width: 720px){ .compare{ grid-template-columns: 1fr; } }
+.compare .col{
+  padding: 22px; border-radius: 16px; background: rgba(10,4,5,.55);
+  border:1px solid rgba(255,255,255,.1);
+  display:flex; flex-direction:column; gap:14px;
+}
+.compare .col.bad{ border-color: rgba(181,36,36,.5); }
+.compare .col.good{ border-color: rgba(255,255,255,.35);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(10,4,5,.55));
+}
+.compare .col h4{
+  font-family:var(--mono); font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color: var(--w-50);
+}
+.compare .col.bad h4{ color: #E07474; }
+.compare .col li{
+  list-style:none; display:flex; align-items:flex-start; gap:10px;
+  font-size:14px; line-height:1.5; color:#fff;
+}
+.compare .col li .ic{ flex:0 0 auto; }
+.compare .vs{
+  align-self:center; justify-self:center;
+  width: 48px; height: 48px; border-radius:50%;
+  background: linear-gradient(180deg,#fff,#c0c0c4 55%,#6a6a6e);
+  color:#0A0405; font-family:var(--mono); font-size:13px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid rgba(255,255,255,.6);
+  box-shadow: 0 6px 16px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.8);
+}
+@media (max-width: 720px){ .compare .vs{ transform: rotate(90deg); } }
+
+.bonus-mini{
+  padding: clamp(20px, 2.5vw, 30px);
+  border-radius:18px;
+  border: 1.5px dashed rgba(255,255,255,.35);
+  background: rgba(20,8,10,.4);
+  display:flex; flex-direction:column; gap:10px;
+}
+.bonus-mini .pill-tag{
+  align-self:flex-start;
+  background: linear-gradient(180deg,#f3f3f3,#cfcfd2 55%,#8e8e92);
+  color:#0A0405; border-color: rgba(255,255,255,.55);
+}
+.bonus-mini h3{
+  font-family:var(--display); font-size: clamp(28px, 3.5vw, 44px); line-height:.95;
+}
+.bonus-mini p{ color:var(--w-70); font-size:14px; line-height:1.6; max-width:680px; }
+
+/* ============ TICKET ============ */
+.ticket-wrap{ margin-top: clamp(40px, 5vw, 70px); display:flex; justify-content:center; }
+.ticket{
+  position:relative;
+  width:100%; max-width: 560px;
+  background:
+    linear-gradient(180deg, rgba(20,8,10,.85), rgba(15,6,7,.95));
+  border: 1px solid transparent;
+  border-radius: 24px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 35px 80px -25px rgba(0,0,0,.9);
+  background-clip: padding-box;
+}
+.ticket::before{
+  content:""; position:absolute; inset:0; padding:1px; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.05) 35%, rgba(255,255,255,.4) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events:none;
+}
+/* dot-matrix encoches */
+.ticket::after{
+  content:""; position:absolute; left:14px; right:14px; top:0; height:2px;
+  background-image: radial-gradient(circle, rgba(255,255,255,.35) 1.2px, transparent 1.4px);
+  background-size: 12px 2px;
+  background-position: top;
+  background-repeat: repeat-x;
+}
+.ticket-bottom-dots{
+  position:absolute; left:14px; right:14px; bottom:0; height:2px;
+  background-image: radial-gradient(circle, rgba(255,255,255,.35) 1.2px, transparent 1.4px);
+  background-size: 12px 2px;
+  background-repeat: repeat-x;
+}
+.ticket .head{
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.22em; font-size:10.5px;
+  color: var(--w-50);
+  border-bottom: 1px dashed rgba(255,255,255,.18);
+  padding-bottom: 18px; margin-bottom: 8px;
+}
+.ticket .head .l{ color:#fff; }
+.ticket-row{
+  display:flex; align-items:center; justify-content:space-between; gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px dashed rgba(255,255,255,.12);
+}
+.ticket-row:last-of-type{ border-bottom:0; }
+.ticket-row .desc{ font-size:13.5px; line-height:1.45; color:var(--w-70); max-width: 70%; }
+.ticket-row .val{
+  font-family:var(--mono); font-size:14px; color: var(--silver-3);
+  text-decoration: line-through; text-decoration-color: rgba(255,255,255,.5);
+}
+.ticket-row.bright{
+  background: rgba(255,255,255,.04);
+  margin: 6px -32px; padding: 18px 32px;
+}
+.ticket-row.bright .desc{ color:#fff; font-weight:600; }
+.ticket-row.bright .val{
+  font-family:var(--display); font-size: 30px; color: var(--silver-2); letter-spacing:.01em;
+}
+.ticket-row.dim{ background: rgba(0,0,0,.25); margin: 0 -32px; padding: 14px 32px; }
+.ticket-row.final{
+  margin: 14px -32px 8px;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(10,4,5,.4));
+  padding: 24px 32px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.ticket-row.final .desc{
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.22em; font-size:13px;
+  color:#fff; font-weight:700; max-width:none;
+}
+.ticket-row.final .price{
+  font-family:var(--display);
+  font-size: clamp(72px, 9vw, 108px);
+  line-height:.85;
+  letter-spacing:.005em;
+}
+.ticket-cta{ margin-top: 22px; display:flex; flex-direction:column; align-items:center; gap:14px; }
+.ticket .trust{
+  font-family:var(--mono); text-transform:uppercase; letter-spacing:.22em; font-size:10.5px;
+  color: var(--w-50); text-align:center;
+}
+
+/* ============ CHECKOUT ============ */
+.checkout{
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(139,26,26,.35) 0%, rgba(139,26,26,0) 60%),
+    var(--ink);
+  padding: clamp(64px, 8vw, 110px) 0;
+}
+.countdown{
+  display:flex; align-items:center; justify-content:center; gap: 14px; flex-wrap:wrap;
+  margin: 22px 0 8px;
+}
+.cd-cell{
+  position:relative;
+  width: clamp(72px, 9vw, 110px); height: clamp(82px, 10vw, 120px);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, #f3f3f3 0%, #ffffff 12%, #cfcfd2 50%, #8a8a8e 78%, #cfcfd2 100%);
+  border:1px solid rgba(255,255,255,.55);
+  box-shadow: 0 14px 30px -10px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.7);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:#0A0405;
+}
+.cd-cell .digits{
+  font-family:var(--display); font-size: clamp(40px, 5vw, 64px); line-height:1;
+  background: linear-gradient(180deg,#0a0405 0%, #2a1517 40%, #0a0405 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-weight:400;
+}
+.cd-cell .label{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color: rgba(0,0,0,.55);
+  margin-top: 4px;
+}
+.cd-sep{
+  font-family:var(--display); color: var(--silver-3); font-size: clamp(36px, 4vw, 48px); line-height:1;
+}
+.deal-card{
+  margin-top: 28px;
+  max-width: 640px; margin-left:auto; margin-right:auto;
+  border-radius: 22px;
+  background: rgba(20,8,10,.7);
+  padding: 32px;
+  position:relative; overflow:hidden;
+  border:1px solid transparent; background-clip: padding-box;
+  box-shadow: 0 30px 70px -25px rgba(0,0,0,.8);
+}
+.deal-card::before{
+  content:""; position:absolute; inset:0; padding:1px; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.05) 35%, rgba(255,255,255,.4) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events:none;
+}
+.deal-tag{ display:flex; align-items:center; justify-content:center; }
+.deal-prices{ display:flex; align-items:baseline; justify-content:center; gap:18px; margin: 18px 0 6px; flex-wrap:wrap; }
+.deal-prices .now{ font-family:var(--display); font-size: clamp(64px, 8vw, 96px); line-height:.9; }
+.deal-prices .was{ font-family:var(--mono); color:var(--w-50); text-decoration:line-through; font-size:18px; }
+.deal-sub{ text-align:center; color:var(--w-70); font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase; }
+.deal-iframe{
+  margin-top: 22px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.45);
+  border:1px dashed rgba(255,255,255,.18);
+  height: 220px;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
+  color: var(--w-50); font-family:var(--mono); font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  text-align:center; padding: 20px;
+}
+.trust-row{
+  margin-top: 22px;
+  display:flex; align-items:center; justify-content:center; gap: 20px; flex-wrap:wrap;
+  font-family:var(--mono); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--w-70);
+}
+.trust-row .b{ display:inline-flex; align-items:center; gap:8px; }
+.trust-row .ic{
+  width:28px; height:28px; border-radius:50%;
+  background: linear-gradient(180deg,#fff,#cfcfd2 55%,#7a7a7d);
+  display:flex; align-items:center; justify-content:center; color:#0A0405;
+  border:1px solid rgba(255,255,255,.5); box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+/* ============ FAQ ============ */
+.faq{
+  max-width: 820px; margin: 0 auto;
+}
+.faq-item{
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.faq-item summary{
+  list-style:none;
+  padding: 24px 0;
+  display:flex; align-items:center; justify-content:space-between; gap: 24px;
+  cursor:pointer;
+  font-family:var(--display); font-size: clamp(22px, 2.4vw, 30px); line-height:1.05;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item .plus{
+  width: 32px; height: 32px; border-radius:50%;
+  background: linear-gradient(180deg,#fff,#cfcfd2 55%,#7a7a7d);
+  color:#0A0405; font-family:var(--mono); font-size:18px; font-weight:800;
+  display:flex; align-items:center; justify-content:center; flex:0 0 auto;
+  border:1px solid rgba(255,255,255,.55); box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+  transition: transform .25s ease;
+}
+.faq-item[open] .plus{ transform: rotate(45deg); }
+.faq-item .answer{ padding: 0 0 24px; color: var(--w-70); font-size:15px; line-height:1.65; max-width: 660px; }
+
+/* ============ FOOTER ============ */
+footer{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding: clamp(48px, 6vw, 80px) 0 32px;
+  background: var(--ink-2);
+}
+.foot-grid{
+  display:grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; align-items:flex-start;
+}
+@media (max-width: 880px){ .foot-grid{ grid-template-columns: 1fr; } }
+.foot-grid .col h5{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.24em; text-transform:uppercase; color:var(--w-50);
+  margin-bottom: 14px;
+}
+.foot-grid .col a{ display:block; padding:6px 0; font-size:13px; color:var(--w-70); }
+.foot-grid .col a:hover{ color:#fff; }
+.foot-brand{ display:flex; flex-direction:column; gap:14px; max-width:380px; }
+.foot-brand .tag{ font-family:var(--mono); font-size:11px; letter-spacing:.22em; color:var(--w-50); text-transform:uppercase; }
+.foot-brand .desc{ color: var(--w-70); font-size:13.5px; line-height:1.65; }
+.foot-bottom{
+  margin-top: 50px; padding-top: 22px; border-top:1px solid rgba(255,255,255,.06);
+  display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--w-30);
+}
+
+/* ============ small utils ============ */
+.center{ text-align:center; }
+.fadein{ opacity:0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
+.fadein.in{ opacity:1; transform:none; }
+.kbd{ font-family:var(--mono); font-size:11px; letter-spacing:.2em; }
+</style>
+</head>
+<body>
+
+<!-- =================== HEADER =================== -->
+<header class="header" id="hdr" data-screen-label="00 Header">
+  <a href="#top" class="brand"><span class="mark"></span><span>REVO LAB</span></a>
+  <nav class="nav" aria-label="Principal">
+    <a href="#methode">Programme</a>
+    <a href="#apprendre">Fonctionnalités</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <div style="display:flex; align-items:center; gap:10px;">
+    <a href="#checkout" class="chrome-cta sm"><span>Commencer</span><span class="arrow">→</span></a>
+    <button class="burger" aria-label="Menu" id="burgerBtn"><span></span></button>
+  </div>
+</header>
+
+<!-- mobile drawer -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="panel" role="dialog" aria-label="Navigation">
+    <div class="row">
+      <span class="mono">// Navigation</span>
+      <button class="x" id="drawerClose" aria-label="Fermer">✕</button>
+    </div>
+    <div class="links">
+      <a href="#temoignages" data-close>Résultats <span class="arr">→</span></a>
+      <a href="#methode" data-close>Ce que tu apprends <span class="arr">→</span></a>
+      <a href="#tarifs" data-close>Modules &amp; bonus <span class="arr">→</span></a>
+      <a href="#tarifs" data-close>Valeur réelle <span class="arr">→</span></a>
+      <a href="#faq" data-close>FAQ <span class="arr">→</span></a>
+      <a href="#checkout" data-close style="color:#fff;"><span class="mercury-text">S’INSCRIRE — 97€</span> <span class="arr">→</span></a>
+    </div>
+    <div class="foot">
+      <p>AI Creative Academy ·<br/>by REVO LAB</p>
+    </div>
+  </div>
+</div>
+
+<!-- =================== HERO =================== -->
+<section class="hero" id="top" data-screen-label="01 Hero">
+  <div class="bg" id="heroBg" aria-hidden="true"></div>
+  <div class="hero-bottom">
+    <div class="hero-meta">
+      <span>// Liquid Silver Mercury</span>
+      <span class="dot"></span>
+      <span>Loadout 001</span>
+      <span class="dot"></span>
+      <span>97€ · Accès à vie</span>
+    </div>
+    <a href="#checkout" class="chrome-cta lg"><span>Je lance mon avatar</span><span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- =================== TEMOIGNAGES =================== -->
+<section class="testimonials" id="temoignages" data-screen-label="02 Ce qu'ils en disent">
+  <div class="wrap">
+    <div class="head-row">
+      <span class="chrome-bubble">// CE QU’ILS EN DISENT</span>
+      <span class="mono-tag">3 retours · membres</span>
+    </div>
+    <div class="frame fadein">
+      <img src="public/sections/ce-quils-en-disent.jpg" alt="Témoignages vérifiés des membres — 3 avis 5 étoiles" />
+    </div>
+  </div>
+</section>
+
+<!-- =================== METHODE =================== -->
+<section class="bg-mood section-pad" id="methode" data-screen-label="03 Méthode">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="chrome-bubble">// LA MÉTHODE</span>
+      <h2 class="h2"><span class="stroke-text">La méthode en</span> <span class="mercury-text glow">3 étapes.</span></h2>
+      <p class="sub mono-tag">Crée · Génère · Monétise</p>
+    </div>
+
+    <div class="method-grid">
+      <article class="step fadein">
+        <div class="num-bar"><span class="pill">01 · Crée</span></div>
+        <div class="media">
+          <img src="public/process/step-1.gif" alt="Étape 1 — création de l'avatar IA" />
+        </div>
+        <div class="body">
+          <h3>Crée ton <span class="mercury-text">avatar IA</span>.</h3>
+          <p>Identité, photos, animation. Un avatar que personne ne distingue d’un humain.</p>
+        </div>
+      </article>
+
+      <article class="step fadein">
+        <div class="num-bar"><span class="pill">02 · Génère</span></div>
+        <div class="media">
+          <video src="public/process/step-2.mp4" autoplay loop muted playsinline preload="metadata"></video>
+        </div>
+        <div class="body">
+          <h3>Génère du contenu <span class="mercury-text">ultra-réaliste</span>.</h3>
+          <p>Reels, UGC, ads, stories. Ton avatar poste sans toi — script, voix, montage.</p>
+        </div>
+      </article>
+
+      <article class="step fadein">
+        <div class="num-bar"><span class="pill">03 · Monétise</span></div>
+        <div class="media">
+          <img src="public/process/step-3.gif" alt="Étape 3 — monétisation de l'avatar" />
+        </div>
+        <div class="body">
+          <h3>Monétise ton <span class="mercury-text">avatar IA</span>.</h3>
+          <p>Produits digitaux, affiliation, clients. Un actif qui te paie chaque jour.</p>
+        </div>
+      </article>
+
+      <span class="connector c1" aria-hidden="true">→</span>
+      <span class="connector c2" aria-hidden="true">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== APPRENDRE / 4 REELS =================== -->
+<section class="section-pad" id="apprendre" data-screen-label="04 Apprendre">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="chrome-bubble">// 004 · APPRENDRE</span>
+      <h2 class="h2"><span class="stroke-text">Ce que tu vas</span><br/><span class="mercury-text glow">apprendre à faire.</span></h2>
+      <p class="sub">Quatre formats. Le même avatar. Réplicable à l’infini, sans tournage, sans équipe.</p>
+    </div>
+
+    <div class="reels">
+      <article class="reel fadein fallback" id="reel1">
+        <div class="placeholder">
+          <div class="play">▶</div>
+          <span class="kbd">STORYTELLING · 01</span>
+        </div>
+        <div class="overlay"></div>
+        <div class="topline"><span class="tag">Storytelling</span><span class="num">01</span></div>
+        <div class="titleline">Storytelling<span class="t">Crash scénarisé · POV viral</span></div>
+      </article>
+
+      <article class="reel fadein">
+        <video autoplay loop muted playsinline preload="metadata" src="public/reels/ugc-nikon.mp4"></video>
+        <div class="overlay"></div>
+        <div class="topline"><span class="tag">UGC</span><span class="num">02</span></div>
+        <div class="titleline">UGC<span class="t">« Je teste le Nikon »</span></div>
+      </article>
+
+      <article class="reel fadein">
+        <video autoplay loop muted playsinline preload="metadata" src="public/reels/client-creative.mp4"></video>
+        <div class="overlay"></div>
+        <div class="topline"><span class="tag">Client Ready</span><span class="num">03</span></div>
+        <div class="titleline">Client ready<span class="t">Créatives livrables</span></div>
+      </article>
+
+      <article class="reel fadein">
+        <video autoplay loop muted playsinline preload="metadata" src="public/reels/ads.mp4"></video>
+        <div class="overlay"></div>
+        <div class="topline"><span class="tag">Ads</span><span class="num">04</span></div>
+        <div class="titleline">Ads<span class="t">Créatives Meta · TikTok</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TOUT CE QUE TU REÇOIS =================== -->
+<section class="section-pad bg-mood" id="tarifs" data-screen-label="05 Tarifs">
+  <div class="wrap">
+    <div class="loadout-head section-head" style="align-items:flex-start; text-align:left;">
+      <span class="chrome-bubble">// REVO LAB · LOADOUT 001</span>
+      <h2 class="h2">
+        <span class="l1 stroke-text">Tout ce que tu</span>
+        <span class="l2 mercury-text glow">reçois.</span>
+      </h2>
+    </div>
+
+    <!-- 5.1 Formation -->
+    <div class="subhead-row">
+      <div class="left">
+        <span class="num">01</span>
+        <span class="title">La formation</span>
+      </div>
+      <span class="meta">7 modules · 21 leçons</span>
+    </div>
+
+    <div class="bento">
+      <div class="m m1 large fadein">
+        <img src="public/modules/1.jpg" alt="Module 1 — Avatar" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·01</span>
+        <div class="info">
+          <h3>Crée ton <span class="key mercury-text">AVATAR.</span></h3>
+          <p>Identité visuelle, Identity Lock, premières photos cohérentes — un avatar qui tient sur 1000 prompts.</p>
+        </div>
+        <span class="price">197€</span>
+      </div>
+
+      <div class="m m2 fadein">
+        <img src="public/modules/2.jpg" alt="Module 2 — Images" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·02</span>
+        <div class="info"><h3>Génère tes <span class="key mercury-text">IMAGES.</span></h3></div>
+        <span class="price">297€</span>
+      </div>
+
+      <div class="m m3 fadein">
+        <img src="public/modules/3.jpg" alt="Module 3 — Vidéos" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·03</span>
+        <div class="info"><h3>Génère tes <span class="key mercury-text">VIDÉOS.</span></h3></div>
+        <span class="price">247€</span>
+      </div>
+
+      <div class="m m4 large fadein">
+        <img src="public/modules/4.jpg" alt="Module 4 — Montage" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·04</span>
+        <div class="info">
+          <h3>Monte tes <span class="key mercury-text">VIDÉOS.</span></h3>
+          <p>CapCut de A à Z : transitions, sous-titres, export 9:16 prêts pour Reels et TikTok.</p>
+        </div>
+        <span class="price">147€</span>
+      </div>
+
+      <div class="m m5 fadein">
+        <img src="public/modules/5.jpg" alt="Module 5 — Voix IA" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·05</span>
+        <div class="info"><h3>Crée ta <span class="key mercury-text">VOIX IA.</span></h3></div>
+        <span class="price">147€</span>
+      </div>
+
+      <div class="m m6 fadein">
+        <img src="public/modules/6.jpg" alt="Module 6 — Scripts" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·06</span>
+        <div class="info"><h3>Scripts &amp; <span class="key mercury-text">VIRALITÉ.</span></h3></div>
+        <span class="price">97€</span>
+      </div>
+
+      <div class="m m7 large fadein">
+        <img src="public/modules/7.jpg" alt="Module 7 — Monétisation" />
+        <span class="stamp">✓ Inclus</span>
+        <span class="corner">M·07</span>
+        <div class="info">
+          <h3>Monétise ton <span class="key mercury-text">AVATAR.</span></h3>
+          <p>Offres, ads, prestations, partenariats. Le moment où l’avatar passe du jouet à l’actif.</p>
+        </div>
+        <span class="price">147€</span>
+      </div>
+    </div>
+
+    <!-- 5.2 Bonus -->
+    <div class="subhead-row" style="margin-top: clamp(48px, 6vw, 80px);">
+      <div class="left">
+        <span class="num">02</span>
+        <span class="title">Les bonus offerts</span>
+      </div>
+      <span class="meta">3 bonus · valeur 791€</span>
+    </div>
+
+    <div class="bonus">
+      <!-- Bonus 1 -->
+      <article class="bonus-card fadein">
+        <span class="ribbon">🎁 OFFERT</span>
+        <span class="pill-tag"><span style="font-size:14px">🤖</span> Agent IA</span>
+        <h3>LE GPT <span class="mercury-text glow">REVO LAB</span></h3>
+        <p class="lede">Tu lui parles <strong>en français</strong>, il <strong>écrit les prompts à ta place</strong> — calibré Nano Banana + Kling, celui qu’on utilise tous les jours en interne.</p>
+        <div class="hook">Pourquoi ça te fait gagner <span class="mercury-text">3h par jour</span>&nbsp;?</div>
+        <div class="compare">
+          <div class="col bad">
+            <h4>😩 Sans nous</h4>
+            <ul>
+              <li><span class="ic">🧪</span> T’écris tes prompts à la main</li>
+              <li><span class="ic">🧬</span> Avatar instable d’un shoot à l’autre</li>
+              <li><span class="ic">💸</span> ×5 crédits cramés en retries</li>
+            </ul>
+          </div>
+          <div class="vs">VS</div>
+          <div class="col good">
+            <h4>✨ Avec nous</h4>
+            <ul>
+              <li><span class="ic">🤖</span> L’agent prompt pour toi</li>
+              <li><span class="ic">🔒</span> Avatar verrouillé, identique partout</li>
+              <li><span class="ic">💰</span> −97% de crédits brûlés</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bonus 2 -->
+      <article class="bonus-card fadein">
+        <span class="ribbon">🎁 OFFERT</span>
+        <span class="pill-tag"><span style="font-size:14px">🎬</span> Agent IA · Seedance</span>
+        <h3>LE GPT <span class="mercury-text glow">SEEDANCE 2.0</span></h3>
+        <p class="lede">Même logique, <strong>nouveau modèle vidéo</strong>. Tu lui décris ta scène en français, il rédige le prompt calibré Seedance 2.0 avec mouvements caméra, durée, ambiance.</p>
+        <div class="hook">Pourquoi tes scènes sortent <span class="mercury-text">enfin du lot</span>&nbsp;?</div>
+        <div class="compare">
+          <div class="col bad">
+            <h4>😩 Sans nous</h4>
+            <ul>
+              <li><span class="ic">📹</span> Mouvements caméra random</li>
+              <li><span class="ic">🌪</span> Prompts brouillons, scènes plates</li>
+              <li><span class="ic">⏱</span> 10 retries pour 1 scène utilisable</li>
+            </ul>
+          </div>
+          <div class="vs">VS</div>
+          <div class="col good">
+            <h4>✨ Avec nous</h4>
+            <ul>
+              <li><span class="ic">🎞</span> Cinematic dès le 1er essai</li>
+              <li><span class="ic">⚡</span> Prompts optimisés Seedance</li>
+              <li><span class="ic">🎯</span> 1 prompt = 1 scène</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <!-- Bonus 3 -->
+      <article class="bonus-mini fadein">
+        <span class="pill-tag"><span style="font-size:13px">+</span> BONUS</span>
+        <h3>Automation <span class="mercury-text">ManyChat.</span></h3>
+        <p>Le système qu’on utilise pour qualifier nos DM Instagram : keyword → qualification → CTA. Setup complet, plug &amp; play.</p>
+      </article>
+    </div>
+
+    <!-- 5.3 Ticket -->
+    <div class="subhead-row" style="margin-top: clamp(48px, 6vw, 80px);">
+      <div class="left">
+        <span class="num">03</span>
+        <span class="title">Le ticket</span>
+      </div>
+      <span class="meta">paiement unique · accès à vie</span>
+    </div>
+
+    <div class="ticket-wrap">
+      <div class="ticket fadein" id="ticket">
+        <div class="head">
+          <span class="l">// REVO LAB · ticket #001</span>
+          <span>paiement unique</span>
+        </div>
+
+        <div class="ticket-row">
+          <div class="desc">La formation · 7 modules · 21 leçons · à vie</div>
+          <div class="val">1 082€</div>
+        </div>
+        <div class="ticket-row">
+          <div class="desc">Les 3 bonus · GPT REVO + GPT Seedance + ManyChat</div>
+          <div class="val">791€</div>
+        </div>
+        <div class="ticket-row bright">
+          <div class="desc">Valeur totale</div>
+          <div class="val">1 873€</div>
+        </div>
+        <div class="ticket-row dim">
+          <div class="desc"><span class="mono-tag" style="color:var(--w-50)">Prix habituel</span></div>
+          <div class="val" style="font-size:13px">197€</div>
+        </div>
+        <div class="ticket-row final">
+          <div class="desc">Ton prix</div>
+          <div class="price mercury-text glow">97€</div>
+        </div>
+
+        <div class="ticket-cta">
+          <a href="#checkout" class="chrome-cta lg" style="width:100%; max-width:420px;"><span>Je lance mon avatar</span><span class="arrow">→</span></a>
+          <p class="trust">Accès immédiat · Garantie 14 jours · Updates à vie</p>
+        </div>
+        <div class="ticket-bottom-dots"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CHECKOUT =================== -->
+<section class="checkout" id="checkout" data-screen-label="06 Checkout">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:0;">
+      <span class="mono-tag" style="color:var(--w-50)">Fin de l’offre dans</span>
+      <div class="countdown" id="countdown" aria-live="polite">
+        <div class="cd-cell"><span class="digits" data-cd="d">00</span><span class="label">jours</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="digits" data-cd="h">00</span><span class="label">heures</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="digits" data-cd="m">00</span><span class="label">minutes</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-cell"><span class="digits" data-cd="s">00</span><span class="label">sec.</span></div>
+      </div>
+      <span class="chrome-bubble" style="margin-top:24px;">REJOINS LES 100 PREMIERS</span>
+    </div>
+
+    <div class="deal-card fadein">
+      <div class="deal-tag"><span class="mono-tag" style="color:var(--w-70)">// OFFRE DE LANCEMENT · 100 places</span></div>
+      <div class="deal-prices">
+        <span class="now mercury-text glow">97€</span>
+        <span class="was">197€</span>
+      </div>
+      <div class="deal-sub">Paiement unique · Accès à vie</div>
+      <div class="deal-iframe" id="whop-checkout">
+        <span>Whop checkout iframe</span>
+        <span style="opacity:.6">&lt;div id="whop-checkout"&gt; — câblé via Next.js</span>
+      </div>
+      <div class="trust-row">
+        <span class="b"><span class="ic">🔒</span> Paiement sécurisé</span>
+        <span class="b"><span class="ic">⚡</span> Accès immédiat</span>
+        <span class="b"><span class="ic">🛡</span> Garantie 14 jours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FAQ =================== -->
+<section class="section-pad" id="faq" data-screen-label="07 FAQ">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="chrome-bubble">// 009 · FAQ</span>
+      <h2 class="h2"><span class="stroke-text">Questions</span> <span class="mercury-text glow">fréquentes.</span></h2>
+    </div>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary>Je reçois l’accès quand&nbsp;? <span class="plus">+</span></summary>
+        <div class="answer">Immédiatement après le paiement. Tu arrives sur la plateforme, tu commences M0 dans les 2 minutes.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Je suis débutant total, ça passe&nbsp;? <span class="plus">+</span></summary>
+        <div class="answer">Oui. Construit pour quelqu’un qui n’a jamais touché à l’IA. Chaque étape est filmée, chaque outil est montré à l’écran.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Ça se voit que c’est de l’IA&nbsp;? <span class="plus">+</span></summary>
+        <div class="answer">Pas avec ce process. Le but de la formation c’est exactement ça : passer l’uncanny valley.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Et si ça me plaît pas&nbsp;? <span class="plus">+</span></summary>
+        <div class="answer">Garantie 14 jours. Tu testes, tu appliques. Si ça ne te sert à rien, tu demandes un remboursement — pas de question.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FOOTER =================== -->
+<footer data-screen-label="08 Footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="chrome-bubble" style="align-self:flex-start;">REVO LAB</span>
+        <span class="tag">Le studio derrière AI Creative Academy</span>
+        <p class="desc">La formation pour créer et monétiser ton avatar IA. Édité par REVO LAB.</p>
+      </div>
+      <div class="col">
+        <h5>Navigation</h5>
+        <a href="#temoignages">Résultats</a>
+        <a href="#methode">Ce que tu apprends</a>
+        <a href="#tarifs">Modules &amp; bonus</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="col">
+        <h5>Légal</h5>
+        <a href="#">Mentions légales</a>
+        <a href="#">CGV</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 REVO LAB · Tous droits réservés</span>
+      <span>Paiements sécurisés · SEPA / CB</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ Header scrolled state + parallax ============ */
+const hdr = document.getElementById('hdr');
+const heroBg = document.getElementById('heroBg');
+let lastY = -1;
+function onScroll(){
+  const y = window.scrollY || window.pageYOffset;
+  if (y === lastY) return;
+  lastY = y;
+  if (y > 60) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled');
+  // hero parallax
+  if (heroBg && y < window.innerHeight * 1.2){
+    heroBg.style.transform = 'translate3d(0,' + (y * 0.18) + 'px,0) scale(1.04)';
+  }
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ============ Drawer ============ */
+const drawer = document.getElementById('drawer');
+const burger = document.getElementById('burgerBtn');
+const closeBtn = document.getElementById('drawerClose');
+function openDrawer(){ drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); }
+function closeDrawer(){ drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); }
+burger.addEventListener('click', openDrawer);
+closeBtn.addEventListener('click', closeDrawer);
+drawer.addEventListener('click', (e) => { if (e.target === drawer) closeDrawer(); });
+document.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeDrawer));
+
+/* ============ Reveal on scroll ============ */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fadein').forEach(el => io.observe(el));
+
+/* ============ Countdown — set 7 days from page load ============ */
+const target = (() => {
+  const k = 'aica.deadline';
+  let t = parseInt(localStorage.getItem(k) || '0', 10);
+  const now = Date.now();
+  if (!t || t < now) {
+    t = now + 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem(k, String(t));
+  }
+  return t;
+})();
+function pad(n){ return String(Math.max(0,n)).padStart(2,'0'); }
+function tickCountdown(){
+  const ms = Math.max(0, target - Date.now());
+  const d = Math.floor(ms / 86400000);
+  const h = Math.floor((ms % 86400000) / 3600000);
+  const m = Math.floor((ms % 3600000) / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  document.querySelector('[data-cd="d"]').textContent = pad(d);
+  document.querySelector('[data-cd="h"]').textContent = pad(h);
+  document.querySelector('[data-cd="m"]').textContent = pad(m);
+  document.querySelector('[data-cd="s"]').textContent = pad(s);
+}
+tickCountdown();
+setInterval(tickCountdown, 1000);
+
+/* ============ Reel .mov fallback detection ============ */
+const reel1 = document.querySelector('#reel1 video');
+if (reel1){
+  reel1.addEventListener('error', () => {
+    document.getElementById('reel1').classList.add('fallback');
+  });
+  // some browsers silently skip unsupported sources without firing error;
+  // detect by checking readyState after a beat
+  setTimeout(() => {
+    if (reel1.readyState === 0 && !reel1.currentSrc) {
+      document.getElementById('reel1').classList.add('fallback');
+    }
+  }, 2500);
+}
+</script>
+
+</body>
+</html>

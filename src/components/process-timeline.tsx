@@ -30,7 +30,7 @@ const steps: Step[] = [
     description:
       "Reels, UGC, ads, stories. Ton avatar poste sans toi — script, voix, montage.",
     Icon: Clapperboard,
-    src: "/process/step-2.gif",
+    src: "/process/step-2.mp4",
     replaceHint: "REEL · 1.2M vues",
     result: "→ 30 posts / mois",
   },
@@ -101,14 +101,27 @@ function StepCard({ n, title, description, Icon, src, replaceHint, result }: Ste
         )}
 
         {src ? (
-          <Image
-            src={src}
-            alt={title}
-            fill
-            sizes="(min-width: 768px) 33vw, 100vw"
-            className="object-cover"
-            unoptimized
-          />
+          src.endsWith(".mp4") || src.endsWith(".webm") ? (
+            <video
+              src={src}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-label={title}
+            />
+          ) : (
+            <Image
+              src={src}
+              alt={title}
+              fill
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="object-cover"
+              unoptimized
+            />
+          )
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex flex-col items-center gap-3 z-10">

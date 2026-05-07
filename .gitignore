@@ -9,3 +9,8 @@ out
 .DS_Store
 *.log
 .cloudflare
+
+# Heavy duplicates (originals are in /public/)
+CLAUDE_DESIGN_FINAL_PACKAGE/MEDIAS_REELS_REPO/
+claude-design-output/public/
+claude-design-output/uploads/
