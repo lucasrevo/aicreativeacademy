@@ -29,7 +29,7 @@ export default function CGVPage() {
         <br />
         SIRET : 102 749 942 00011
         <br />
-        Adresse : [ADRESSE — À COMPLÉTER]
+        Adresse : 60 rue François 1er, 75008 Paris, France
         <br />
         Email :{" "}
         <a href="mailto:lucas.socialcontact@gmail.com">
@@ -44,8 +44,8 @@ export default function CGVPage() {
       </p>
       <ul>
         <li>7 modules vidéos (21 leçons)</li>
-        <li>Accès à un Discord privé</li>
-        <li>Accès au GPT AI CREATIVE ACADEMY et à la prompt library</li>
+        <li>L&apos;ensemble des ressources pédagogiques associées (templates, prompts, guides)</li>
+        <li>Les bonus offerts (selon offre commerciale en vigueur au moment de l&apos;achat)</li>
         <li>Mises à jour à vie du contenu</li>
       </ul>
       <p>

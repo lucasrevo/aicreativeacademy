@@ -44,17 +44,17 @@ export function WhopCheckout() {
   return (
     <div
       id="whop-checkout"
-      className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-gold/30 bg-ink shadow-[0_30px_80px_-20px_rgba(245,197,24,0.3)]"
+      className="mx-auto w-full max-w-2xl overflow-hidden rounded-2xl border border-white/15 bg-[#0A0405] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
     >
-      <div className="flex items-center justify-between bg-burgundy-deep border-b border-gold/30 px-5 py-3 mono text-[11px] uppercase tracking-[0.22em] text-gold">
+      <div className="flex items-center justify-between bg-[#120708] border-b border-white/10 px-5 py-3 font-mono text-[11px] uppercase tracking-[0.22em] text-white/70">
         <span className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
+          <span className="h-1.5 w-1.5 rounded-full bg-white/80 animate-pulse" />
           Sécurisé par Whop
         </span>
         <span>Paiement unique 97€</span>
       </div>
 
-      <div className="bg-ink p-2 sm:p-3">
+      <div className="bg-[#0A0405] p-2 sm:p-3">
         {state.status === "loading" && <CheckoutSkeleton />}
 
         {state.status === "error" && (
@@ -71,7 +71,6 @@ export function WhopCheckout() {
             affiliateCode={state.affiliateCode}
             returnUrl={returnUrl}
             theme="dark"
-            themeOptions={{ accentColor: "yellow" }}
             fallback={<CheckoutSkeleton />}
             onStateChange={(s) => console.log("[whop] state", s)}
           />
@@ -79,15 +78,15 @@ export function WhopCheckout() {
       </div>
 
       {/* Fallback: reliable hosted checkout if the embed glitches */}
-      <div className="border-t border-gold/20 bg-ink/60 px-5 py-4 text-center">
-        <p className="mono text-[10px] uppercase tracking-[0.22em] text-white/50 mb-2">
+      <div className="border-t border-white/10 bg-[#0A0405]/60 px-5 py-4 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50 mb-2">
           Problème avec le paiement ci-dessus ?
         </p>
         <a
           href={HOSTED_CHECKOUT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-gold hover:text-gold-soft mono text-xs uppercase tracking-[0.22em] underline decoration-gold/40 hover:decoration-gold transition"
+          className="inline-flex items-center gap-2 text-white hover:text-white/80 font-mono text-xs uppercase tracking-[0.22em] underline decoration-white/40 hover:decoration-white transition"
         >
           Payer directement sur Whop →
         </a>
@@ -104,7 +103,7 @@ function CheckoutSkeleton() {
       <div className="h-10 w-full animate-pulse rounded bg-white/10" />
       <div className="h-4 w-1/4 animate-pulse rounded bg-white/10" />
       <div className="h-10 w-full animate-pulse rounded bg-white/10" />
-      <div className="h-12 w-full animate-pulse rounded bg-gold/30" />
+      <div className="h-12 w-full animate-pulse rounded bg-white/20" />
     </div>
   );
 }

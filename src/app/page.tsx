@@ -1,312 +1,884 @@
-import Image from "next/image";
-import { SectionTag } from "@/components/section-tag";
-import { Countdown } from "@/components/countdown";
-import { StickyCTA } from "@/components/sticky-cta";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import { WhopCheckout } from "@/components/whop-checkout";
-import { CreateCard } from "@/components/create-card";
-// ProofGallery marquee HIDDEN — réactivable quand on aura les vrais screenshots
-// import { ProofGallery, defaultProofSlots } from "@/components/proof-gallery";
-import { ValueStack } from "@/components/value-stack";
-import { GptShowcase } from "@/components/gpt-showcase";
-import { ProcessTimeline } from "@/components/process-timeline";
-import { AvisBruts } from "@/components/avis-bruts";
-// Testimonials carousel + Reviews component — HIDDEN but preserved. Re-enable when video testimonials arrive:
-//   1) uncomment import below
-//   2) swap the static reviews grid for <Testimonials /> (or <Reviews />) in the JSX
-//   3) in src/components/testimonials.tsx, replace each slot's `image:` with `video:`
-// import { Testimonials } from "@/components/testimonials";
-// import { Reviews } from "@/components/reviews";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionTrigger,
-  AccordionContent,
-} from "@/components/ui/accordion";
+import "./aica-rebrand.css";
 
-/* REPLACE WITH REAL REEL/IMAGE — each card below will be swapped for a real member Reel */
-const createCards = [
-  {
-    category: "STORYTELLING",
-    title: "Crash scénarisé · POV viral",
-    views: "1.8M",
-    likes: "74K",
-    video: "/reels/revo-crash.mov",
-    slot: "01",
-  },
-  {
-    category: "UGC",
-    title: "« Je teste le Nikon »",
-    views: "920K",
-    likes: "38K",
-    video: "/reels/ugc-nikon.mp4",
-    slot: "02",
-  },
-  {
-    category: "CLIENT READY",
-    title: "Créatives livrables",
-    views: "2.4M",
-    likes: "61K",
-    video: "/reels/client-creative.mp4",
-    slot: "03",
-  },
-  {
-    category: "ADS",
-    title: "Créatives Meta / TikTok",
-    views: "2.4M",
-    likes: "61K",
-    video: "/reels/ads.mp4",
-    slot: "04",
-  },
-];
+const COUNTDOWN_KEY = "aica.deadline";
+const COUNTDOWN_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
 
-const faqs = [
-  {
-    q: "Je reçois l'accès quand ?",
-    a: "Immédiatement après le paiement. Tu arrives sur la plateforme, tu commences M0 dans les 2 minutes.",
-  },
-  {
-    q: "Je suis débutant total, ça passe ?",
-    a: "Oui. Construit pour quelqu'un qui n'a jamais touché à l'IA. Chaque étape est filmée, chaque outil est montré à l'écran.",
-  },
-  {
-    q: "Ça se voit que c'est de l'IA ?",
-    a: "Pas avec ce process. Le but de la formation c'est exactement ça : passer l'uncanny valley.",
-  },
-  {
-    q: "Et si ça me plaît pas ?",
-    a: "Garantie 14 jours. Tu testes, tu appliques. Si ça ne te sert à rien, tu demandes un remboursement — pas de question.",
-  },
-];
+function pad(n: number) {
+  return String(Math.max(0, n)).padStart(2, "0");
+}
+
+function getDeadline() {
+  if (typeof window === "undefined") return 0;
+  const raw = parseInt(localStorage.getItem(COUNTDOWN_KEY) || "0", 10);
+  const now = Date.now();
+  if (!raw || raw < now) {
+    const t = now + COUNTDOWN_DURATION_MS;
+    localStorage.setItem(COUNTDOWN_KEY, String(t));
+    return t;
+  }
+  return raw;
+}
 
 export default function Page() {
-  return (
-    <main className="relative overflow-x-hidden">
-      {/* ===== 0 · HEADER ===== */}
-      <Header />
+  const [scrolled, setScrolled] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [reel1Fallback, setReel1Fallback] = useState(false);
+  const [cd, setCd] = useState({ d: "00", h: "00", m: "00", s: "00" });
+  const heroBgRef = useRef<HTMLDivElement>(null);
+  const reel1VideoRef = useRef<HTMLVideoElement>(null);
 
-      {/* ===== 1 · HERO (mobile: image top, copy below) ===== */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 pt-2 md:pt-6 pb-4 md:pb-8">
-          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-10 items-center">
-            {/* HERO VISUAL — clean, no overlays */}
-            <div className="relative fade order-1 md:order-2">
-              <div className="relative aspect-[16/9] md:aspect-[4/5] w-full overflow-hidden rounded-2xl md:rounded-3xl">
-                <Image
-                  src="/brand/hero-rooftop.png"
-                  alt="AI CREATIVE ACADEMY"
-                  fill
-                  priority
-                  sizes="(min-width: 768px) 40vw, 100vw"
-                  className="object-cover"
+  // Header scrolled state + hero parallax
+  useEffect(() => {
+    let lastY = -1;
+    const onScroll = () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y === lastY) return;
+      lastY = y;
+      setScrolled(y > 60);
+      if (heroBgRef.current && y < window.innerHeight * 1.2) {
+        heroBgRef.current.style.transform = `translate3d(0, ${y * 0.18}px, 0) scale(1.04)`;
+      }
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => document.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Drawer body scroll lock
+  useEffect(() => {
+    document.body.style.overflow = drawerOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [drawerOpen]);
+
+  // Fade-in on scroll
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".aica-root .fadein").forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // Countdown
+  useEffect(() => {
+    const target = getDeadline();
+    const tick = () => {
+      const ms = Math.max(0, target - Date.now());
+      setCd({
+        d: pad(Math.floor(ms / 86400000)),
+        h: pad(Math.floor((ms % 86400000) / 3600000)),
+        m: pad(Math.floor((ms % 3600000) / 60000)),
+        s: pad(Math.floor((ms % 60000) / 1000)),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  // Reel 1 .mov fallback detection
+  useEffect(() => {
+    const v = reel1VideoRef.current;
+    if (!v) return;
+    const onError = () => setReel1Fallback(true);
+    v.addEventListener("error", onError);
+    const t = setTimeout(() => {
+      if (v.readyState === 0 && !v.currentSrc) setReel1Fallback(true);
+    }, 2500);
+    return () => {
+      v.removeEventListener("error", onError);
+      clearTimeout(t);
+    };
+  }, []);
+
+  const closeDrawer = () => setDrawerOpen(false);
+
+  return (
+    <main className="aica-root">
+      {/* =================== HEADER =================== */}
+      <header className={`aica-header${scrolled ? " scrolled" : ""}`}>
+        <a href="#top" className="brand">
+          <span className="mark" />
+          <span>REVO LAB</span>
+        </a>
+        <nav className="nav" aria-label="Principal">
+          <a href="#methode">Programme</a>
+          <a href="#apprendre">Fonctionnalités</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <a href="#checkout" className="chrome-cta sm">
+            <span>Commencer</span>
+            <span className="arrow">→</span>
+          </a>
+          <button className="burger" aria-label="Menu" onClick={() => setDrawerOpen(true)}>
+            <span />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile drawer */}
+      <div
+        className={`drawer${drawerOpen ? " open" : ""}`}
+        aria-hidden={!drawerOpen}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) closeDrawer();
+        }}
+      >
+        <div className="panel" role="dialog" aria-label="Navigation">
+          <div className="row">
+            <span className="mono">// Navigation</span>
+            <button className="x" aria-label="Fermer" onClick={closeDrawer}>
+              ✕
+            </button>
+          </div>
+          <div className="links">
+            <a href="#temoignages" onClick={closeDrawer}>
+              Résultats <span className="arr">→</span>
+            </a>
+            <a href="#methode" onClick={closeDrawer}>
+              Ce que tu apprends <span className="arr">→</span>
+            </a>
+            <a href="#tarifs" onClick={closeDrawer}>
+              Modules &amp; bonus <span className="arr">→</span>
+            </a>
+            <a href="#tarifs" onClick={closeDrawer}>
+              Valeur réelle <span className="arr">→</span>
+            </a>
+            <a href="#faq" onClick={closeDrawer}>
+              FAQ <span className="arr">→</span>
+            </a>
+            <a href="#checkout" onClick={closeDrawer} style={{ color: "#fff" }}>
+              <span className="mercury-text">S&apos;INSCRIRE — 97€</span>{" "}
+              <span className="arr">→</span>
+            </a>
+          </div>
+          <div className="foot">
+            <p>
+              AI Creative Academy ·<br />
+              by REVO LAB
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* =================== HERO =================== */}
+      <section className="hero" id="top">
+        <div className="bg" ref={heroBgRef} aria-hidden="true" />
+        <div className="hero-bottom">
+          <a href="#checkout" className="chrome-cta lg">
+            <span>Je lance mon avatar</span>
+            <span className="arrow">→</span>
+          </a>
+        </div>
+      </section>
+
+      {/* =================== TÉMOIGNAGES =================== */}
+      <section className="testimonials" id="temoignages">
+        <div className="wrap">
+          <div className="testimonials-grid">
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                C&apos;est grave bien expliqué, notamment les vidéos, avec un
+                langage courant qui permet de vite comprendre sans se perdre.
+                Modules clairs et très faciles à appliquer.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">GN</div>
+                <div className="chrome-card-author">
+                  <div className="name">GavaNoah</div>
+                  <div className="when">4 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                Forma claire et précise. J&apos;ai particulièrement apprécié les
+                démos live sur les outils. On est guidé de A à Z.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">GA</div>
+                <div className="chrome-card-author">
+                  <div className="name">gassyrift</div>
+                  <div className="when">20 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                Le programme est intéressant, c&apos;est cool. Merci beaucoup
+                pour la qualité des vidéos.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">T</div>
+                <div className="chrome-card-author">
+                  <div className="name">Theo</div>
+                  <div className="when">8 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* =================== MÉTHODE =================== */}
+      <section className="bg-mood section-pad" id="methode">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="chrome-bubble">// LA MÉTHODE</span>
+            <h2 className="h2">
+              <span className="stroke-text">La méthode en</span>{" "}
+              <span className="mercury-text glow">3 étapes.</span>
+            </h2>
+            <p className="sub mono-tag">Crée · Génère · Monétise</p>
+          </div>
+
+          <div className="method-grid">
+            <article className="step fadein">
+              <div className="media">
+                <img
+                  src="/process/step-1.gif"
+                  alt="Étape 1 — création de l'avatar IA"
                 />
               </div>
-            </div>
-
-            {/* COPY */}
-            <div className="rise order-2 md:order-1">
-              <h1
-                className="display text-white leading-[0.9] text-balance"
-                style={{ fontSize: "clamp(2.25rem, 9vw, 5.25rem)" }}
-              >
-                Crée et monétise
-                <br />
-                ton avatar IA
-                <br className="md:hidden" />{" "}
-                en <span className="text-gold glow-gold">7 jours.</span>
-              </h1>
-
-              <p
-                className="mt-4 md:mt-5 text-white/80 max-w-xl text-pretty"
-                style={{ fontSize: "clamp(0.95rem, 2.2vw, 1.1rem)" }}
-              >
-                Le système complet pour créer ton avatar IA ultra réaliste —
-                sans montrer ton visage.
-              </p>
-
-              {/* fat mobile-first CTA with price baked in */}
-              <a
-                href="#checkout"
-                className="group mt-7 flex w-full md:w-auto md:inline-flex items-center justify-center gap-3 bg-gold text-ink px-6 md:px-8 min-h-14 py-4 rounded-xl mono text-sm md:text-base uppercase tracking-[0.22em] font-bold hover:bg-gold-soft transition-colors shadow-[0_10px_30px_-10px_rgba(245,197,24,0.6)]"
-              >
-                <span>Je lance mon avatar</span>
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
-
-              {/* benefits: épuré — just icon + label, no boxes */}
-              <div className="mt-6 md:mt-7 grid grid-cols-3">
-                {[
-                  { icon: "⚡", label: "Accès\u00a0immédiat" },
-                  { icon: "🛡", label: "Garantie\u00a014\u00a0jours" },
-                  { icon: "∞", label: "Updates\u00a0à\u00a0vie" },
-                ].map((b) => (
-                  <span
-                    key={b.label}
-                    className="flex flex-col items-center gap-2 text-center"
-                  >
-                    <span className="text-gold text-lg md:text-xl leading-none">
-                      {b.icon}
-                    </span>
-                    <span className="mono text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white/70 leading-tight">
-                      {b.label}
-                    </span>
-                  </span>
-                ))}
+              <div className="body">
+                <h3>
+                  Crée ton <span className="mercury-text">avatar IA</span>.
+                </h3>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </article>
 
-      {/* ===== 1.5 · AVIS BRUTS — 3 témoignages compacts entre hero et méthode ===== */}
-      <AvisBruts />
+            <article className="step fadein">
+              <div className="media">
+                <video
+                  src="/process/step-2.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              </div>
+              <div className="body">
+                <h3>
+                  Génère du contenu{" "}
+                  <span className="mercury-text">ultra-réaliste</span>.
+                </h3>
+              </div>
+            </article>
 
-      {/* ===== 2 · RÉSULTATS — HIDDEN: proof screens + marquee carousel preserved for when we have more material.
-           To restore the "Des résultats, pas des promesses" heading + 2 Skool review screenshots,
-           see git history (commits 2516079 / 6029c82) or components/reviews.tsx + testimonials.tsx. ===== */}
-      <section id="resultats" className="relative border-t border-white/10 scroll-mt-20">
-        <div className="mx-auto max-w-6xl px-4 pt-8 md:pt-12 pb-10 md:pb-14">
-          {/* 3-step process timeline — how they got there */}
-          <div className="">
-            <div className="flex items-end justify-between gap-4 flex-wrap mb-8 md:mb-10">
-              <h3
-                className="display text-white leading-[0.9] text-balance"
-                style={{ fontSize: "clamp(1.5rem, 5.5vw, 2.75rem)" }}
-              >
-                La méthode en{" "}
-                <span className="text-gold glow-gold">3 étapes.</span>
-              </h3>
-              <p className="mono text-[10px] uppercase tracking-[0.22em] text-white/50 max-w-xs">
-                Crée · Génère · Monétise
-              </p>
-            </div>
-            <ProcessTimeline />
-          </div>
-        </div>
-      </section>
+            <article className="step fadein">
+              <div className="media">
+                <img
+                  src="/process/step-3.gif"
+                  alt="Étape 3 — monétisation de l'avatar"
+                />
+              </div>
+              <div className="body">
+                <h3>
+                  Monétise ton <span className="mercury-text">avatar IA</span>.
+                </h3>
+              </div>
+            </article>
 
-      {/* ===== 3 · CE QUE TU VAS APPRENDRE ===== */}
-      <section id="apprendre" className="relative border-t border-white/10 scroll-mt-20">
-        <div className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-          <h2
-            className="display text-white max-w-3xl leading-[0.9] text-balance"
-            style={{ fontSize: "clamp(1.75rem, 8vw, 4rem)" }}
-          >
-            Ce que tu vas
-            <br className="md:hidden" />{" "}
-            apprendre{" "}
-            <span className="text-gold glow-gold">à faire.</span>
-          </h2>
-
-          {/* REPLACE WITH REAL REELS — every card is a drop slot */}
-          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-            {createCards.map((c) => (
-              <CreateCard key={c.category} {...c} />
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ===== 7 · GPT AI CREATIVE ACADEMY — le bonus hero qui résout le pain #1 ===== */}
-      <GptShowcase />
-
-      {/* ===== 8 · CE QUE TU REÇOIS — modules + bonuses + valeur ===== */}
-      <ValueStack />
-
-      {/* ===== 11 · FINAL CTA + CHECKOUT — unified deal panel ===== */}
-      <section
-        id="checkout"
-        className="relative border-t border-gold/20 bg-gradient-to-b from-burgundy-deep/30 to-ink scroll-mt-20"
-      >
-        <div className="mx-auto max-w-xl px-4 py-14 md:py-20">
-          {/* Urgency strip */}
-          <div className="flex flex-col items-center">
-            <span className="mono text-[10px] uppercase tracking-[0.28em] text-gold/80 mb-4">
-              Fin de l'offre dans
+            <span className="connector c1" aria-hidden="true">
+              →
             </span>
-            <Countdown />
+            <span className="connector c2" aria-hidden="true">
+              →
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* =================== APPRENDRE — 4 REELS =================== */}
+      <section className="section-pad" id="apprendre">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="chrome-bubble">// APPRENDRE</span>
+            <h2 className="h2">
+              <span className="stroke-text">Ce que tu vas</span>
+              <br />
+              <span className="mercury-text glow">apprendre à faire.</span>
+            </h2>
+            <p className="sub">
+              Quatre formats. Le même avatar. Réplicable à l&apos;infini, sans
+              tournage, sans équipe.
+            </p>
           </div>
 
-          {/* Single heading */}
-          <h2
-            className="display text-white text-center leading-[0.95] text-balance mt-10 md:mt-12"
-            style={{ fontSize: "clamp(1.75rem, 6vw, 3rem)" }}
-          >
-            Rejoins les{" "}
-            <span className="text-gold glow-gold">100 premiers.</span>
-          </h2>
+          <div className="reels">
+            <article className={`reel fadein${reel1Fallback ? " fallback" : ""}`}>
+              <div className="placeholder">
+                <div className="play">▶</div>
+                <span className="kbd">STORYTELLING · 01</span>
+              </div>
+              <video
+                ref={reel1VideoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              >
+                <source src="/reels/revo-crash.mov" type="video/quicktime" />
+                <source src="/reels/revo-crash.mp4" type="video/mp4" />
+              </video>
+              <div className="overlay" />
+              <div className="topline">
+                <span className="tag">Storytelling</span>
+                <span className="num">01</span>
+              </div>
+              <div className="titleline">
+                Storytelling
+                <span className="t">Crash scénarisé · POV viral</span>
+              </div>
+            </article>
 
-          {/* Deal panel — everything unified in one card */}
-          <div className="mt-8 md:mt-10 border border-gold/25 bg-ink/60 backdrop-blur rounded-2xl overflow-hidden shadow-[0_24px_60px_-24px_rgba(245,197,24,0.25)]">
-            {/* Price header */}
-            <div className="px-6 py-7 md:px-8 md:py-8 border-b border-white/10 text-center bg-gradient-to-b from-gold/[0.04] to-transparent">
-              <div className="mono text-[10px] uppercase tracking-[0.28em] text-gold/75 mb-4">
-                Offre de lancement · 100 places
+            <article className="reel fadein">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                src="/reels/ugc-nikon.mp4"
+              />
+              <div className="overlay" />
+              <div className="topline">
+                <span className="tag">UGC</span>
+                <span className="num">02</span>
               </div>
-              <div className="flex items-baseline justify-center gap-3">
-                <span className="display text-gold glow-gold leading-none text-5xl md:text-6xl tabular-nums">
-                  97€
-                </span>
-                <span className="mono text-xs md:text-sm uppercase tracking-[0.2em] text-white/40 line-through tabular-nums">
-                  197€
-                </span>
+              <div className="titleline">
+                UGC<span className="t">« Je teste le Nikon »</span>
               </div>
-              <div className="mono text-[10px] uppercase tracking-[0.24em] text-white/50 mt-3">
-                Paiement unique · Accès à vie
+            </article>
+
+            <article className="reel fadein">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                src="/reels/client-creative.mp4"
+              />
+              <div className="overlay" />
+              <div className="topline">
+                <span className="tag">Client Ready</span>
+                <span className="num">03</span>
               </div>
+              <div className="titleline">
+                Client ready<span className="t">Créatives livrables</span>
+              </div>
+            </article>
+
+            <article className="reel fadein">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                src="/reels/ads.mp4"
+              />
+              <div className="overlay" />
+              <div className="topline">
+                <span className="tag">Ads</span>
+                <span className="num">04</span>
+              </div>
+              <div className="titleline">
+                Ads<span className="t">Créatives Meta · TikTok</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* =================== TOUT CE QUE TU REÇOIS =================== */}
+      <section className="section-pad bg-mood" id="tarifs">
+        <div className="wrap">
+          <div
+            className="loadout-head section-head"
+            style={{ alignItems: "flex-start", textAlign: "left" }}
+          >
+            <span className="chrome-bubble">// AI CREATIVE ACADEMY</span>
+            <h2 className="h2">
+              <span className="l1 stroke-text">Tout ce que tu</span>
+              <span className="l2 mercury-text glow">reçois.</span>
+            </h2>
+          </div>
+
+          {/* 5.1 Formation */}
+          <div className="subhead-row">
+            <div className="left">
+              <span className="num">01</span>
+              <span className="title">La formation</span>
+            </div>
+            <span className="meta">7 modules · 21 leçons</span>
+          </div>
+
+          <div className="bento">
+            <div className="m m1 large fadein">
+              <img src="/modules/1.png" alt="Module 1 — Avatar" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·01</span>
+              <div className="info">
+                <h3>
+                  Crée ton <span className="key mercury-text">AVATAR.</span>
+                </h3>
+                <p>
+                  Identité visuelle, Identity Lock, premières photos cohérentes —
+                  un avatar qui tient sur 1000 prompts.
+                </p>
+              </div>
+              <span className="price">197€</span>
             </div>
 
-            {/* Checkout embed */}
-            <div className="px-5 py-6 md:px-7 md:py-7">
+            <div className="m m2 fadein">
+              <img src="/modules/2.png" alt="Module 2 — Images" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·02</span>
+              <div className="info">
+                <h3>
+                  Génère tes <span className="key mercury-text">IMAGES.</span>
+                </h3>
+              </div>
+              <span className="price">297€</span>
+            </div>
+
+            <div className="m m3 fadein">
+              <img src="/modules/3.png" alt="Module 3 — Vidéos" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·03</span>
+              <div className="info">
+                <h3>
+                  Génère tes <span className="key mercury-text">VIDÉOS.</span>
+                </h3>
+              </div>
+              <span className="price">247€</span>
+            </div>
+
+            <div className="m m4 large fadein">
+              <img src="/modules/4.png" alt="Module 4 — Montage" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·04</span>
+              <div className="info">
+                <h3>
+                  Monte tes <span className="key mercury-text">VIDÉOS.</span>
+                </h3>
+                <p>
+                  CapCut de A à Z : transitions, sous-titres, export 9:16 prêts
+                  pour Reels et TikTok.
+                </p>
+              </div>
+              <span className="price">147€</span>
+            </div>
+
+            <div className="m m5 fadein">
+              <img src="/modules/5.png" alt="Module 5 — Voix IA" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·05</span>
+              <div className="info">
+                <h3>
+                  Crée ta <span className="key mercury-text">VOIX IA.</span>
+                </h3>
+              </div>
+              <span className="price">147€</span>
+            </div>
+
+            <div className="m m6 fadein">
+              <img src="/modules/6.png" alt="Module 6 — Scripts" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·06</span>
+              <div className="info">
+                <h3>
+                  Scripts &amp;{" "}
+                  <span className="key mercury-text">VIRALITÉ.</span>
+                </h3>
+              </div>
+              <span className="price">97€</span>
+            </div>
+
+            <div className="m m7 large fadein">
+              <img src="/modules/7.png" alt="Module 7 — Monétisation" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">M·07</span>
+              <div className="info">
+                <h3>
+                  Monétise ton <span className="key mercury-text">AVATAR.</span>
+                </h3>
+                <p>
+                  Offres, ads, prestations, partenariats. Le moment où l&apos;avatar
+                  passe du jouet à l&apos;actif.
+                </p>
+              </div>
+              <span className="price">147€</span>
+            </div>
+          </div>
+
+          {/* 5.2 Bonus */}
+          <div
+            className="subhead-row"
+            style={{ marginTop: "clamp(48px, 6vw, 80px)" }}
+          >
+            <div className="left">
+              <span className="num">02</span>
+              <span className="title">Les bonus offerts</span>
+            </div>
+            <span className="meta">3 bonus · valeur 791€</span>
+          </div>
+
+          <div className="bonus">
+            <article className="bonus-card fadein">
+              <span className="stamp-offert">🎁 OFFERT</span>
+              <span className="pill-tag">
+                <span style={{ fontSize: 14 }}>🤖</span> Agent IA
+              </span>
+              <h3>
+                LE GPT <span className="mercury-text glow">REVO LAB</span>
+              </h3>
+              <p className="lede">
+                Tu lui parles <strong>en français</strong>, il{" "}
+                <strong>écrit les prompts à ta place</strong> — calibré Nano
+                Banana + Kling, celui qu&apos;on utilise tous les jours en interne.
+              </p>
+              <div className="hook">
+                Pourquoi ça te fait gagner{" "}
+                <span className="mercury-text">3h par jour</span>&nbsp;?
+              </div>
+              <div className="compare">
+                <div className="col bad">
+                  <h4>😩 Sans nous</h4>
+                  <ul>
+                    <li>
+                      <span className="ic">🧪</span> T&apos;écris tes prompts à la
+                      main
+                    </li>
+                    <li>
+                      <span className="ic">🧬</span> Avatar instable d&apos;un shoot
+                      à l&apos;autre
+                    </li>
+                    <li>
+                      <span className="ic">💸</span> ×5 crédits cramés en retries
+                    </li>
+                  </ul>
+                </div>
+                <div className="vs">VS</div>
+                <div className="col good">
+                  <h4>✨ Avec nous</h4>
+                  <ul>
+                    <li>
+                      <span className="ic">🤖</span> L&apos;agent prompt pour toi
+                    </li>
+                    <li>
+                      <span className="ic">🔒</span> Avatar verrouillé, identique
+                      partout
+                    </li>
+                    <li>
+                      <span className="ic">💰</span> −97% de crédits brûlés
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article className="bonus-card fadein">
+              <span className="stamp-offert">🎁 OFFERT</span>
+              <span className="pill-tag">
+                <span style={{ fontSize: 14 }}>🎬</span> Agent IA · Seedance
+              </span>
+              <h3>
+                LE GPT <span className="mercury-text glow">SEEDANCE 2.0</span>
+              </h3>
+              <p className="lede">
+                Même logique, <strong>nouveau modèle vidéo</strong>. Tu lui décris
+                ta scène en français, il rédige le prompt calibré Seedance 2.0
+                avec mouvements caméra, durée, ambiance.
+              </p>
+              <div className="hook">
+                Pourquoi tes scènes sortent{" "}
+                <span className="mercury-text">enfin du lot</span>&nbsp;?
+              </div>
+              <div className="compare">
+                <div className="col bad">
+                  <h4>😩 Sans nous</h4>
+                  <ul>
+                    <li>
+                      <span className="ic">📹</span> Mouvements caméra random
+                    </li>
+                    <li>
+                      <span className="ic">🌪</span> Prompts brouillons, scènes
+                      plates
+                    </li>
+                    <li>
+                      <span className="ic">⏱</span> 10 retries pour 1 scène
+                      utilisable
+                    </li>
+                  </ul>
+                </div>
+                <div className="vs">VS</div>
+                <div className="col good">
+                  <h4>✨ Avec nous</h4>
+                  <ul>
+                    <li>
+                      <span className="ic">🎞</span> Cinematic dès le 1er essai
+                    </li>
+                    <li>
+                      <span className="ic">⚡</span> Prompts optimisés Seedance
+                    </li>
+                    <li>
+                      <span className="ic">🎯</span> 1 prompt = 1 scène
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+
+            <article className="bonus-mini fadein">
+              <span className="bonus-pill">+ BONUS</span>
+              <h3>
+                Automation <span className="mercury-text">ManyChat.</span>
+              </h3>
+              <p>
+                Le système que j&apos;utilise pour qualifier nos DM Instagram :
+                keyword → qualification → CTA. Setup complet, plug &amp; play.
+              </p>
+            </article>
+          </div>
+
+          {/* 5.3 Ticket */}
+          <div className="ticket-wrap" style={{ marginTop: "clamp(32px, 4vw, 48px)" }}>
+            <div className="ticket fadein">
+              <div className="ticket-row">
+                <div className="desc">
+                  La formation · 7 modules · 21 leçons · à vie
+                </div>
+                <div className="val">1 082€</div>
+              </div>
+              <div className="ticket-row">
+                <div className="desc">
+                  Les 3 bonus · GPT REVO + GPT Seedance + ManyChat
+                </div>
+                <div className="val">791€</div>
+              </div>
+              <div className="ticket-row bright">
+                <div className="desc">Valeur totale</div>
+                <div className="val">1 873€</div>
+              </div>
+              <div className="ticket-row dim">
+                <div className="desc">
+                  <span className="mono-tag" style={{ color: "var(--w-50)" }}>
+                    Prix habituel
+                  </span>
+                </div>
+                <div className="val-red">197€</div>
+              </div>
+              <div className="ticket-row final">
+                <div className="desc">Ton prix</div>
+                <div className="price mercury-green glow">97€</div>
+              </div>
+
+              <div className="ticket-cta">
+                <a
+                  href="#checkout"
+                  className="chrome-cta lg"
+                  style={{ width: "100%", maxWidth: 420 }}
+                >
+                  <span>Je lance mon avatar</span>
+                  <span className="arrow">→</span>
+                </a>
+                <p className="trust">
+                  Accès immédiat · Garantie 14 jours · Updates à vie
+                </p>
+              </div>
+              <div className="ticket-bottom-dots" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================== CHECKOUT =================== */}
+      <section className="checkout" id="checkout">
+        <div className="wrap">
+          <div className="section-head" style={{ marginBottom: 0 }}>
+            <span className="mono-tag" style={{ color: "var(--w-50)" }}>
+              Fin de l&apos;offre dans
+            </span>
+            <div className="countdown" aria-live="polite">
+              <div className="cd-cell">
+                <span className="digits">{cd.d}</span>
+                <span className="label">jours</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.h}</span>
+                <span className="label">heures</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.m}</span>
+                <span className="label">minutes</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.s}</span>
+                <span className="label">sec.</span>
+              </div>
+            </div>
+            <span className="chrome-bubble" style={{ marginTop: 24 }}>
+              REJOINS LES 100 PREMIERS
+            </span>
+          </div>
+
+          <div className="deal-card fadein">
+            <div className="deal-tag">
+              <span className="mono-tag" style={{ color: "var(--w-70)" }}>
+                // OFFRE DE LANCEMENT · 100 places
+              </span>
+            </div>
+            <div className="deal-prices">
+              <span className="now mercury-green glow">97€</span>
+              <span className="was">197€</span>
+            </div>
+            <div className="deal-sub">Paiement unique · Accès à vie</div>
+            <div className="deal-iframe-wrap">
               <WhopCheckout />
             </div>
-          </div>
-
-          {/* Trust row */}
-          <div className="mt-6 md:mt-7 flex items-center justify-center gap-x-3 gap-y-2 flex-wrap mono text-[9px] md:text-[10px] uppercase tracking-[0.22em] text-white/50">
-            <span>🔒 Paiement sécurisé</span>
-            <span className="text-white/20">·</span>
-            <span>⚡ Accès immédiat</span>
-            <span className="text-white/20">·</span>
-            <span>🛡 Garantie 14j</span>
+            <div className="trust-row">
+              <span className="b">
+                <span className="ic">🔒</span> Paiement sécurisé
+              </span>
+              <span className="b">
+                <span className="ic">⚡</span> Accès immédiat
+              </span>
+              <span className="b">
+                <span className="ic">🛡</span> Garantie 14 jours
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ===== 12 · FAQ (moved below checkout — last objection handler) ===== */}
-      <section id="faq" className="relative border-t border-white/10 scroll-mt-20">
-        <div className="mx-auto max-w-3xl px-4 py-14 md:py-20">
-          <SectionTag number="009" label="FAQ" />
-          <h2
-            className="display text-white mt-5"
-            style={{ fontSize: "clamp(1.75rem, 5vw, 2.75rem)" }}
-          >
-            Questions <span className="text-gold">fréquentes.</span>
-          </h2>
+      {/* =================== FAQ =================== */}
+      <section className="section-pad" id="faq">
+        <div className="wrap">
+          <div className="section-head">
+            <span className="chrome-bubble">// 009 · FAQ</span>
+            <h2 className="h2">
+              <span className="stroke-text">Questions</span>{" "}
+              <span className="mercury-text glow">fréquentes.</span>
+            </h2>
+          </div>
 
-          <Accordion className="mt-8 border-t border-white/10">
-            {faqs.map((f, i) => (
-              <AccordionItem key={i} value={`item-${i}`}>
-                <AccordionTrigger className="display text-lg md:text-xl text-white py-5 hover:text-gold transition-colors">
-                  {f.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-white/75 pb-5">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="faq">
+            <details className="faq-item">
+              <summary>
+                Je reçois l&apos;accès quand&nbsp;? <span className="plus">+</span>
+              </summary>
+              <div className="answer">
+                Immédiatement après le paiement. Tu arrives sur la plateforme, tu
+                commences M0 dans les 2 minutes.
+              </div>
+            </details>
+            <details className="faq-item">
+              <summary>
+                Je suis débutant total, ça passe&nbsp;?{" "}
+                <span className="plus">+</span>
+              </summary>
+              <div className="answer">
+                Oui. Construit pour quelqu&apos;un qui n&apos;a jamais touché à
+                l&apos;IA. Chaque étape est filmée, chaque outil est montré à
+                l&apos;écran.
+              </div>
+            </details>
+            <details className="faq-item">
+              <summary>
+                Ça se voit que c&apos;est de l&apos;IA&nbsp;?{" "}
+                <span className="plus">+</span>
+              </summary>
+              <div className="answer">
+                Pas avec ce process. Le but de la formation c&apos;est exactement
+                ça : passer l&apos;uncanny valley.
+              </div>
+            </details>
+            <details className="faq-item">
+              <summary>
+                Et si ça me plaît pas&nbsp;? <span className="plus">+</span>
+              </summary>
+              <div className="answer">
+                Garantie 14 jours. Tu testes, tu appliques. Si ça ne te sert à
+                rien, tu demandes un remboursement — pas de question.
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
-      {/* ===== 13 · FOOTER ===== */}
-      <Footer />
-
-      <StickyCTA />
+      {/* =================== FOOTER =================== */}
+      <footer className="aica-footer">
+        <div className="wrap">
+          <div className="foot-grid">
+            <div className="foot-brand">
+              <a href="/" className="chrome-bubble" style={{ alignSelf: "flex-start" }}>
+                REVO LAB
+              </a>
+              <span className="tag">Entreprise éditrice d&apos;AI Creative Academy</span>
+              <p className="desc">
+                AI Creative Academy est édité par REVO LAB,
+                micro-entreprise française. SIRET&nbsp;102&nbsp;749&nbsp;942&nbsp;00011.
+              </p>
+              <p className="desc" style={{ marginTop: "4px", color: "var(--w-50)", fontSize: "12px" }}>
+                Contact&nbsp;: lucas.socialcontact@gmail.com
+              </p>
+            </div>
+            <div className="col">
+              <h5>Navigation</h5>
+              <a href="#temoignages">Résultats</a>
+              <a href="#methode">Ce que tu apprends</a>
+              <a href="#tarifs">Modules &amp; bonus</a>
+              <a href="#faq">FAQ</a>
+            </div>
+            <div className="col">
+              <h5>Légal</h5>
+              <a href="/legal/mentions-legales">Mentions légales</a>
+              <a href="/legal/cgv">CGV</a>
+              <a href="/legal/confidentialite">Confidentialité</a>
+              <a href="/legal/cookies">Cookies</a>
+            </div>
+          </div>
+          <div className="foot-bottom">
+            <span>© 2026 REVO LAB · Tous droits réservés</span>
+            <span>Paiements sécurisés · SEPA / CB</span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }

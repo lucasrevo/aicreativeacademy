@@ -38,15 +38,10 @@ export default function CookiesPage() {
 
       <h3>Cookies de mesure d&apos;audience</h3>
       <p>
-        Lorsqu&apos;ils sont activés, nous utilisons des outils anonymisés pour
-        mesurer l&apos;audience et améliorer le site. Ces cookies sont déposés
-        uniquement avec votre consentement.
-      </p>
-
-      <h3>Cookies de préférences</h3>
-      <p>
-        Mémorisent vos choix (ex. consentement cookies) pour éviter de vous
-        les redemander à chaque visite.
+        Aucun cookie de mesure d&apos;audience (Google Analytics, Microsoft
+        Clarity ou autre) n&apos;est actuellement déposé sur le site. Si nous
+        en mettons en place ultérieurement, ils ne seront déposés
+        qu&apos;avec votre consentement explicite préalable.
       </p>
 
       <h2>3. Gestion de vos préférences</h2>

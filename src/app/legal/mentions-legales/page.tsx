@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
         <br />
         SIRET : 102 749 942 00011
         <br />
-        Adresse : [ADRESSE — À COMPLÉTER]
+        Adresse : 60 rue François 1er, 75008 Paris, France
         <br />
         Email : lucas.socialcontact@gmail.com
       </div>

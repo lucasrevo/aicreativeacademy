@@ -29,7 +29,7 @@ export default function ConfidentialitePage() {
         <br />
         SIRET : 102 749 942 00011
         <br />
-        Adresse : [ADRESSE — À COMPLÉTER]
+        Adresse : 60 rue François 1er, 75008 Paris, France
         <br />
         Email :{" "}
         <a href="mailto:lucas.socialcontact@gmail.com">
@@ -97,14 +97,13 @@ export default function ConfidentialitePage() {
         <li>
           <strong>Cloudflare, Inc.</strong> (hébergement et CDN) — USA
         </li>
-        <li>
-          <strong>Discord, Inc.</strong> (communauté privée, si vous y adhérez)
-          — USA
-        </li>
       </ul>
       <p>
-        Aucune donnée n&apos;est vendue. Les transferts hors UE sont encadrés
-        par les clauses contractuelles types de la Commission européenne.
+        Aucune donnée n&apos;est vendue. Aucun outil de mesure d&apos;audience
+        (Google Analytics, Microsoft Clarity ou autre) n&apos;est actuellement
+        actif sur le site. Les transferts hors UE sont encadrés par les
+        clauses contractuelles types de la Commission européenne (SCC) et le
+        cadre Data Privacy Framework UE-US.
       </p>
 
       <h2>6. Vos droits</h2>
