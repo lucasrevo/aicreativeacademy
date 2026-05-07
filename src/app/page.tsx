@@ -157,15 +157,12 @@ export default function Page() {
             <a href="#tarifs" onClick={closeDrawer}>
               Modules &amp; bonus <span className="arr">→</span>
             </a>
-            <a href="#tarifs" onClick={closeDrawer}>
-              Valeur réelle <span className="arr">→</span>
-            </a>
-            <a href="#faq" onClick={closeDrawer}>
-              FAQ <span className="arr">→</span>
-            </a>
             <a href="#checkout" onClick={closeDrawer} style={{ color: "#fff" }}>
               <span className="mercury-text">S&apos;INSCRIRE — 97€</span>{" "}
               <span className="arr">→</span>
+            </a>
+            <a href="#faq" onClick={closeDrawer}>
+              FAQ <span className="arr">→</span>
             </a>
           </div>
           <div className="foot">

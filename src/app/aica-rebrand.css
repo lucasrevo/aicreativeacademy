@@ -29,16 +29,14 @@
 
 .aica-root, .aica-root * { box-sizing: border-box; margin: 0; padding: 0; }
 .aica-root {
-  /* Full black ink + scattered circular burgundy glow orbs */
+  /* Full black ink + continuous burgundy glow orbs anchored to viewport */
   background-color: var(--ink);
   background-image:
-    radial-gradient(circle 420px at 18% 8%, rgba(181, 36, 36, .30) 0%, transparent 70%),
-    radial-gradient(circle 480px at 82% 22%, rgba(139, 26, 26, .26) 0%, transparent 70%),
-    radial-gradient(circle 380px at 16% 50%, rgba(181, 36, 36, .24) 0%, transparent 70%),
-    radial-gradient(circle 460px at 78% 70%, rgba(139, 26, 26, .22) 0%, transparent 70%),
-    radial-gradient(circle 400px at 28% 90%, rgba(181, 36, 36, .20) 0%, transparent 70%);
-  background-size: 100% 100vh, 100% 100vh, 100% 100vh, 100% 100vh, 100% 100vh;
-  background-position: 0 100vh, 0 160vh, 0 240vh, 0 330vh, 0 420vh;
+    radial-gradient(circle 700px at 12% 18%, rgba(181, 36, 36, .22) 0%, transparent 65%),
+    radial-gradient(circle 800px at 88% 32%, rgba(139, 26, 26, .20) 0%, transparent 65%),
+    radial-gradient(circle 650px at 22% 75%, rgba(181, 36, 36, .18) 0%, transparent 65%),
+    radial-gradient(circle 750px at 80% 88%, rgba(139, 26, 26, .16) 0%, transparent 65%);
+  background-attachment: fixed;
   background-repeat: no-repeat;
   color: var(--aica-white);
   font-family: var(--aica-body);
@@ -46,6 +44,19 @@
   scroll-behavior: smooth;
   overflow-x: hidden;
   min-height: 100vh;
+}
+/* iOS Safari doesn't always render fixed backgrounds well — fallback to scroll on touch devices */
+@supports (-webkit-touch-callout: none) {
+  .aica-root {
+    background-attachment: scroll;
+    background-image:
+      radial-gradient(circle 600px at 12% 8%, rgba(181, 36, 36, .22) 0%, transparent 65%),
+      radial-gradient(circle 700px at 88% 22%, rgba(139, 26, 26, .20) 0%, transparent 65%),
+      radial-gradient(circle 550px at 22% 38%, rgba(181, 36, 36, .18) 0%, transparent 65%),
+      radial-gradient(circle 650px at 80% 52%, rgba(139, 26, 26, .16) 0%, transparent 65%),
+      radial-gradient(circle 600px at 18% 68%, rgba(181, 36, 36, .18) 0%, transparent 65%),
+      radial-gradient(circle 700px at 82% 84%, rgba(139, 26, 26, .16) 0%, transparent 65%);
+  }
 }
 .aica-root img, .aica-root video { display: block; max-width: 100%; }
 .aica-root a { color: inherit; text-decoration: none; }
