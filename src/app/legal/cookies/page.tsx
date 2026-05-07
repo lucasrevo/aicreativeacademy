@@ -9,51 +9,101 @@ export default function CookiesPage() {
   return (
     <>
       <h1>Politique cookies</h1>
-      <p className="lead">Dernière mise à jour : 6 mai 2026</p>
+      <p className="lead">Dernière mise à jour : 8 mai 2026</p>
 
       <h2>1. Qu&apos;est-ce qu&apos;un cookie ?</h2>
       <p>
-        Un cookie est un petit fichier texte déposé sur votre terminal lors de
-        la visite d&apos;un site. Il permet de reconnaître le navigateur,
-        conserver des préférences, mesurer l&apos;audience ou personnaliser
-        l&apos;expérience.
+        Un cookie (ou traceur similaire tel que le localStorage) est un petit
+        fichier déposé sur votre terminal lors de la visite d&apos;un site. Il
+        permet de reconnaître le navigateur, conserver des préférences,
+        sécuriser une session, ou personnaliser l&apos;expérience.
       </p>
 
-      <h2>2. Cookies utilisés sur aicreativeacademy.fr</h2>
-
-      <h3>Cookies strictement nécessaires</h3>
+      <h2>2. État actuel : aucun cookie analytique ou marketing</h2>
       <p>
-        Indispensables au fonctionnement du site (session, panier, checkout
-        Whop). Ils ne requièrent pas votre consentement.
+        <strong>aicreativeacademy.fr ne dépose aucun cookie de mesure
+        d&apos;audience, de marketing ou de profilage.</strong> Aucun outil tel
+        que Google Analytics, Microsoft Clarity, Meta Pixel ou TikTok Pixel
+        n&apos;est intégré au site. En conséquence, et conformément à la
+        recommandation de la CNIL (délibération n° 2020-091), aucun bandeau
+        de consentement n&apos;est requis.
+      </p>
+      <p>
+        Si nous mettons en place ultérieurement de tels traceurs, ils ne
+        seront déposés qu&apos;avec votre consentement explicite et
+        préalable, et un bandeau de consentement sera affiché.
+      </p>
+
+      <h2>3. Cookies et traceurs strictement nécessaires</h2>
+      <p>
+        Seuls les cookies et traceurs strictement nécessaires au
+        fonctionnement du site et à la sécurité sont déposés. Conformément à
+        l&apos;article 82 de la loi Informatique et Libertés, ces traceurs ne
+        requièrent pas votre consentement préalable.
+      </p>
+
+      <table className="cookies-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Émetteur</th>
+            <th>Finalité</th>
+            <th>Durée</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>__cf_bm</code>
+            </td>
+            <td>Cloudflare</td>
+            <td>Anti-bot, détection de trafic automatisé</td>
+            <td>30 minutes</td>
+          </tr>
+          <tr>
+            <td>
+              <code>cf_clearance</code>
+            </td>
+            <td>Cloudflare</td>
+            <td>Validation du challenge anti-bot</td>
+            <td>30 jours</td>
+          </tr>
+          <tr>
+            <td>
+              <code>whop_*</code>
+            </td>
+            <td>Whop (iframe checkout)</td>
+            <td>Session de paiement, sécurité du checkout</td>
+            <td>Session</td>
+          </tr>
+          <tr>
+            <td>
+              <code>aica.deadline</code>
+              <br />
+              <em>(localStorage)</em>
+            </td>
+            <td>aicreativeacademy.fr</td>
+            <td>
+              Mémoriser le compte à rebours de l&apos;offre de lancement (UI)
+            </td>
+            <td>7 jours</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>4. Gestion de vos préférences</h2>
+      <p>
+        Aucun consentement n&apos;est requis pour les traceurs ci-dessus. Vous
+        pouvez néanmoins :
       </p>
       <ul>
         <li>
-          <strong>Whop</strong> — session de paiement
+          Configurer votre navigateur pour bloquer ou supprimer les cookies
+          (les instructions varient selon Chrome, Firefox, Safari, Edge)
         </li>
         <li>
-          <strong>Cloudflare</strong> — sécurité, anti-bot, équilibrage de
-          charge
-        </li>
-      </ul>
-
-      <h3>Cookies de mesure d&apos;audience</h3>
-      <p>
-        Aucun cookie de mesure d&apos;audience (Google Analytics, Microsoft
-        Clarity ou autre) n&apos;est actuellement déposé sur le site. Si nous
-        en mettons en place ultérieurement, ils ne seront déposés
-        qu&apos;avec votre consentement explicite préalable.
-      </p>
-
-      <h2>3. Gestion de vos préférences</h2>
-      <p>Vous pouvez à tout moment :</p>
-      <ul>
-        <li>
-          Modifier vos préférences via le bandeau cookies (lien « Gérer mes
-          cookies » en bas de page, à activer)
-        </li>
-        <li>
-          Configurer votre navigateur pour bloquer les cookies (les
-          instructions varient selon Chrome, Firefox, Safari, Edge)
+          Vider votre stockage local (localStorage) via les outils de
+          développement de votre navigateur
         </li>
         <li>
           Utiliser des outils tiers type{" "}
@@ -67,19 +117,18 @@ export default function CookiesPage() {
         </li>
       </ul>
       <p>
-        Le refus des cookies de mesure d&apos;audience n&apos;empêche pas
-        l&apos;utilisation du site. Le refus des cookies strictement
-        nécessaires peut dégrader le fonctionnement du site.
+        Le blocage des traceurs strictement nécessaires peut dégrader le
+        fonctionnement du site (notamment le checkout).
       </p>
 
-      <h2>4. Durée de conservation</h2>
+      <h2>5. Durée de conservation</h2>
       <p>
-        La durée de vie d&apos;un cookie est de 13 mois maximum conformément
-        aux recommandations de la CNIL. Votre consentement est redemandé à
-        l&apos;expiration.
+        La durée de vie des traceurs est précisée dans le tableau ci-dessus.
+        Elle n&apos;excède jamais 13 mois, conformément aux recommandations de
+        la CNIL.
       </p>
 
-      <h2>5. Contact</h2>
+      <h2>6. Contact</h2>
       <p>
         <a href="mailto:lucas.socialcontact@gmail.com">
           lucas.socialcontact@gmail.com

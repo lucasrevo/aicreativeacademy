@@ -997,3 +997,63 @@
 .aica-root .fadein { opacity: 0; transform: translateY(14px); transition: opacity .8s ease, transform .8s ease; }
 .aica-root .fadein.in { opacity: 1; transform: none; }
 .aica-root .kbd { font-family: var(--aica-mono); font-size: 11px; letter-spacing: .2em; }
+
+/* ============ LEGAL — Cookies table ============ */
+.aica-root .cookies-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(245, 197, 24, 0.02);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.aica-root .cookies-table thead {
+  background: rgba(255, 255, 255, 0.04);
+}
+.aica-root .cookies-table th {
+  font-family: var(--aica-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--w-50);
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 600;
+}
+.aica-root .cookies-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.78);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.aica-root .cookies-table tr:last-child td {
+  border-bottom: none;
+}
+.aica-root .cookies-table code {
+  font-family: var(--aica-mono);
+  font-size: 0.82rem;
+  color: #F5C518;
+  background: rgba(245, 197, 24, 0.08);
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.aica-root .cookies-table em {
+  display: block;
+  margin-top: 4px;
+  font-style: normal;
+  font-family: var(--aica-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--w-50);
+}
+@media (max-width: 720px) {
+  .aica-root .cookies-table { font-size: 0.82rem; }
+  .aica-root .cookies-table th,
+  .aica-root .cookies-table td { padding: 0.6rem 0.7rem; }
+}

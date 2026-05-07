@@ -9,7 +9,7 @@ export default function MentionsLegalesPage() {
   return (
     <>
       <h1>Mentions légales</h1>
-      <p className="lead">Dernière mise à jour : 6 mai 2026</p>
+      <p className="lead">Dernière mise à jour : 8 mai 2026</p>
 
       <h2>1. Éditeur du site</h2>
       <div className="info-card">
@@ -21,9 +21,15 @@ export default function MentionsLegalesPage() {
         <br />
         SIRET : 102 749 942 00011
         <br />
+        Inscrit au Registre National des Entreprises (RNE) sous le numéro
+        102 749 942
+        <br />
         Adresse : 60 rue François 1er, 75008 Paris, France
         <br />
-        Email : lucas.socialcontact@gmail.com
+        Email :{" "}
+        <a href="mailto:lucas.socialcontact@gmail.com">
+          lucas.socialcontact@gmail.com
+        </a>
       </div>
 
       <h2>2. Directeur de la publication</h2>
@@ -34,6 +40,8 @@ export default function MentionsLegalesPage() {
         <strong>Cloudflare, Inc.</strong>
         <br />
         101 Townsend Street, San Francisco, CA 94107, USA
+        <br />
+        Téléphone : +1 (888) 993-5273
         <br />
         <a href="https://www.cloudflare.com" target="_blank" rel="noopener noreferrer">
           cloudflare.com
@@ -80,7 +88,7 @@ export default function MentionsLegalesPage() {
         jour, sans pouvoir garantir l&apos;exactitude ou l&apos;exhaustivité
         des contenus. Les résultats mentionnés sur le site (ventes, vues,
         revenus) sont des exemples réels de membres et ne constituent en aucun
-        cas une promesse de résultat.
+        cas une promesse de résultat. Aucun revenu n&apos;est garanti.
       </p>
 
       <h2>8. Liens externes</h2>
