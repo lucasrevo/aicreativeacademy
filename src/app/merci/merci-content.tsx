@@ -87,7 +87,7 @@ export function MerciContent() {
             </div>
 
             <p className="mt-8 mono text-[10px] uppercase tracking-[0.2em] text-white/40 text-center">
-              Un souci ? écris à lucas@aicreativeacademy.com
+              Un souci ? écris à lucas.socialcontact@gmail.com
             </p>
           </>
         ) : (

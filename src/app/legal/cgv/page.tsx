@@ -16,7 +16,7 @@ export default function CGVPage() {
         Les présentes Conditions Générales de Vente (ci-après « CGV »)
         régissent les ventes de la formation en ligne{" "}
         <strong>AI CREATIVE ACADEMY</strong> (ci-après « la Formation »)
-        commercialisée sur aicreativeacademy.com par REVO LAB.
+        commercialisée sur aicreativeacademy.fr par REVO LAB.
       </p>
 
       <h2>Article 2 — Vendeur</h2>

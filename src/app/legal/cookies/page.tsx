@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Politique cookies · AI CREATIVE ACADEMY",
-  description: "Politique d'utilisation des cookies sur aicreativeacademy.com.",
+  description: "Politique d'utilisation des cookies sur aicreativeacademy.fr.",
 };
 
 export default function CookiesPage() {
@@ -19,7 +19,7 @@ export default function CookiesPage() {
         l&apos;expérience.
       </p>
 
-      <h2>2. Cookies utilisés sur aicreativeacademy.com</h2>
+      <h2>2. Cookies utilisés sur aicreativeacademy.fr</h2>
 
       <h3>Cookies strictement nécessaires</h3>
       <p>

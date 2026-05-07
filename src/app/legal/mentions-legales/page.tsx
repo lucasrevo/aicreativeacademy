@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Mentions légales · AI CREATIVE ACADEMY",
-  description: "Mentions légales du site aicreativeacademy.com — éditeur, hébergeur, propriété intellectuelle.",
+  description: "Mentions légales du site aicreativeacademy.fr — éditeur, hébergeur, propriété intellectuelle.",
 };
 
 export default function MentionsLegalesPage() {
@@ -56,7 +56,7 @@ export default function MentionsLegalesPage() {
 
       <h2>5. Propriété intellectuelle</h2>
       <p>
-        L&apos;ensemble des contenus présents sur aicreativeacademy.com (textes,
+        L&apos;ensemble des contenus présents sur aicreativeacademy.fr (textes,
         images, vidéos, logos, marques, architecture, code source) sont la
         propriété exclusive de REVO LAB, protégés par le droit d&apos;auteur
         français, européen et international.
