@@ -664,18 +664,38 @@
   position: relative; padding: clamp(24px, 3vw, 44px);
   border-radius: 22px; overflow: hidden;
   background:
-    radial-gradient(60% 100% at 80% 0%, rgba(139, 26, 26, .25), transparent 70%),
-    rgba(20, 8, 10, .65);
+    radial-gradient(70% 100% at 80% 0%, rgba(200, 164, 100, .18), transparent 65%),
+    radial-gradient(60% 100% at 50% 0%, rgba(220, 38, 38, .50), transparent 65%),
+    radial-gradient(80% 80% at 80% 100%, rgba(139, 26, 26, .55), transparent 70%),
+    #1a0608;
   border: 1px solid transparent;
   background-clip: padding-box;
-  box-shadow: 0 25px 70px -25px rgba(0, 0, 0, .8);
+  box-shadow: 0 25px 70px -25px rgba(0, 0, 0, .85);
 }
 .aica-root .bonus-card::before {
-  content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .55), rgba(255, 255, 255, .05) 30%, rgba(255, 255, 255, .4) 100%);
+  content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit;
+  background: linear-gradient(135deg, #e9c87b 0%, #b88846 25%, #f3d98e 50%, #8b5e22 75%, #e9c87b 100%);
+  background-size: 300% 300%;
+  animation: bonusGoldFlow 6s linear infinite;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   pointer-events: none;
+}
+@keyframes bonusGoldFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+.aica-root .bonus-card .stamp-offert {
+  background: linear-gradient(180deg, #fff5d6, #e9c87b 45%, #a47331);
+  color: #2a1a05;
+  border-color: rgba(255, 230, 160, .8);
+  box-shadow: 0 6px 14px rgba(120, 80, 20, .5), inset 0 1px 0 rgba(255, 255, 255, .8);
+}
+.aica-root .bonus-card h3 .mercury-text,
+.aica-root .bonus-card h3 .mercury-text.glow {
+  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 30%, #a47331 60%, #f3d98e 80%, #a47331 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
 }
 .aica-root .ribbon {
   position: absolute; top: 18px; right: -44px; z-index: 5;

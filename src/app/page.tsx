@@ -570,7 +570,7 @@ export default function Page() {
               </div>
               <div className="compare">
                 <div className="col bad">
-                  <h4>😩 Sans nous</h4>
+                  <h4>😩 Sans le GPT</h4>
                   <ul>
                     <li>
                       <span className="ic">🧪</span> T&apos;écris tes prompts à la
@@ -587,7 +587,7 @@ export default function Page() {
                 </div>
                 <div className="vs">VS</div>
                 <div className="col good">
-                  <h4>✨ Avec nous</h4>
+                  <h4>✨ Avec le GPT</h4>
                   <ul>
                     <li>
                       <span className="ic">🤖</span> L&apos;agent prompt pour toi
@@ -623,7 +623,7 @@ export default function Page() {
               </div>
               <div className="compare">
                 <div className="col bad">
-                  <h4>😩 Sans nous</h4>
+                  <h4>😩 Sans le GPT</h4>
                   <ul>
                     <li>
                       <span className="ic">📹</span> Mouvements caméra random
@@ -640,7 +640,7 @@ export default function Page() {
                 </div>
                 <div className="vs">VS</div>
                 <div className="col good">
-                  <h4>✨ Avec nous</h4>
+                  <h4>✨ Avec le GPT</h4>
                   <ul>
                     <li>
                       <span className="ic">🎞</span> Cinematic dès le 1er essai
