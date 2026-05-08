@@ -14,3 +14,8 @@ out
 CLAUDE_DESIGN_FINAL_PACKAGE/MEDIAS_REELS_REPO/
 claude-design-output/public/
 claude-design-output/uploads/
+
+# Local-only generated/backup folders
+CLAUDE_DESIGN_FINAL_PACKAGE/regenerated/
+CLAUDE_DESIGN_FINAL_PACKAGE/regenerated-v2/
+public/modules/_backup_old/

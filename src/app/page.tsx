@@ -451,8 +451,7 @@ export default function Page() {
                   Crée ton <span className="key mercury-text">AVATAR.</span>
                 </h3>
                 <p>
-                  Identité visuelle, Identity Lock, premières photos cohérentes —
-                  un avatar qui tient sur 1000 prompts.
+                  Identité visuelle, Identity Lock, premières photos cohérentes.
                 </p>
               </div>
               <span className="price">197€</span>
@@ -488,11 +487,10 @@ export default function Page() {
               <span className="corner">M·04</span>
               <div className="info">
                 <h3>
-                  Monte tes <span className="key mercury-text">VIDÉOS.</span>
+                  <span className="key mercury-text">MONTAGE.</span>
                 </h3>
                 <p>
-                  CapCut de A à Z : transitions, sous-titres, export 9:16 prêts
-                  pour Reels et TikTok.
+                  Édition et post-production.
                 </p>
               </div>
               <span className="price">147€</span>
