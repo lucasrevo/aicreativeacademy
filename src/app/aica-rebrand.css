@@ -352,35 +352,36 @@
   .aica-root .testimonials-grid { grid-template-columns: 1fr; }
 }
 
-/* Chrome card — silver metallic block, NOT clickable, matches avatar mercury aesthetic */
+/* Chrome card — gold-bordered block on saturated red bg (matches bonus-card aesthetic) */
 .aica-root .chrome-card {
   position: relative;
   padding: clamp(22px, 2.4vw, 30px);
   border-radius: 20px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, .04) 0%, rgba(20, 8, 10, .55) 60%, rgba(15, 6, 7, .85) 100%);
+    radial-gradient(70% 100% at 80% 0%, rgba(200, 164, 100, .15), transparent 65%),
+    radial-gradient(60% 100% at 50% 0%, rgba(220, 38, 38, .35), transparent 65%),
+    radial-gradient(80% 80% at 80% 100%, rgba(139, 26, 26, .45), transparent 70%),
+    #1a0608;
   border: 1px solid transparent;
   background-clip: padding-box;
   box-shadow:
     0 25px 50px -22px rgba(0, 0, 0, .85),
-    inset 0 1px 0 rgba(255, 255, 255, .12);
+    inset 0 1px 0 rgba(255, 240, 200, .12);
   display: flex;
   flex-direction: column;
   gap: 16px;
   overflow: hidden;
 }
-/* Silver chrome border via mask trick */
+/* Animated gold border via mask trick */
 .aica-root .chrome-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  padding: 1px;
+  padding: 1.5px;
   border-radius: inherit;
-  background: linear-gradient(180deg,
-    rgba(255, 255, 255, .65) 0%,
-    rgba(255, 255, 255, .25) 25%,
-    rgba(140, 140, 145, .35) 60%,
-    rgba(255, 255, 255, .55) 100%);
+  background: linear-gradient(135deg, #e9c87b 0%, #b88846 25%, #f3d98e 50%, #8b5e22 75%, #e9c87b 100%);
+  background-size: 300% 300%;
+  animation: bonusGoldFlow 8s linear infinite;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -793,19 +794,44 @@
 }
 
 .aica-root .bonus-mini {
+  position: relative;
   padding: clamp(20px, 2.5vw, 30px);
   border-radius: 18px;
-  border: 1.5px dashed rgba(255, 255, 255, .35);
-  background: rgba(20, 8, 10, .4);
+  border: 1px solid transparent;
+  background:
+    radial-gradient(70% 100% at 80% 0%, rgba(200, 164, 100, .18), transparent 65%),
+    radial-gradient(60% 100% at 50% 0%, rgba(220, 38, 38, .50), transparent 65%),
+    radial-gradient(80% 80% at 80% 100%, rgba(139, 26, 26, .55), transparent 70%),
+    #1a0608;
+  background-clip: padding-box;
+  box-shadow: 0 25px 70px -25px rgba(0, 0, 0, .85);
   display: flex; flex-direction: column; gap: 10px;
+  overflow: hidden;
 }
+.aica-root .bonus-mini::before {
+  content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit;
+  background: linear-gradient(135deg, #e9c87b 0%, #b88846 25%, #f3d98e 50%, #8b5e22 75%, #e9c87b 100%);
+  background-size: 300% 300%;
+  animation: bonusGoldFlow 6s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  pointer-events: none;
+}
+.aica-root .bonus-mini .bonus-pill,
 .aica-root .bonus-mini .pill-tag {
   align-self: flex-start;
-  background: linear-gradient(180deg, #f3f3f3, #cfcfd2 55%, #8e8e92);
-  color: #0A0405; border-color: rgba(255, 255, 255, .55);
+  background: linear-gradient(180deg, #fff5d6, #e9c87b 45%, #a47331);
+  color: #2a1a05;
+  border-color: rgba(255, 230, 160, .8);
+  box-shadow: 0 6px 14px rgba(120, 80, 20, .5), inset 0 1px 0 rgba(255, 255, 255, .8);
 }
 .aica-root .bonus-mini h3 {
   font-family: var(--aica-display); font-size: clamp(28px, 3.5vw, 44px); line-height: .95;
+}
+.aica-root .bonus-mini h3 .mercury-text {
+  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 30%, #a47331 60%, #f3d98e 80%, #a47331 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
 }
 .aica-root .bonus-mini p { color: var(--w-70); font-size: 14px; line-height: 1.6; max-width: 680px; }
 
@@ -814,7 +840,11 @@
 .aica-root .ticket {
   position: relative;
   width: 100%; max-width: 560px;
-  background: linear-gradient(180deg, rgba(20, 8, 10, .85), rgba(15, 6, 7, .95));
+  background:
+    radial-gradient(70% 100% at 80% 0%, rgba(200, 164, 100, .18), transparent 65%),
+    radial-gradient(60% 100% at 50% 0%, rgba(220, 38, 38, .45), transparent 65%),
+    radial-gradient(80% 80% at 80% 100%, rgba(139, 26, 26, .50), transparent 70%),
+    linear-gradient(180deg, #1a0608, #110407);
   border: 1px solid transparent;
   border-radius: 24px;
   padding: 36px 32px 32px;
@@ -822,8 +852,10 @@
   background-clip: padding-box;
 }
 .aica-root .ticket::before {
-  content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .05) 35%, rgba(255, 255, 255, .4) 100%);
+  content: ""; position: absolute; inset: 0; padding: 1.5px; border-radius: inherit;
+  background: linear-gradient(135deg, #e9c87b 0%, #b88846 25%, #f3d98e 50%, #8b5e22 75%, #e9c87b 100%);
+  background-size: 300% 300%;
+  animation: bonusGoldFlow 6s linear infinite;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   pointer-events: none;
