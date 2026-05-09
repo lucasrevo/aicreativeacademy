@@ -326,7 +326,11 @@
     background-color: var(--ink);
   }
   .aica-root .hero .bg .hero-video.is-desktop { display: none; }
-  .aica-root .hero .bg .hero-video.is-mobile { display: block; }
+  .aica-root .hero .bg .hero-video.is-mobile {
+    display: block;
+    object-fit: contain;
+    object-position: center top;
+  }
   /* Tighter ink top for header + shorter fade, strong fade-out at bottom preserved */
   .aica-root .hero .bg::after {
     background: linear-gradient(180deg,
