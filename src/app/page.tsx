@@ -445,22 +445,10 @@ export default function Page() {
               <span className="price">247€</span>
             </div>
 
-            <div className="m m4 fadein">
-              <img src="/modules/4.png" alt="Module 4 — Montage" />
+            <div className="m m4 large fadein">
+              <img src="/modules/5.png" alt="Module 4 — Voix IA" />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 4</span>
-              <div className="info">
-                <h3>
-                  <span className="key mercury-text">MONTAGE.</span>
-                </h3>
-              </div>
-              <span className="price">147€</span>
-            </div>
-
-            <div className="m m5 large fadein">
-              <img src="/modules/5.png" alt="Module 5 — Voix IA" />
-              <span className="stamp">✓ Inclus</span>
-              <span className="corner">Module 5</span>
               <div className="info">
                 <h3>
                   Crée ta <span className="key mercury-text">VOIX IA.</span>
@@ -475,6 +463,18 @@ export default function Page() {
                 src="/logos/elevenlabs.png"
                 alt="Powered by ElevenLabs"
               />
+              <span className="price">147€</span>
+            </div>
+
+            <div className="m m5 fadein">
+              <img src="/modules/4.png" alt="Module 5 — Montage" />
+              <span className="stamp">✓ Inclus</span>
+              <span className="corner">Module 5</span>
+              <div className="info">
+                <h3>
+                  <span className="key mercury-text">MONTAGE.</span>
+                </h3>
+              </div>
               <span className="price">147€</span>
             </div>
 

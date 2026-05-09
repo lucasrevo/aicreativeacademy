@@ -653,8 +653,8 @@
 .aica-root .bento .m1 { grid-column: span 4; grid-row: span 2; }
 .aica-root .bento .m2 { grid-column: span 2; grid-row: span 1; }
 .aica-root .bento .m3 { grid-column: span 2; grid-row: span 1; }
-.aica-root .bento .m4 { grid-column: span 2; grid-row: span 1; }
-.aica-root .bento .m5 { grid-column: span 4; grid-row: span 2; }
+.aica-root .bento .m4 { grid-column: span 4; grid-row: span 2; }
+.aica-root .bento .m5 { grid-column: span 2; grid-row: span 1; }
 .aica-root .bento .m6 { grid-column: span 2; grid-row: span 1; }
 .aica-root .bento .m7 { grid-column: span 6; grid-row: span 2; }
 @media (max-width: 980px) {
@@ -662,15 +662,15 @@
   .aica-root .bento .m1 { grid-column: span 4; grid-row: span 2; }
   .aica-root .bento .m2 { grid-column: span 2; }
   .aica-root .bento .m3 { grid-column: span 2; }
-  .aica-root .bento .m4 { grid-column: span 2; }
-  .aica-root .bento .m5 { grid-column: span 4; grid-row: span 2; }
+  .aica-root .bento .m4 { grid-column: span 4; grid-row: span 2; }
+  .aica-root .bento .m5 { grid-column: span 2; }
   .aica-root .bento .m6 { grid-column: span 2; }
   .aica-root .bento .m7 { grid-column: span 4; grid-row: span 2; }
 }
 @media (max-width: 600px) {
   .aica-root .bento { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
-  .aica-root .bento .m1, .aica-root .bento .m5, .aica-root .bento .m7 { grid-column: span 2; grid-row: span 2; }
-  .aica-root .bento .m2, .aica-root .bento .m3, .aica-root .bento .m4, .aica-root .bento .m6 { grid-column: span 1; grid-row: span 1; }
+  .aica-root .bento .m1, .aica-root .bento .m4, .aica-root .bento .m7 { grid-column: span 2; grid-row: span 2; }
+  .aica-root .bento .m2, .aica-root .bento .m3, .aica-root .bento .m5, .aica-root .bento .m6 { grid-column: span 1; grid-row: span 1; }
   /* Avoid title/price overlap on small modules */
   .aica-root .bento .m:not(.large) .info { padding: 14px 14px 16px; }
   .aica-root .bento .m:not(.large) .info h3 { font-size: 18px; padding-right: 56px; }
