@@ -293,7 +293,7 @@ export default function Page() {
             <article className="step fadein">
               <div className="media">
                 <img
-                  src="/process/step-3.gif"
+                  src="/process/step-3.jpg"
                   alt="Étape 3 — monétisation de l'avatar"
                 />
               </div>

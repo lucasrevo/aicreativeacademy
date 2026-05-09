@@ -596,8 +596,13 @@
 .aica-root .bento .m:hover img { transform: scale(1.06); }
 .aica-root .bento .m .corner {
   position: absolute; top: 14px; right: 14px; z-index: 5;
-  font-family: var(--aica-mono); font-size: 11px; letter-spacing: .24em; color: #fff; opacity: .85;
+  font-family: var(--aica-mono); font-size: 11px; letter-spacing: .24em;
   text-transform: uppercase;
+  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 45%, #a47331 100%);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 14px rgba(233, 200, 123, .35), 0 2px 8px rgba(164, 115, 49, .25);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
 }
 .aica-root .bento .m .stamp {
   position: absolute; top: 14px; left: 14px; z-index: 5;
