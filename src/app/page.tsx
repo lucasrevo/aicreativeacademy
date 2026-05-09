@@ -217,14 +217,7 @@ export default function Page() {
               <span className="stroke-text">La méthode en</span>{" "}
               <span className="mercury-text glow">3 étapes.</span>
             </h2>
-            <p className="sub mono-tag">Master les derniers outils&nbsp;:</p>
-            <div className="tool-logos">
-              <img src="/logos/higgsfield.png" alt="Higgsfield" />
-              <img src="/logos/kling.png" alt="Kling" />
-              <img src="/logos/nano-banana.png" alt="Nano Banana 2" />
-              <img src="/logos/seedance.png" alt="Seedance 2.0" />
-              <img className="wordmark" src="/logos/elevenlabs.png" alt="ElevenLabs" />
-            </div>
+            <p className="sub mono-tag">Crée · Génère · Monétise</p>
           </div>
 
           <div className="method-grid">
@@ -255,9 +248,16 @@ export default function Page() {
               </div>
               <div className="body">
                 <h3>
-                  Génère du contenu{" "}
-                  <span className="mercury-text">ultra-réaliste</span>.
+                  Master les derniers{" "}
+                  <span className="mercury-text">outils&nbsp;:</span>
                 </h3>
+                <div className="tool-logos overlap">
+                  <img src="/logos/higgsfield.png" alt="Higgsfield" />
+                  <img src="/logos/nano-banana.png" alt="Nano Banana 2" />
+                  <img src="/logos/kling.png" alt="Kling" />
+                  <img src="/logos/seedance.png" alt="Seedance" />
+                  <img className="wordmark" src="/logos/elevenlabs.png" alt="ElevenLabs" />
+                </div>
               </div>
             </article>
 
@@ -414,7 +414,15 @@ export default function Page() {
 
           <div className="bento">
             <div className="m m1 large fadein">
-              <img src="/modules/1.png" alt="Module 1 — Avatar" />
+              <video
+                src="/modules/1.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 1 — Avatar"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 1</span>
               <div className="info">
@@ -429,7 +437,15 @@ export default function Page() {
             </div>
 
             <div className="m m2 fadein">
-              <img src="/modules/2.png" alt="Module 2 — Images" />
+              <video
+                src="/modules/2.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 2 — Images"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 2</span>
               <div className="info">
@@ -446,7 +462,15 @@ export default function Page() {
             </div>
 
             <div className="m m3 fadein">
-              <img src="/modules/3.png" alt="Module 3 — Vidéos" />
+              <video
+                src="/modules/3.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 3 — Vidéos"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 3</span>
               <div className="info">
@@ -463,7 +487,15 @@ export default function Page() {
             </div>
 
             <div className="m m4 large fadein">
-              <img src="/modules/5.png" alt="Module 4 — Voix IA" />
+              <video
+                src="/modules/4.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 4 — Voix IA"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 4</span>
               <div className="info">
@@ -485,7 +517,15 @@ export default function Page() {
             </div>
 
             <div className="m m5 fadein">
-              <img src="/modules/4.png" alt="Module 5 — Montage" />
+              <video
+                src="/modules/5.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 5 — Montage"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 5</span>
               <div className="info">
@@ -497,7 +537,15 @@ export default function Page() {
             </div>
 
             <div className="m m6 fadein">
-              <img src="/modules/6.png" alt="Module 6 — Scripts" />
+              <video
+                src="/modules/6.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 6 — Scripts"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 6</span>
               <div className="info">
@@ -510,7 +558,15 @@ export default function Page() {
             </div>
 
             <div className="m m7 large fadein">
-              <img src="/modules/7.png" alt="Module 7 — Monétisation" />
+              <video
+                src="/modules/7.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label="Module 7 — Monétisation"
+              />
               <span className="stamp">✓ Inclus</span>
               <span className="corner">Module 7</span>
               <div className="info">
