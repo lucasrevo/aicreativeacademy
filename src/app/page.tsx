@@ -320,11 +320,11 @@ export default function Page() {
               </video>
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Reels Viro</span>
+                <span className="tag">Reels viraux</span>
                 <span className="num">01</span>
               </div>
               <div className="titleline">
-                Reels Viro
+                Reels viraux
                 <span className="t">250K vues — sans montrer ton visage</span>
               </div>
             </article>
