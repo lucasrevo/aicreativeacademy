@@ -204,8 +204,8 @@ export default function Page() {
           <p className="hero-cta-line">
             Accès immédiat · Garantie 14 jours · Mises à jour à vie
           </p>
-          <a href="#checkout" className="chrome-cta lg">
-            <span>Je crée mon avatar — 97€</span>
+          <a href="#methode" className="chrome-cta lg">
+            <span>Je découvre la méthode</span>
             <span className="arrow">→</span>
           </a>
         </div>
