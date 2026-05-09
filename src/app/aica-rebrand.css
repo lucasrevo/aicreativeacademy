@@ -326,7 +326,17 @@
   text-shadow: 0 2px 14px rgba(0, 0, 0, .75);
 }
 @media (max-width: 600px) {
-  .aica-root .hero-cta-line { font-size: 9.5px; letter-spacing: .14em; }
+  .aica-root .hero-cta-line {
+    font-size: 8.5px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+}
+@media (max-width: 360px) {
+  .aica-root .hero-cta-line {
+    font-size: 7.5px;
+    letter-spacing: 0;
+  }
 }
 .aica-root .hero-meta {
   display: flex; gap: 26px; align-items: center;
