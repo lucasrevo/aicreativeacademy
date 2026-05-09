@@ -1031,6 +1031,17 @@
 .aica-root .cd-sep {
   font-family: var(--aica-display); color: var(--silver-3); font-size: clamp(36px, 4vw, 48px); line-height: 1;
 }
+@media (max-width: 600px) {
+  .aica-root .countdown { gap: 6px; flex-wrap: nowrap; margin: 18px 0 6px; }
+  .aica-root .cd-cell {
+    width: clamp(48px, 16vw, 64px);
+    height: clamp(58px, 19vw, 76px);
+    border-radius: 10px;
+  }
+  .aica-root .cd-cell .digits { font-size: clamp(22px, 7vw, 30px); }
+  .aica-root .cd-cell .label { font-size: 7px; letter-spacing: .12em; margin-top: 2px; }
+  .aica-root .cd-sep { font-size: clamp(18px, 5vw, 24px); }
+}
 .aica-root .deal-card {
   margin-top: 28px;
   max-width: 640px; margin-left: auto; margin-right: auto;
