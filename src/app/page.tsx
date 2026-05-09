@@ -176,7 +176,30 @@ export default function Page() {
 
       {/* =================== HERO =================== */}
       <section className="hero" id="top">
-        <div className="bg" ref={heroBgRef} aria-hidden="true" />
+        <div className="bg" ref={heroBgRef} aria-hidden="true">
+          <video
+            className="hero-video is-desktop"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/hero/hero-chrome-bath.jpg"
+          >
+            <source src="/hero/hero-desktop.mp4" type="video/mp4" />
+          </video>
+          <video
+            className="hero-video is-mobile"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/hero/hero-chrome-bath-mobile.jpg"
+          >
+            <source src="/hero/hero-mobile.mp4" type="video/mp4" />
+          </video>
+        </div>
         <div className="hero-bottom">
           <a href="#checkout" className="chrome-cta lg">
             <span>Je lance mon avatar</span>
@@ -494,6 +517,12 @@ export default function Page() {
           <div className="bonus">
             <article className="bonus-card fadein">
               <span className="stamp-offert">🎁 OFFERT</span>
+              <img
+                className="bonus-bg-logo"
+                src="/logos/openai.svg"
+                alt=""
+                aria-hidden="true"
+              />
               <span className="pill-tag">
                 <span style={{ fontSize: 14 }}>🤖</span> Agent IA
               </span>

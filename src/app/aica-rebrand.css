@@ -289,10 +289,17 @@
 }
 .aica-root .hero .bg {
   position: absolute; top: 80px; left: 0; right: 0; bottom: 0; z-index: 0;
-  background-image: url('/hero/hero-chrome-bath.jpg');
-  background-size: cover; background-position: center center;
+  overflow: hidden;
+  background: var(--ink);
   will-change: transform;
 }
+.aica-root .hero .bg .hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.aica-root .hero .bg .hero-video.is-mobile { display: none; }
 .aica-root .hero .bg::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(10, 4, 5, .55) 0%, rgba(10, 4, 5, 0) 22%, rgba(10, 4, 5, 0) 60%, rgba(10, 4, 5, .85) 100%);
@@ -316,12 +323,10 @@
   .aica-root .aica-header { padding: 10px 20px; }
   .aica-root .hero .bg {
     top: 0;
-    background-image: url('/hero/hero-chrome-bath-mobile.jpg');
-    background-size: 100% auto;
-    background-position: center 56px;
-    background-repeat: no-repeat;
     background-color: var(--ink);
   }
+  .aica-root .hero .bg .hero-video.is-desktop { display: none; }
+  .aica-root .hero .bg .hero-video.is-mobile { display: block; }
   /* Tighter ink top for header + shorter fade, strong fade-out at bottom preserved */
   .aica-root .hero .bg::after {
     background: linear-gradient(180deg,
@@ -719,6 +724,33 @@
   background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 30%, #a47331 60%, #f3d98e 80%, #a47331 100%);
   -webkit-background-clip: text; background-clip: text;
   color: transparent; -webkit-text-fill-color: transparent;
+}
+.aica-root .bonus-card .bonus-bg-logo {
+  position: absolute;
+  top: 50%;
+  right: -50px;
+  transform: translateY(-50%);
+  width: clamp(280px, 38vw, 440px);
+  height: auto;
+  opacity: .07;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, .15));
+}
+.aica-root .bonus-card .pill-tag,
+.aica-root .bonus-card h3,
+.aica-root .bonus-card .lede,
+.aica-root .bonus-card .hook,
+.aica-root .bonus-card .compare {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 720px) {
+  .aica-root .bonus-card .bonus-bg-logo {
+    right: -80px;
+    width: 280px;
+    opacity: .05;
+  }
 }
 .aica-root .ribbon {
   position: absolute; top: 18px; right: -44px; z-index: 5;
