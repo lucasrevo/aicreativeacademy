@@ -320,12 +320,12 @@ export default function Page() {
               </video>
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Storytelling</span>
-                <span className="num">01</span>
+                <span className="tag">Story</span>
+                <span className="stat">127K vues · J+4</span>
               </div>
               <div className="titleline">
-                Storytelling
-                <span className="t">Crash scénarisé · POV viral</span>
+                Story
+                <span className="t">POV viral · ton histoire qui scale</span>
               </div>
             </article>
 
@@ -340,11 +340,12 @@ export default function Page() {
               />
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">UGC</span>
-                <span className="num">02</span>
+                <span className="tag">UGC payé</span>
+                <span className="stat">Deal 2&nbsp;500€ · 0h tournage</span>
               </div>
               <div className="titleline">
-                UGC<span className="t">« Je teste le Nikon »</span>
+                UGC payé
+                <span className="t">Brand deals à 5 chiffres sans caméra</span>
               </div>
             </article>
 
@@ -359,11 +360,12 @@ export default function Page() {
               />
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Client Ready</span>
-                <span className="num">03</span>
+                <span className="tag">Cinématique</span>
+                <span className="stat">0 billet d&apos;avion · 100% IA</span>
               </div>
               <div className="titleline">
-                Client ready<span className="t">Créatives livrables</span>
+                Cinématique
+                <span className="t">Lifestyle premium · 0 voyage</span>
               </div>
             </article>
 
@@ -379,10 +381,11 @@ export default function Page() {
               <div className="overlay" />
               <div className="topline">
                 <span className="tag">Ads</span>
-                <span className="num">04</span>
+                <span className="stat">+340% ROAS · CPM ÷3</span>
               </div>
               <div className="titleline">
-                Ads<span className="t">Créatives Meta · TikTok</span>
+                Ads
+                <span className="t">Créatives qui convertissent</span>
               </div>
             </article>
           </div>

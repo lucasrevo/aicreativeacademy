@@ -551,6 +551,25 @@
   -webkit-background-clip: text; background-clip: text; color: transparent;
   text-shadow: 0 0 10px rgba(220, 220, 235, .3);
 }
+/* Stat overlay — chrome silver pill, the conversion-driving badge on each reel */
+.aica-root .reel .topline .stat {
+  font-family: var(--aica-mono); font-size: 10px; letter-spacing: .08em; font-weight: 700;
+  background: linear-gradient(180deg, #ffffff 0%, #e8e8ea 35%, #c0c0c4 70%, #8a8a8e 100%);
+  color: #0A0405;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .6);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .85);
+  white-space: nowrap;
+  text-transform: none;
+  max-width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 600px) {
+  .aica-root .reel .topline .stat { font-size: 8.5px; padding: 4px 8px; letter-spacing: .04em; }
+  .aica-root .reel .topline .tag { font-size: 8.5px; padding: 4px 7px; letter-spacing: .14em; }
+}
 .aica-root .reel .titleline {
   position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 2;
   font-family: var(--aica-mono); font-size: 11px; letter-spacing: .18em; color: #fff; text-transform: uppercase;
