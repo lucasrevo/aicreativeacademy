@@ -185,65 +185,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* =================== TÉMOIGNAGES =================== */}
-      <section className="testimonials" id="temoignages">
-        <div className="wrap">
-          <div className="testimonials-grid">
-            <article className="chrome-card fadein">
-              <div className="chrome-card-stars">★★★★★</div>
-              <p className="chrome-card-quote">
-                <span className="q-mark">«&nbsp;</span>
-                C&apos;est grave bien expliqué, notamment les vidéos, avec un
-                langage courant qui permet de vite comprendre sans se perdre.
-                Modules clairs et très faciles à appliquer.
-                <span className="q-mark">&nbsp;»</span>
-              </p>
-              <div className="chrome-card-meta">
-                <div className="chrome-avatar">GN</div>
-                <div className="chrome-card-author">
-                  <div className="name">GavaNoah</div>
-                  <div className="when">4 jours après l&apos;achat</div>
-                </div>
-              </div>
-            </article>
-
-            <article className="chrome-card fadein">
-              <div className="chrome-card-stars">★★★★★</div>
-              <p className="chrome-card-quote">
-                <span className="q-mark">«&nbsp;</span>
-                Forma claire et précise. J&apos;ai particulièrement apprécié les
-                démos live sur les outils. On est guidé de A à Z.
-                <span className="q-mark">&nbsp;»</span>
-              </p>
-              <div className="chrome-card-meta">
-                <div className="chrome-avatar">GA</div>
-                <div className="chrome-card-author">
-                  <div className="name">gassyrift</div>
-                  <div className="when">20 jours après l&apos;achat</div>
-                </div>
-              </div>
-            </article>
-
-            <article className="chrome-card fadein">
-              <div className="chrome-card-stars">★★★★★</div>
-              <p className="chrome-card-quote">
-                <span className="q-mark">«&nbsp;</span>
-                Le programme est intéressant, c&apos;est cool. Merci beaucoup
-                pour la qualité des vidéos.
-                <span className="q-mark">&nbsp;»</span>
-              </p>
-              <div className="chrome-card-meta">
-                <div className="chrome-avatar">T</div>
-                <div className="chrome-card-author">
-                  <div className="name">Theo</div>
-                  <div className="when">8 jours après l&apos;achat</div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       {/* =================== MÉTHODE =================== */}
       <section className="bg-mood section-pad" id="methode">
         <div className="wrap">
@@ -445,7 +386,7 @@ export default function Page() {
             <div className="m m1 large fadein">
               <img src="/modules/1.png" alt="Module 1 — Avatar" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·01</span>
+              <span className="corner">Module 1</span>
               <div className="info">
                 <h3>
                   Crée ton <span className="key mercury-text">AVATAR.</span>
@@ -460,7 +401,7 @@ export default function Page() {
             <div className="m m2 fadein">
               <img src="/modules/2.png" alt="Module 2 — Images" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·02</span>
+              <span className="corner">Module 2</span>
               <div className="info">
                 <h3>
                   Génère tes <span className="key mercury-text">IMAGES.</span>
@@ -472,7 +413,7 @@ export default function Page() {
             <div className="m m3 fadein">
               <img src="/modules/3.png" alt="Module 3 — Vidéos" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·03</span>
+              <span className="corner">Module 3</span>
               <div className="info">
                 <h3>
                   Génère tes <span className="key mercury-text">VIDÉOS.</span>
@@ -484,7 +425,7 @@ export default function Page() {
             <div className="m m4 large fadein">
               <img src="/modules/4.png" alt="Module 4 — Montage" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·04</span>
+              <span className="corner">Module 4</span>
               <div className="info">
                 <h3>
                   <span className="key mercury-text">MONTAGE.</span>
@@ -499,7 +440,7 @@ export default function Page() {
             <div className="m m5 fadein">
               <img src="/modules/5.png" alt="Module 5 — Voix IA" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·05</span>
+              <span className="corner">Module 5</span>
               <div className="info">
                 <h3>
                   Crée ta <span className="key mercury-text">VOIX IA.</span>
@@ -511,7 +452,7 @@ export default function Page() {
             <div className="m m6 fadein">
               <img src="/modules/6.png" alt="Module 6 — Scripts" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·06</span>
+              <span className="corner">Module 6</span>
               <div className="info">
                 <h3>
                   Scripts &amp;{" "}
@@ -524,7 +465,7 @@ export default function Page() {
             <div className="m m7 large fadein">
               <img src="/modules/7.png" alt="Module 7 — Monétisation" />
               <span className="stamp">✓ Inclus</span>
-              <span className="corner">M·07</span>
+              <span className="corner">Module 7</span>
               <div className="info">
                 <h3>
                   Monétise ton <span className="key mercury-text">AVATAR.</span>
@@ -668,8 +609,112 @@ export default function Page() {
             </article>
           </div>
 
-          {/* 5.3 Ticket */}
-          <div className="ticket-wrap" style={{ marginTop: "clamp(32px, 4vw, 48px)" }}>
+          {/* 5.3 Témoignages — moved here, just above price */}
+          <div
+            id="temoignages"
+            className="subhead-row"
+            style={{ marginTop: "clamp(48px, 6vw, 80px)" }}
+          >
+            <div className="left">
+              <span className="num">03</span>
+              <span className="title">Ce qu&apos;ils en disent</span>
+            </div>
+            <span className="meta">Avis · early access</span>
+          </div>
+          <div className="testimonials-grid" style={{ marginTop: 28 }}>
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                C&apos;est grave bien expliqué, notamment les vidéos, avec un
+                langage courant qui permet de vite comprendre sans se perdre.
+                Modules clairs et très faciles à appliquer.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">GN</div>
+                <div className="chrome-card-author">
+                  <div className="name">GavaNoah</div>
+                  <div className="when">4 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                Forma claire et précise. J&apos;ai particulièrement apprécié les
+                démos live sur les outils. On est guidé de A à Z.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">GA</div>
+                <div className="chrome-card-author">
+                  <div className="name">gassyrift</div>
+                  <div className="when">20 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+
+            <article className="chrome-card fadein">
+              <div className="chrome-card-stars">★★★★★</div>
+              <p className="chrome-card-quote">
+                <span className="q-mark">«&nbsp;</span>
+                Le programme est intéressant, c&apos;est cool. Merci beaucoup
+                pour la qualité des vidéos.
+                <span className="q-mark">&nbsp;»</span>
+              </p>
+              <div className="chrome-card-meta">
+                <div className="chrome-avatar">T</div>
+                <div className="chrome-card-author">
+                  <div className="name">Theo</div>
+                  <div className="when">8 jours après l&apos;achat</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          {/* 5.4 Countdown — moved here, between testimonials and price */}
+          <div
+            className="pre-checkout-countdown"
+            style={{
+              marginTop: "clamp(40px, 5vw, 70px)",
+              textAlign: "center",
+            }}
+          >
+            <span className="mono-tag" style={{ color: "var(--w-50)" }}>
+              Fin de l&apos;offre dans
+            </span>
+            <div
+              className="countdown"
+              aria-live="polite"
+              style={{ marginTop: 12, justifyContent: "center" }}
+            >
+              <div className="cd-cell">
+                <span className="digits">{cd.d}</span>
+                <span className="label">jours</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.h}</span>
+                <span className="label">heures</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.m}</span>
+                <span className="label">minutes</span>
+              </div>
+              <span className="cd-sep">:</span>
+              <div className="cd-cell">
+                <span className="digits">{cd.s}</span>
+                <span className="label">sec.</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 5.5 Ticket — Whop integrated, no duplicate CTA below */}
+          <div id="checkout" className="ticket-wrap" style={{ marginTop: "clamp(24px, 3vw, 40px)" }}>
             <div className="ticket fadein">
               <div className="ticket-row">
                 <div className="desc">
@@ -701,14 +746,9 @@ export default function Page() {
               </div>
 
               <div className="ticket-cta">
-                <a
-                  href="#checkout"
-                  className="chrome-cta lg"
-                  style={{ width: "100%", maxWidth: 420 }}
-                >
-                  <span>Je lance mon avatar</span>
-                  <span className="arrow">→</span>
-                </a>
+                <div className="ticket-checkout-wrap">
+                  <WhopCheckout />
+                </div>
                 <p className="trust">
                   Accès immédiat · Garantie 14 jours · Updates à vie
                 </p>
@@ -719,67 +759,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* =================== CHECKOUT =================== */}
-      <section className="checkout" id="checkout">
-        <div className="wrap">
-          <div className="section-head" style={{ marginBottom: 0 }}>
-            <span className="mono-tag" style={{ color: "var(--w-50)" }}>
-              Fin de l&apos;offre dans
-            </span>
-            <div className="countdown" aria-live="polite">
-              <div className="cd-cell">
-                <span className="digits">{cd.d}</span>
-                <span className="label">jours</span>
-              </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.h}</span>
-                <span className="label">heures</span>
-              </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.m}</span>
-                <span className="label">minutes</span>
-              </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.s}</span>
-                <span className="label">sec.</span>
-              </div>
-            </div>
-            <span className="chrome-bubble" style={{ marginTop: 24 }}>
-              REJOINS LES 100 PREMIERS
-            </span>
-          </div>
-
-          <div className="deal-card fadein">
-            <div className="deal-tag">
-              <span className="mono-tag" style={{ color: "var(--w-70)" }}>
-                // OFFRE DE LANCEMENT · 100 places
-              </span>
-            </div>
-            <div className="deal-prices">
-              <span className="now mercury-green glow">97€</span>
-              <span className="was">197€</span>
-            </div>
-            <div className="deal-sub">Paiement unique · Accès à vie</div>
-            <div className="deal-iframe-wrap">
-              <WhopCheckout />
-            </div>
-            <div className="trust-row">
-              <span className="b">
-                <span className="ic">🔒</span> Paiement sécurisé
-              </span>
-              <span className="b">
-                <span className="ic">⚡</span> Accès immédiat
-              </span>
-              <span className="b">
-                <span className="ic">🛡</span> Garantie 14 jours
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* =================== FAQ =================== */}
       <section className="section-pad" id="faq">

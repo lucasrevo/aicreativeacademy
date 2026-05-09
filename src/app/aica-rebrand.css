@@ -596,13 +596,17 @@
 .aica-root .bento .m:hover img { transform: scale(1.06); }
 .aica-root .bento .m .corner {
   position: absolute; top: 14px; right: 14px; z-index: 5;
-  font-family: var(--aica-mono); font-size: 11px; letter-spacing: .24em;
+  font-family: var(--aica-mono); font-size: 11.5px; letter-spacing: .14em; font-weight: 700;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 45%, #a47331 100%);
-  -webkit-background-clip: text; background-clip: text;
-  color: transparent; -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 14px rgba(233, 200, 123, .35), 0 2px 8px rgba(164, 115, 49, .25);
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(10, 4, 5, .65);
+  border: 1px solid rgba(233, 200, 123, .65);
+  color: #f3d98e;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .9), 0 0 14px rgba(233, 200, 123, .55);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 240, 200, .15);
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .aica-root .bento .m .stamp {
   position: absolute; top: 14px; left: 14px; z-index: 5;
@@ -933,7 +937,14 @@
   line-height: .85;
   letter-spacing: .005em;
 }
-.aica-root .ticket-cta { margin-top: 22px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.aica-root .ticket-cta { margin-top: 22px; display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
+.aica-root .ticket-checkout-wrap {
+  width: 100%;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, .35);
+  border: 1px solid rgba(255, 255, 255, .08);
+  padding: 12px;
+}
 .aica-root .ticket .trust {
   font-family: var(--aica-mono); text-transform: uppercase; letter-spacing: .22em; font-size: 10.5px;
   color: var(--w-50); text-align: center;
