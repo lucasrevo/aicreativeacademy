@@ -253,7 +253,7 @@ export default function Page() {
                 </h3>
                 <div className="tool-logos overlap">
                   <img src="/logos/higgsfield.png" alt="Higgsfield" />
-                  <img src="/logos/nano-banana.png" alt="Nano Banana 2" />
+                  <img className="wordmark" src="/logos/nano-banana.png" alt="Nano Banana 2" />
                   <img src="/logos/kling.png" alt="Kling" />
                   <img src="/logos/seedance.png" alt="Seedance" />
                   <img className="wordmark" src="/logos/elevenlabs.png" alt="ElevenLabs" />
