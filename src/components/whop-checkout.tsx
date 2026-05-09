@@ -1,44 +1,22 @@
 "use client";
 
-import { WhopCheckoutEmbed } from "@whop/checkout/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const PLAN_ID = process.env.NEXT_PUBLIC_WHOP_LT_PLAN_ID || "plan_ntpJj1VOt5KTM";
 const HOSTED_CHECKOUT_URL = `https://whop.com/checkout/${PLAN_ID}`;
-
-type State =
-  | { status: "loading" }
-  | {
-      status: "ready";
-      mode: "plan";
-      planId: string;
-      utm: Record<string, string>;
-      affiliateCode?: string;
-    }
-  | { status: "error"; message: string };
+const LOADER_SRC = "https://js.whop.com/static/checkout/loader.js";
 
 export function WhopCheckout() {
-  const [state, setState] = useState<State>({ status: "loading" });
-  const [returnUrl, setReturnUrl] = useState<string>("");
-
   useEffect(() => {
-    setReturnUrl(`${window.location.origin}/merci`);
-    const params = new URLSearchParams(window.location.search);
-    const ig = params.get("ig") ?? undefined;
-    const utm_source = params.get("utm_source") ?? undefined;
-    const utm_medium = params.get("utm_medium") ?? undefined;
-    const utm_content = params.get("utm_content") ?? undefined;
-    const utm_campaign = params.get("utm_campaign") ?? undefined;
-    const affiliateCode = params.get("a") ?? undefined;
-
-    const utm: Record<string, string> = {};
-    if (utm_source) utm.utm_source = utm_source;
-    if (utm_medium) utm.utm_medium = utm_medium;
-    if (utm_campaign) utm.utm_campaign = utm_campaign;
-    if (utm_content) utm.utm_content = utm_content;
-    if (ig && !utm.utm_content) utm.utm_content = ig;
-
-    setState({ status: "ready", mode: "plan", planId: PLAN_ID, utm, affiliateCode });
+    // Inject Whop's official vanilla loader once. The loader scans the DOM
+    // for [data-whop-checkout-plan-id] divs and renders the embed in-place.
+    if (!document.querySelector(`script[src="${LOADER_SRC}"]`)) {
+      const script = document.createElement("script");
+      script.src = LOADER_SRC;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
   }, []);
 
   return (
@@ -55,29 +33,15 @@ export function WhopCheckout() {
       </div>
 
       <div className="bg-[#0A0405] p-2 sm:p-3">
-        {state.status === "loading" && <CheckoutSkeleton />}
-
-        {state.status === "error" && (
-          <div className="rounded-lg border border-red-500/40 bg-red-500/10 p-6 text-center text-sm text-red-300">
-            <div className="mb-2 font-semibold">Erreur de chargement du paiement</div>
-            <p className="font-mono text-xs">{state.message}</p>
-          </div>
-        )}
-
-        {state.status === "ready" && state.mode === "plan" && state.planId && returnUrl && (
-          <WhopCheckoutEmbed
-            planId={state.planId}
-            utm={state.utm}
-            affiliateCode={state.affiliateCode}
-            returnUrl={returnUrl}
-            theme="dark"
-            fallback={<CheckoutSkeleton />}
-            onStateChange={(s) => console.log("[whop] state", s)}
-          />
-        )}
+        {/* Whop vanilla checkout embed — the loader script populates this div */}
+        <div
+          data-whop-checkout-plan-id={PLAN_ID}
+          data-whop-checkout-theme="dark"
+          style={{ height: "fit-content", overflow: "hidden", maxWidth: "100%" }}
+        />
       </div>
 
-      {/* Fallback: reliable hosted checkout if the embed glitches */}
+      {/* Fallback: hosted checkout if the embed fails to load */}
       <div className="border-t border-white/10 bg-[#0A0405]/60 px-5 py-4 text-center">
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50 mb-2">
           Problème avec le paiement ci-dessus ?
@@ -91,19 +55,6 @@ export function WhopCheckout() {
           Payer directement sur Whop →
         </a>
       </div>
-    </div>
-  );
-}
-
-function CheckoutSkeleton() {
-  return (
-    <div className="space-y-3 p-4" aria-label="Chargement du paiement">
-      <div className="h-4 w-1/3 animate-pulse rounded bg-white/10" />
-      <div className="h-10 w-full animate-pulse rounded bg-white/10" />
-      <div className="h-10 w-full animate-pulse rounded bg-white/10" />
-      <div className="h-4 w-1/4 animate-pulse rounded bg-white/10" />
-      <div className="h-10 w-full animate-pulse rounded bg-white/10" />
-      <div className="h-12 w-full animate-pulse rounded bg-white/20" />
     </div>
   );
 }
