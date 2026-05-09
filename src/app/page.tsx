@@ -533,6 +533,11 @@ export default function Page() {
                   <span className="key mercury-text">MONTAGE.</span>
                 </h3>
               </div>
+              <img
+                className="module-tool-logo icon"
+                src="/logos/capcut.png"
+                alt="Powered by CapCut"
+              />
               <span className="price">147€</span>
             </div>
 
