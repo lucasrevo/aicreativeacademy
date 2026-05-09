@@ -666,6 +666,19 @@
   .aica-root .bento .m:not(.large) .info { padding: 14px 14px 16px; }
   .aica-root .bento .m:not(.large) .info h3 { font-size: 18px; padding-right: 56px; }
   .aica-root .bento .m:not(.large) .price { font-size: 11px; bottom: 14px; right: 14px; }
+  /* Avoid stamp + corner overlap on cramped small cards: hide ✓ Inclus, shrink Module pill */
+  .aica-root .bento .m:not(.large) .stamp { display: none; }
+  .aica-root .bento .m:not(.large) .corner {
+    font-size: 9.5px; padding: 4px 9px; letter-spacing: .06em;
+    top: 10px; right: 10px;
+  }
+  /* Large cards: stamp + corner both visible but tightened */
+  .aica-root .bento .m.large .stamp {
+    font-size: 8.5px; padding: 4px 8px; letter-spacing: .16em;
+  }
+  .aica-root .bento .m.large .corner {
+    font-size: 10px; padding: 4px 9px; letter-spacing: .08em;
+  }
 }
 
 /* ============ BONUS ============ */
