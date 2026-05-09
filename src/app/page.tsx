@@ -380,7 +380,7 @@ export default function Page() {
               />
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Ad</span>
+                <span className="tag">ADS</span>
                 <span className="num">04</span>
               </div>
               <div className="titleline">
