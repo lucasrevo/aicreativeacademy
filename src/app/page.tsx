@@ -339,7 +339,7 @@ export default function Page() {
                 muted
                 playsInline
                 preload="metadata"
-                src="/reels/ugc-nikon.mp4"
+                src="/reels/ugc-ia.mp4"
               />
               <div className="overlay" />
               <div className="topline">
