@@ -217,7 +217,14 @@ export default function Page() {
               <span className="stroke-text">La méthode en</span>{" "}
               <span className="mercury-text glow">3 étapes.</span>
             </h2>
-            <p className="sub mono-tag">Crée · Génère · Monétise</p>
+            <p className="sub mono-tag">Master les derniers outils&nbsp;:</p>
+            <div className="tool-logos">
+              <img src="/logos/higgsfield.png" alt="Higgsfield" />
+              <img src="/logos/kling.png" alt="Kling" />
+              <img src="/logos/nano-banana.png" alt="Nano Banana 2" />
+              <img src="/logos/seedance.png" alt="Seedance 2.0" />
+              <img className="wordmark" src="/logos/elevenlabs.png" alt="ElevenLabs" />
+            </div>
           </div>
 
           <div className="method-grid">
@@ -430,6 +437,11 @@ export default function Page() {
                   Génère tes <span className="key mercury-text">IMAGES.</span>
                 </h3>
               </div>
+              <img
+                className="module-tool-logo icon"
+                src="/logos/nano-banana.png"
+                alt="Powered by Nano Banana 2"
+              />
               <span className="price">297€</span>
             </div>
 
@@ -442,6 +454,11 @@ export default function Page() {
                   Génère tes <span className="key mercury-text">VIDÉOS.</span>
                 </h3>
               </div>
+              <img
+                className="module-tool-logo icon"
+                src="/logos/kling.png"
+                alt="Powered by Kling"
+              />
               <span className="price">247€</span>
             </div>
 

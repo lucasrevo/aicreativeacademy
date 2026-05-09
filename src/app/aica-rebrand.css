@@ -693,24 +693,67 @@
   }
 }
 
-/* Tool logo (e.g. ElevenLabs) above price on a large module card */
+/* Tool logo (e.g. ElevenLabs wordmark) above price on a module card */
 .aica-root .bento .m .module-tool-logo {
   position: absolute;
   right: 24px;
-  bottom: 56px;
+  bottom: 50px;
   height: 16px;
   width: auto;
+  max-width: 110px;
   z-index: 7;
-  opacity: .75;
+  opacity: .8;
   filter: drop-shadow(0 1px 4px rgba(0, 0, 0, .8));
   pointer-events: none;
 }
+.aica-root .bento .m .module-tool-logo.icon {
+  height: 26px;
+  max-width: 32px;
+  border-radius: 6px;
+  opacity: .9;
+}
+.aica-root .bento .m:not(.large) .module-tool-logo {
+  right: 18px;
+  bottom: 38px;
+  height: 13px;
+}
+.aica-root .bento .m:not(.large) .module-tool-logo.icon {
+  height: 22px;
+  max-width: 26px;
+}
 @media (max-width: 600px) {
-  .aica-root .bento .m .module-tool-logo {
-    right: 18px;
-    bottom: 44px;
-    height: 12px;
-  }
+  .aica-root .bento .m .module-tool-logo { right: 14px; bottom: 36px; height: 12px; }
+  .aica-root .bento .m .module-tool-logo.icon { height: 18px; max-width: 22px; }
+  .aica-root .bento .m.large .module-tool-logo { bottom: 50px; height: 14px; }
+}
+
+/* Tool logos row in méthode section ("Master les derniers outils :") */
+.aica-root .tool-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: clamp(20px, 3vw, 40px);
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.aica-root .tool-logos img {
+  height: clamp(28px, 3.6vw, 40px);
+  width: auto;
+  max-width: 80px;
+  opacity: .85;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+  transition: opacity .25s ease, transform .25s ease;
+}
+.aica-root .tool-logos img.wordmark {
+  height: clamp(16px, 2vw, 22px);
+  max-width: 140px;
+}
+.aica-root .tool-logos img:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+  .aica-root .tool-logos { gap: 16px; }
+  .aica-root .tool-logos img { height: 26px; }
+  .aica-root .tool-logos img.wordmark { height: 14px; }
 }
 
 /* ============ BONUS ============ */
