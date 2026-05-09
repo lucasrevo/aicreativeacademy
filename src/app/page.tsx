@@ -318,8 +318,7 @@ export default function Page() {
                 playsInline
                 preload="metadata"
               >
-                <source src="/reels/revo-crash.mov" type="video/quicktime" />
-                <source src="/reels/revo-crash.mp4" type="video/mp4" />
+                <source src="/reels/reels-viraux.mp4" type="video/mp4" />
               </video>
               <div className="overlay" />
               <div className="topline">
