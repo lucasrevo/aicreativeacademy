@@ -454,8 +454,9 @@ export default function Page() {
                   Crée ta <span className="key mercury-text">VOIX IA.</span>
                 </h3>
                 <p>
-                  Clone vocal + lipsync parfait. Le module qui fait passer ton
-                  avatar du muet au pro.
+                  Clone vocal,
+                  <br />
+                  synchronisation labiale parfaite.
                 </p>
               </div>
               <img
