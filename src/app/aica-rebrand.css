@@ -307,7 +307,20 @@
 
 .aica-root .hero-bottom {
   position: absolute; left: 0; right: 0; bottom: clamp(28px, 6vh, 60px); z-index: 5;
-  display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 0 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 20px;
+}
+.aica-root .hero-cta-line {
+  font-family: var(--aica-mono);
+  font-size: clamp(10px, 1.1vw, 12px);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .78);
+  text-align: center;
+  margin: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .75);
+}
+@media (max-width: 600px) {
+  .aica-root .hero-cta-line { font-size: 9.5px; letter-spacing: .14em; }
 }
 .aica-root .hero-meta {
   display: flex; gap: 26px; align-items: center;
