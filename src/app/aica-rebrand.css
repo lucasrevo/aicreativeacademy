@@ -166,6 +166,12 @@
 .aica-root .chrome-cta.lg { padding: 20px 38px; font-size: 14px; }
 .aica-root .chrome-cta.sm { padding: 11px 18px; font-size: 11px; }
 .aica-root .chrome-cta .arrow { font-family: var(--aica-mono); }
+.aica-root .chrome-cta > span:first-child { text-align: center; }
+@media (max-width: 600px) {
+  .aica-root .chrome-cta { letter-spacing: .14em; gap: 10px; }
+  .aica-root .chrome-cta.lg { padding: 16px 22px; font-size: 12px; }
+  .aica-root .chrome-cta.sm { padding: 10px 14px; font-size: 10.5px; }
+}
 
 .aica-root .glass {
   background: rgba(20, 8, 10, .55);
