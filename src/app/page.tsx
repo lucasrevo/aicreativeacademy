@@ -320,12 +320,12 @@ export default function Page() {
               </video>
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Story</span>
-                <span className="stat">127K vues · J+4</span>
+                <span className="tag">Reels Viro</span>
+                <span className="num">01</span>
               </div>
               <div className="titleline">
-                Story
-                <span className="t">POV viral · ton histoire qui scale</span>
+                Reels Viro
+                <span className="t">250K vues — sans montrer ton visage</span>
               </div>
             </article>
 
@@ -340,12 +340,12 @@ export default function Page() {
               />
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">UGC payé</span>
-                <span className="stat">Deal 2&nbsp;500€ · 0h tournage</span>
+                <span className="tag">UGC IA</span>
+                <span className="num">02</span>
               </div>
               <div className="titleline">
-                UGC payé
-                <span className="t">Brand deals à 5 chiffres sans caméra</span>
+                UGC IA
+                <span className="t">0 tournage · 0 matériel · modèle ultra-réaliste</span>
               </div>
             </article>
 
@@ -361,11 +361,11 @@ export default function Page() {
               <div className="overlay" />
               <div className="topline">
                 <span className="tag">Cinématique</span>
-                <span className="stat">0 billet d&apos;avion · 100% IA</span>
+                <span className="num">03</span>
               </div>
               <div className="titleline">
                 Cinématique
-                <span className="t">Lifestyle premium · 0 voyage</span>
+                <span className="t">Scènes d&apos;action dignes d&apos;un studio à 5&nbsp;000€/jour</span>
               </div>
             </article>
 
@@ -380,12 +380,12 @@ export default function Page() {
               />
               <div className="overlay" />
               <div className="topline">
-                <span className="tag">Ads</span>
-                <span className="stat">+340% ROAS · CPM ÷3</span>
+                <span className="tag">Ad</span>
+                <span className="num">04</span>
               </div>
               <div className="titleline">
-                Ads
-                <span className="t">Créatives qui convertissent</span>
+                Campagne marketing IA
+                <span className="t">30 créatives publicitaires testées en 1 journée</span>
               </div>
             </article>
           </div>
