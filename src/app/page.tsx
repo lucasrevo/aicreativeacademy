@@ -365,7 +365,7 @@ export default function Page() {
               </div>
               <div className="titleline">
                 Cinématique
-                <span className="t">Scènes dignes d&apos;un blockbuster, sans plateau ni équipe</span>
+                <span className="t">Scènes dignes d&apos;un film, sans 15&nbsp;000€ de budget ni équipe</span>
               </div>
             </article>
 
