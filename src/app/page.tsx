@@ -576,6 +576,12 @@ export default function Page() {
 
             <article className="bonus-card fadein">
               <span className="stamp-offert">🎁 OFFERT</span>
+              <img
+                className="bonus-bg-logo"
+                src="/logos/openai.svg"
+                alt=""
+                aria-hidden="true"
+              />
               <span className="pill-tag">
                 <span style={{ fontSize: 14 }}>🎬</span> Agent IA · Seedance
               </span>
