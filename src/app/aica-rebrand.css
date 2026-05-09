@@ -743,24 +743,24 @@
   gap: 0;
 }
 .aica-root .tool-logos.overlap img {
-  height: clamp(30px, 4vw, 40px);
+  height: clamp(42px, 5.2vw, 56px);
   width: auto;
-  max-width: 60px;
+  max-width: 72px;
   border-radius: 50%;
   background: rgba(10, 4, 5, .85);
-  border: 1.5px solid rgba(255, 255, 255, .12);
-  padding: 4px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .6);
-  margin-left: -10px;
+  border: 1.5px solid rgba(255, 255, 255, .15);
+  padding: 5px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .65);
+  margin-left: -6px;
   position: relative;
   transition: transform .25s ease, z-index 0s .25s;
 }
 .aica-root .tool-logos.overlap img:first-child { margin-left: 0; }
 .aica-root .tool-logos.overlap img.wordmark {
   border-radius: 999px;
-  max-width: 110px;
-  height: clamp(22px, 3vw, 32px);
-  padding: 4px 10px;
+  max-width: 130px;
+  height: clamp(30px, 3.8vw, 40px);
+  padding: 5px 12px;
 }
 .aica-root .tool-logos.overlap img:hover {
   transform: translateY(-3px) scale(1.06);
@@ -768,8 +768,8 @@
   transition: transform .25s ease;
 }
 @media (max-width: 600px) {
-  .aica-root .tool-logos.overlap img { height: 28px; max-width: 44px; padding: 3px; margin-left: -8px; }
-  .aica-root .tool-logos.overlap img.wordmark { height: 18px; max-width: 78px; padding: 3px 8px; }
+  .aica-root .tool-logos.overlap img { height: 38px; max-width: 54px; padding: 4px; margin-left: -5px; }
+  .aica-root .tool-logos.overlap img.wordmark { height: 24px; max-width: 96px; padding: 4px 9px; }
 }
 
 /* ============ BONUS ============ */
