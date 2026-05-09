@@ -365,7 +365,7 @@ export default function Page() {
               </div>
               <div className="titleline">
                 Cinématique
-                <span className="t">Scènes d&apos;action dignes d&apos;un studio à 5&nbsp;000€/jour</span>
+                <span className="t">Scènes dignes d&apos;un blockbuster, sans plateau ni équipe</span>
               </div>
             </article>
 
@@ -385,7 +385,7 @@ export default function Page() {
               </div>
               <div className="titleline">
                 Campagne marketing IA
-                <span className="t">30 créatives publicitaires testées en 1 journée</span>
+                <span className="t">Crée tes ads IA pour vendre ton offre 24/7</span>
               </div>
             </article>
           </div>
