@@ -222,7 +222,7 @@ export default function Page() {
 
           {/* QUOI */}
           <h1 className="hero-h1">
-            Crée ton <span className="hero-accent">Avatar&nbsp;IA</span> en 48h. Monétise-le en <span className="hero-accent">90&nbsp;jours</span>.
+            Crée ton <span className="hero-accent">Avatar&nbsp;IA</span> en 48h. Monétise-le en <span className="hero-accent">30&nbsp;jours</span>.
           </h1>
 
           {/* Description */}
