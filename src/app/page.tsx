@@ -217,27 +217,6 @@ export default function Page() {
             La méthode complète pour <strong>créer des vidéos ultra réalistes</strong> et les transformer en revenus, sans expérience et sans montrer ton visage.
           </p>
 
-          {/* COMMENT — 3 étapes */}
-          <div className="hero-how">
-            <div className="hero-how-step">
-              <span className="emoji" aria-hidden="true">🧑‍💼</span>
-              <span className="n">01</span>
-              <span className="l">Avatar</span>
-            </div>
-            <span className="hero-how-arrow" aria-hidden="true">→</span>
-            <div className="hero-how-step">
-              <span className="emoji" aria-hidden="true">🎥</span>
-              <span className="n">02</span>
-              <span className="l">Contenu</span>
-            </div>
-            <span className="hero-how-arrow" aria-hidden="true">→</span>
-            <div className="hero-how-step">
-              <span className="emoji" aria-hidden="true">💸</span>
-              <span className="n">03</span>
-              <span className="l">Revenu</span>
-            </div>
-          </div>
-
           {/* CTA */}
           <a href="#methode" className="chrome-cta lg">
             <span>Je découvre la méthode</span>
@@ -245,7 +224,7 @@ export default function Page() {
           </a>
 
           <p className="hero-cta-line">
-            Accès immédiat · Garantie 14 jours · Mises à jour à vie
+            Accès immédiat · Garantie ou remboursé · Mises à jour à vie
           </p>
         </div>
       </section>
@@ -914,7 +893,7 @@ export default function Page() {
                   <WhopCheckout />
                 </div>
                 <p className="trust">
-                  Accès immédiat · Garantie 14 jours · Updates à vie
+                  Accès immédiat · Garantie ou remboursé · Updates à vie
                 </p>
               </div>
               <div className="ticket-bottom-dots" />
@@ -971,8 +950,9 @@ export default function Page() {
                 Et si ça me plaît pas&nbsp;? <span className="plus">+</span>
               </summary>
               <div className="answer">
-                Garantie 14 jours. Tu testes, tu appliques. Si ça ne te sert à
-                rien, tu demandes un remboursement — pas de question.
+                Garantie satisfait ou remboursé. Tu testes, tu appliques. Si
+                ça ne te sert à rien, tu demandes un remboursement — pas de
+                question.
               </div>
             </details>
           </div>

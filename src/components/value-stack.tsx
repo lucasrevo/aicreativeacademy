@@ -60,7 +60,7 @@ export function ValueStack() {
         </div>
 
         <p className="mt-6 mono text-[10px] md:text-xs uppercase tracking-[0.24em] text-white/50 text-center">
-          Paiement unique · Accès immédiat · Garantie 14 jours
+          Paiement unique · Accès immédiat · Garantie ou remboursé
         </p>
       </div>
     </section>

@@ -537,7 +537,7 @@
     object-fit: contain;
     object-position: center 72px;
   }
-  /* Tighter ink top for header + shorter fade, strong fade-out at bottom preserved */
+  /* Strong dark band at bottom for text legibility (pill + h1 + sub + CTA) */
   .aica-root .hero .bg::after {
     background: linear-gradient(180deg,
       var(--ink) 0%,
@@ -545,11 +545,12 @@
       rgba(10, 4, 5, .75) 8%,
       rgba(10, 4, 5, .35) 12%,
       rgba(10, 4, 5, 0) 18%,
-      rgba(10, 4, 5, 0) 55%,
-      rgba(10, 4, 5, .35) 68%,
-      rgba(10, 4, 5, .75) 78%,
-      rgba(10, 4, 5, .95) 86%,
-      var(--ink) 92%);
+      rgba(10, 4, 5, 0) 42%,
+      rgba(10, 4, 5, .45) 54%,
+      rgba(10, 4, 5, .75) 64%,
+      rgba(10, 4, 5, .92) 73%,
+      rgba(10, 4, 5, .98) 82%,
+      var(--ink) 88%);
   }
 }
 
