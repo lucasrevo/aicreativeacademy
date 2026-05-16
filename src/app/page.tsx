@@ -318,6 +318,13 @@ export default function Page() {
               →
             </span>
           </div>
+
+          <div className="mid-cta">
+            <a href="#checkout" className="chrome-cta lg">
+              <span>Je crée mon avatar</span>
+              <span className="arrow">→</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -423,6 +430,13 @@ export default function Page() {
                 <span className="t">Crée tes ads IA pour vendre ton offre 24/7</span>
               </div>
             </article>
+          </div>
+
+          <div className="mid-cta">
+            <a href="#checkout" className="chrome-cta lg">
+              <span>Je commence maintenant</span>
+              <span className="arrow">→</span>
+            </a>
           </div>
         </div>
       </section>
@@ -623,6 +637,13 @@ export default function Page() {
               </div>
               <span className="price">147€</span>
             </div>
+          </div>
+
+          <div className="mid-cta">
+            <a href="#checkout" className="chrome-cta lg">
+              <span>Je me lance</span>
+              <span className="arrow">→</span>
+            </a>
           </div>
 
           {/* 5.2 Bonus */}

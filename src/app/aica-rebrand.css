@@ -163,6 +163,20 @@
 }
 .aica-root .chrome-cta:hover { transform: translateY(-1px); }
 .aica-root .chrome-cta:hover::after { transform: translateX(130%); }
+/* Mid-section CTA — inserted between sections, centered, breathing room */
+.aica-root .mid-cta {
+  display: flex; justify-content: center; align-items: center;
+  margin-top: clamp(36px, 5vw, 64px);
+  margin-bottom: clamp(8px, 1.5vw, 24px);
+  padding: 0 20px;
+}
+@media (max-width: 600px) {
+  .aica-root .mid-cta {
+    margin-top: clamp(28px, 6vw, 44px);
+    margin-bottom: clamp(4px, 2vw, 16px);
+  }
+}
+
 .aica-root .chrome-cta.lg { padding: 20px 38px; font-size: 14px; }
 .aica-root .chrome-cta.sm { padding: 11px 18px; font-size: 11px; }
 .aica-root .chrome-cta .arrow { font-family: var(--aica-mono); }
