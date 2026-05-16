@@ -312,8 +312,185 @@
 }
 
 .aica-root .hero-bottom {
-  position: absolute; left: 0; right: 0; bottom: clamp(28px, 6vh, 60px); z-index: 5;
-  display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 0 20px;
+  position: absolute; left: 0; right: 0; bottom: clamp(20px, 4vh, 48px); z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.6vh, 18px); padding: 0 20px;
+}
+
+/* ============ HERO — POUR QUI · QUOI · COMMENT ============ */
+/* POUR QUI — pill arrondi avec pulse vert */
+.aica-root .hero-forwho {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--aica-mono);
+  font-size: clamp(8.5px, 1vw, 11px);
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .9);
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, .9);
+  white-space: nowrap;
+}
+.aica-root .hero-forwho .pulse {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: #6CE07A;
+  box-shadow: 0 0 10px #6CE07A;
+  animation: heroPulse 1.8s ease-in-out infinite;
+}
+@keyframes heroPulse { 50% { opacity: .4; transform: scale(.7); } }
+
+/* QUOI — H1 tout blanc, underline stylé sur mots-clés */
+.aica-root .hero-h1 {
+  margin: 0;
+  font-family: var(--aica-sans);
+  font-weight: 800;
+  font-size: clamp(22px, 4.6vw, 56px);
+  line-height: 1.12;
+  letter-spacing: -.025em;
+  color: #fff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, .95), 0 2px 8px rgba(0, 0, 0, .7);
+  max-width: 760px;
+  text-wrap: balance;
+  text-align: center;
+}
+.aica-root .hero-h1 .hero-accent {
+  color: #fff;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+.aica-root .hero-h1 .hero-accent::after {
+  content: ""; position: absolute;
+  left: -2%; right: -2%; bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255, 255, 255, .4) 8%,
+    rgba(255, 255, 255, 1) 35%,
+    rgba(255, 255, 255, 1) 65%,
+    rgba(255, 255, 255, .4) 92%,
+    transparent 100%);
+  border-radius: 999px;
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, .55),
+    0 0 24px rgba(255, 255, 255, .25);
+  transform: skewX(-8deg);
+}
+
+/* Sub-line description */
+.aica-root .hero-sub {
+  margin: 0;
+  font-size: clamp(13px, 1.5vw, 17px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, .88);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .9);
+  max-width: 560px;
+  text-align: center;
+}
+.aica-root .hero-sub strong { color: #fff; font-weight: 700; }
+
+/* COMMENT — 3 étapes avec emojis */
+.aica-root .hero-how {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: nowrap;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .15);
+  border-radius: 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  width: 100%; max-width: 420px;
+}
+.aica-root .hero-how-step {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  flex: 1;
+}
+.aica-root .hero-how-step .emoji {
+  font-size: clamp(20px, 2.2vw, 26px);
+  line-height: 1;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .6));
+}
+.aica-root .hero-how-step .n {
+  font-family: var(--aica-mono);
+  font-size: clamp(8.5px, .9vw, 10px);
+  font-weight: 600;
+  letter-spacing: .18em;
+  color: #6CE07A;
+}
+.aica-root .hero-how-step .l {
+  font-family: var(--aica-mono);
+  font-size: clamp(9.5px, 1.05vw, 12px);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .7);
+}
+.aica-root .hero-how-arrow {
+  color: rgba(255, 255, 255, .3);
+  font-family: var(--aica-mono);
+  font-size: clamp(11px, 1.2vw, 14px);
+  padding: 0 6px;
+  align-self: center;
+}
+
+/* Mobile compact — top to bottom: pill, h1, sub, how, cta, trust */
+@media (max-width: 700px) {
+  .aica-root .hero-bottom {
+    bottom: clamp(16px, 3vh, 32px);
+    gap: 10px;
+    padding: 0 18px;
+  }
+  .aica-root .hero-forwho {
+    font-size: 8.5px;
+    padding: 6px 12px;
+  }
+  .aica-root .hero-h1 {
+    font-size: 23px;
+    line-height: 1.15;
+    max-width: 360px;
+  }
+  .aica-root .hero-sub {
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 340px;
+  }
+  .aica-root .hero-how {
+    max-width: 340px;
+    padding: 9px 12px;
+  }
+  .aica-root .hero-how-step .emoji { font-size: 22px; }
+  .aica-root .hero-how-step .n { font-size: 8.5px; }
+  .aica-root .hero-how-step .l { font-size: 9.5px; }
+  .aica-root .hero-how-arrow { font-size: 11px; padding: 0 4px; }
+}
+
+/* Tiny screens */
+@media (max-width: 360px) {
+  .aica-root .hero-forwho {
+    font-size: 7.5px;
+    letter-spacing: .15em;
+  }
+  .aica-root .hero-h1 { font-size: 21px; }
+}
+
+/* Desktop spacious — H1 plus grand, layout aéré */
+@media (min-width: 1024px) {
+  .aica-root .hero-bottom {
+    bottom: clamp(40px, 8vh, 80px);
+    gap: 22px;
+    max-width: 900px;
+    left: 50%; right: auto;
+    transform: translateX(-50%);
+    padding: 0 32px;
+  }
+  .aica-root .hero-how {
+    max-width: 520px;
+    padding: 14px 24px;
+  }
+  .aica-root .hero-how-step { gap: 6px; }
 }
 .aica-root .hero-cta-line {
   font-family: var(--aica-mono);

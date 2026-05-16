@@ -201,13 +201,52 @@ export default function Page() {
           </video>
         </div>
         <div className="hero-bottom">
-          <p className="hero-cta-line">
-            Accès immédiat · Garantie 14 jours · Mises à jour à vie
+          {/* POUR QUI */}
+          <div className="hero-forwho">
+            <span className="pulse" />
+            CRÉATEURS · FREELANCES · E-COM · MARQUES
+          </div>
+
+          {/* QUOI */}
+          <h1 className="hero-h1">
+            Crée ton <span className="hero-accent">Avatar&nbsp;IA</span> en 48h. Monétise-le en <span className="hero-accent">90&nbsp;jours</span>.
+          </h1>
+
+          {/* Description */}
+          <p className="hero-sub">
+            La méthode complète pour <strong>créer des vidéos ultra réalistes</strong> et les transformer en revenus, sans expérience et sans montrer ton visage.
           </p>
+
+          {/* COMMENT — 3 étapes */}
+          <div className="hero-how">
+            <div className="hero-how-step">
+              <span className="emoji" aria-hidden="true">🧑‍💼</span>
+              <span className="n">01</span>
+              <span className="l">Avatar</span>
+            </div>
+            <span className="hero-how-arrow" aria-hidden="true">→</span>
+            <div className="hero-how-step">
+              <span className="emoji" aria-hidden="true">🎥</span>
+              <span className="n">02</span>
+              <span className="l">Contenu</span>
+            </div>
+            <span className="hero-how-arrow" aria-hidden="true">→</span>
+            <div className="hero-how-step">
+              <span className="emoji" aria-hidden="true">💸</span>
+              <span className="n">03</span>
+              <span className="l">Revenu</span>
+            </div>
+          </div>
+
+          {/* CTA */}
           <a href="#methode" className="chrome-cta lg">
             <span>Je découvre la méthode</span>
             <span className="arrow">→</span>
           </a>
+
+          <p className="hero-cta-line">
+            Accès immédiat · Garantie 14 jours · Mises à jour à vie
+          </p>
         </div>
       </section>
 
