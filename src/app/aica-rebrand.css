@@ -135,12 +135,26 @@
   pointer-events: none;
 }
 
-/* Chrome bubble as a clickable link (mid-section CTAs) */
+/* Chrome bubble as a clickable link (mid-section CTAs) — bold sans-serif text (like 97€), not mono */
 .aica-root .chrome-bubble.is-link {
   text-decoration: none;
   cursor: pointer;
   transition: transform .22s ease, box-shadow .22s ease;
   isolation: isolate;
+  /* Override chrome-bubble's mono/uppercase typo */
+  font-family: var(--aica-sans);
+  text-transform: none;
+  letter-spacing: .01em;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 11px 26px;
+  gap: 8px;
+}
+@media (max-width: 600px) {
+  .aica-root .chrome-bubble.is-link {
+    font-size: 13.5px;
+    padding: 10px 22px;
+  }
 }
 .aica-root .chrome-bubble.is-link:hover {
   transform: translateY(-1px);
@@ -193,19 +207,35 @@
 }
 .aica-root .chrome-cta:hover { transform: translateY(-1px); }
 .aica-root .chrome-cta:hover::after { transform: translateX(130%); }
-/* Mid-section CTA — centered, tight spacing (overlaps section padding) */
+/* Mid-section CTA — harmonized centered block */
 .aica-root .mid-cta {
   display: flex; justify-content: center; align-items: center;
-  margin-top: clamp(20px, 2.5vw, 36px);
-  margin-bottom: clamp(-60px, -6vw, -90px);
+  margin-top: clamp(16px, 2vw, 28px);
+  margin-bottom: clamp(8px, 1.5vw, 20px);
   padding: 0 20px;
   position: relative;
   z-index: 3;
 }
+
+/* When a section ENDS with a mid-cta, shrink its bottom padding (and the
+   following section's top padding) so the CTA breathes without huge dead space */
+.aica-root section.section-pad:has(> .wrap > .mid-cta:last-child) {
+  padding-bottom: clamp(20px, 2.5vw, 36px);
+}
+.aica-root section.section-pad:has(> .wrap > .mid-cta:last-child) + section.section-pad {
+  padding-top: clamp(28px, 3.5vw, 52px);
+}
+
 @media (max-width: 600px) {
   .aica-root .mid-cta {
-    margin-top: clamp(16px, 3vw, 28px);
-    margin-bottom: clamp(-44px, -8vw, -64px);
+    margin-top: clamp(12px, 2.5vw, 20px);
+    margin-bottom: clamp(6px, 2vw, 14px);
+  }
+  .aica-root section.section-pad:has(> .wrap > .mid-cta:last-child) {
+    padding-bottom: clamp(16px, 4vw, 28px);
+  }
+  .aica-root section.section-pad:has(> .wrap > .mid-cta:last-child) + section.section-pad {
+    padding-top: clamp(20px, 5vw, 36px);
   }
 }
 

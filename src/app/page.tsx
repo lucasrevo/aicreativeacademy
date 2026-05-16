@@ -649,7 +649,7 @@ export default function Page() {
           {/* 5.2 Bonus */}
           <div
             className="subhead-row"
-            style={{ marginTop: "clamp(48px, 6vw, 80px)" }}
+            style={{ marginTop: "clamp(20px, 2.5vw, 36px)" }}
           >
             <div className="left">
               <span className="num">02</span>
