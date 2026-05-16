@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { WhopCheckout } from "@/components/whop-checkout";
 import "./aica-rebrand.css";
 
-const COUNTDOWN_KEY = "aica.deadline";
-const COUNTDOWN_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
+const COUNTDOWN_KEY = "aica.deadline.48h";
+const COUNTDOWN_DURATION_MS = 48 * 60 * 60 * 1000;
 
 function pad(n: number) {
   return String(Math.max(0, n)).padStart(2, "0");
@@ -109,6 +109,19 @@ export default function Page() {
 
   return (
     <main className="aica-root">
+      {/* =================== OFFER BANNER =================== */}
+      <div className="offer-banner" role="status" aria-live="polite">
+        <span className="dot" aria-hidden="true" />
+        <span className="label">L&apos;offre se termine dans</span>
+        <span className="timer" aria-label={`${cd.h}h ${cd.m}m ${cd.s}s`}>
+          <span className="cell">{cd.h}<small>h</small></span>
+          <span className="sep">:</span>
+          <span className="cell">{cd.m}<small>m</small></span>
+          <span className="sep">:</span>
+          <span className="cell">{cd.s}<small>s</small></span>
+        </span>
+      </div>
+
       {/* =================== HEADER =================== */}
       <header className={`aica-header${scrolled ? " scrolled" : ""}`}>
         <a href="#top" className="brand">
@@ -218,8 +231,10 @@ export default function Page() {
           </p>
 
           {/* CTA */}
-          <a href="#methode" className="chrome-cta lg">
-            <span>Je découvre la méthode</span>
+          <a href="#checkout" className="chrome-cta lg cta-price">
+            <span className="cta-label">Accéder pour seulement</span>
+            <s className="price-old">197€</s>
+            <span className="price-new">97€</span>
             <span className="arrow">→</span>
           </a>
 

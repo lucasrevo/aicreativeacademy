@@ -167,6 +167,43 @@
 .aica-root .chrome-cta.sm { padding: 11px 18px; font-size: 11px; }
 .aica-root .chrome-cta .arrow { font-family: var(--aica-mono); }
 .aica-root .chrome-cta > span:first-child { text-align: center; }
+
+/* CTA avec prix barré → prix actuel */
+.aica-root .chrome-cta.cta-price {
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 14px 22px;
+}
+.aica-root .chrome-cta.cta-price .cta-label {
+  font-size: .85em;
+  letter-spacing: .12em;
+  opacity: .82;
+}
+.aica-root .chrome-cta.cta-price .price-old {
+  font-size: 1em;
+  opacity: .5;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  font-weight: 700;
+}
+.aica-root .chrome-cta.cta-price .price-new {
+  font-size: 1.2em;
+  font-weight: 800;
+  color: #0A0405;
+  letter-spacing: .04em;
+  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 40%, #a47331 75%, #f3d98e 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .35));
+}
+@media (max-width: 600px) {
+  .aica-root .chrome-cta.cta-price {
+    padding: 13px 18px;
+    gap: 6px;
+  }
+  .aica-root .chrome-cta.cta-price .cta-label { font-size: .82em; }
+  .aica-root .chrome-cta.cta-price .price-new { font-size: 1.15em; }
+}
 @media (max-width: 600px) {
   .aica-root .chrome-cta { letter-spacing: .14em; gap: 10px; }
   .aica-root .chrome-cta.lg { padding: 16px 22px; font-size: 12px; }
@@ -200,13 +237,93 @@
 
 .aica-root .bg-mood { background: transparent; }
 
+/* ============ OFFER BANNER (scarcity countdown) ============ */
+.aica-root .offer-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  height: 36px;
+  background: linear-gradient(90deg, #1a0606 0%, #2a0c0c 35%, #2a0c0c 65%, #1a0606 100%);
+  border-bottom: 1px solid rgba(245, 197, 24, .25);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: var(--aica-mono);
+  font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .9);
+  padding: 0 12px;
+  box-shadow: 0 1px 12px rgba(245, 197, 24, .08);
+  white-space: nowrap;
+}
+.aica-root .offer-banner .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #ff5252;
+  box-shadow: 0 0 10px #ff5252, 0 0 4px #ff5252;
+  animation: bannerPulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes bannerPulse { 50% { opacity: .35; transform: scale(.75); } }
+.aica-root .offer-banner .label {
+  color: rgba(255, 255, 255, .82);
+  font-weight: 500;
+}
+.aica-root .offer-banner .timer {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-variant-numeric: tabular-nums;
+  color: #F5C518;
+  font-weight: 700;
+}
+.aica-root .offer-banner .timer .cell {
+  background: rgba(245, 197, 24, .1);
+  border: 1px solid rgba(245, 197, 24, .3);
+  border-radius: 5px;
+  padding: 2px 6px;
+  min-width: 28px; text-align: center;
+  letter-spacing: .04em;
+  display: inline-flex; align-items: baseline; gap: 1px;
+}
+.aica-root .offer-banner .timer .cell small {
+  font-size: 8px; opacity: .65; font-weight: 500;
+  letter-spacing: 0;
+}
+.aica-root .offer-banner .timer .sep {
+  color: rgba(245, 197, 24, .5);
+  font-weight: 700;
+}
+@media (max-width: 600px) {
+  .aica-root .offer-banner {
+    height: 34px;
+    font-size: 9.5px;
+    letter-spacing: .1em;
+    gap: 8px;
+    padding: 0 10px;
+  }
+  .aica-root .offer-banner .label { font-size: 9px; }
+  .aica-root .offer-banner .timer .cell {
+    padding: 2px 5px;
+    min-width: 24px;
+    font-size: 10px;
+  }
+  .aica-root .offer-banner .timer .cell small { font-size: 7px; }
+}
+@media (max-width: 380px) {
+  .aica-root .offer-banner .label {
+    display: none;
+  }
+  .aica-root .offer-banner::before {
+    content: "OFFRE TERMINE DANS";
+    color: rgba(255, 255, 255, .82);
+    font-size: 8.5px;
+    letter-spacing: .08em;
+  }
+}
+
 /* ============ HEADER ============ */
 .aica-root .aica-header {
-  position: fixed; inset: 0 0 auto 0; z-index: 50;
+  position: fixed; top: 36px; left: 0; right: 0; z-index: 50;
   padding: 14px 20px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   transition: background .25s ease, backdrop-filter .25s ease, padding .25s ease, border-color .25s ease;
   border-bottom: 1px solid transparent;
+}
+@media (max-width: 600px) {
+  .aica-root .aica-header { top: 34px; }
 }
 .aica-root .aica-header.scrolled {
   background: rgba(8, 3, 4, .6);
@@ -294,7 +411,7 @@
   background: var(--ink);
 }
 .aica-root .hero .bg {
-  position: absolute; top: 80px; left: 0; right: 0; bottom: 0; z-index: 0;
+  position: absolute; top: 116px; left: 0; right: 0; bottom: 0; z-index: 0;
   overflow: hidden;
   background: var(--ink);
   will-change: transform;
@@ -535,7 +652,7 @@
   .aica-root .hero .bg .hero-video.is-mobile {
     display: block;
     object-fit: contain;
-    object-position: center 72px;
+    object-position: center 106px;
   }
   /* Strong dark band at bottom for text legibility (pill + h1 + sub + CTA) */
   .aica-root .hero .bg::after {
