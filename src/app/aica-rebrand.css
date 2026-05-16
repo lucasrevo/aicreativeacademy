@@ -207,6 +207,94 @@
 }
 .aica-root .chrome-cta:hover { transform: translateY(-1px); }
 .aica-root .chrome-cta:hover::after { transform: translateX(130%); }
+/* ============ PRICE REVEAL — V4 (final conversion block) ============ */
+.aica-root .price-reveal-wrap {
+  margin-top: clamp(36px, 5vw, 64px);
+  display: flex; justify-content: center;
+  padding: 0 16px;
+}
+.aica-root .price-reveal {
+  width: 100%; max-width: 480px;
+  padding: clamp(32px, 5vw, 56px) clamp(20px, 4vw, 40px);
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(14px, 2vw, 22px);
+  text-align: center;
+  background:
+    radial-gradient(ellipse at center, rgba(74, 16, 16, .35) 0%, transparent 70%),
+    rgba(255, 255, 255, .02);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, .06);
+  position: relative;
+}
+.aica-root .price-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 16px;
+  border: 1px solid rgba(233, 200, 123, .35);
+  background: rgba(233, 200, 123, .06);
+  border-radius: 999px;
+  font-family: var(--aica-mono);
+  font-size: clamp(10px, 1.1vw, 12px);
+  letter-spacing: .26em; text-transform: uppercase;
+  color: #e9c87b;
+}
+.aica-root .price-tag .bolt {
+  font-size: 1.1em;
+  color: #f5c518;
+}
+.aica-root .price-stack {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 2px;
+  margin: 4px 0;
+}
+.aica-root .price-old-big {
+  font-family: var(--aica-sans);
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 600;
+  color: rgba(255, 255, 255, .5);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  letter-spacing: -.01em;
+}
+.aica-root .price-new-huge {
+  font-family: var(--aica-sans);
+  font-size: clamp(96px, 16vw, 160px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.05em;
+  display: inline-flex; align-items: baseline;
+}
+.aica-root .price-new-huge small {
+  font-size: .45em;
+  font-weight: 700;
+  margin-left: .04em;
+}
+.aica-root .price-save {
+  font-family: var(--aica-mono);
+  font-size: clamp(11px, 1.3vw, 14px);
+  letter-spacing: .16em; text-transform: uppercase;
+  color: #6CE07A;
+  font-weight: 500;
+}
+.aica-root .price-reveal .chrome-cta {
+  width: 100%;
+  max-width: 380px;
+}
+.aica-root .price-trust {
+  font-family: var(--aica-mono);
+  font-size: clamp(9px, 1.1vw, 11.5px);
+  letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(255, 255, 255, .55);
+  margin-top: 2px;
+}
+@media (max-width: 600px) {
+  .aica-root .price-reveal {
+    padding: 32px 20px;
+    gap: 14px;
+  }
+  .aica-root .price-new-huge { font-size: 108px; }
+  .aica-root .price-old-big { font-size: 22px; }
+}
+
 /* Mid-section CTA — harmonized centered block */
 .aica-root .mid-cta {
   display: flex; justify-content: center; align-items: center;

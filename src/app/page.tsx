@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { WhopCheckout } from "@/components/whop-checkout";
 import "./aica-rebrand.css";
 
+const WHOP_CHECKOUT_URL = "https://whop.com/checkout/plan_ntpJj1VOt5KTM";
 const COUNTDOWN_KEY = "aica.deadline.48h";
 const COUNTDOWN_DURATION_MS = 48 * 60 * 60 * 1000;
 
@@ -135,7 +135,7 @@ export default function Page() {
           <a href="#faq">FAQ</a>
         </nav>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <a href="#checkout" className="chrome-cta sm">
+          <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-cta sm">
             <span>Commencer</span>
             <span className="arrow">→</span>
           </a>
@@ -170,7 +170,7 @@ export default function Page() {
             <a href="#tarifs" onClick={closeDrawer}>
               Modules &amp; bonus <span className="arr">→</span>
             </a>
-            <a href="#checkout" onClick={closeDrawer} style={{ color: "#fff" }}>
+            <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" onClick={closeDrawer} style={{ color: "#fff" }}>
               <span className="mercury-text">S&apos;INSCRIRE — 97€</span>{" "}
               <span className="arr">→</span>
             </a>
@@ -231,7 +231,7 @@ export default function Page() {
           </p>
 
           {/* CTA */}
-          <a href="#checkout" className="chrome-cta lg cta-price">
+          <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-cta lg cta-price">
             <span className="cta-label">Accéder pour seulement</span>
             <s className="price-old">197€</s>
             <span className="price-new">97€</span>
@@ -318,7 +318,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-bubble is-link">
+            <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-bubble is-link">
               <span>Je crée mon avatar</span>
               <span className="arrow">→</span>
             </a>
@@ -430,7 +430,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-bubble is-link">
+            <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-bubble is-link">
               <span>Je commence maintenant</span>
               <span className="arrow">→</span>
             </a>
@@ -636,7 +636,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-bubble is-link">
+            <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-bubble is-link">
               <span>Je me lance</span>
               <span className="arrow">→</span>
             </a>
@@ -785,7 +785,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-bubble is-link">
+            <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-bubble is-link">
               <span>Je m&apos;inscris</span>
               <span className="arrow">→</span>
             </a>
@@ -857,85 +857,34 @@ export default function Page() {
             </article>
           </div>
 
-          {/* 5.4 Countdown — moved here, between testimonials and price */}
-          <div
-            className="pre-checkout-countdown"
-            style={{
-              marginTop: "clamp(40px, 5vw, 70px)",
-              textAlign: "center",
-            }}
-          >
-            <span className="mono-tag" style={{ color: "var(--w-50)" }}>
-              Fin de l&apos;offre dans
-            </span>
-            <div
-              className="countdown"
-              aria-live="polite"
-              style={{ marginTop: 12, justifyContent: "center" }}
-            >
-              <div className="cd-cell">
-                <span className="digits">{cd.d}</span>
-                <span className="label">jours</span>
+          {/* 5.4 Price Reveal — V4 minimal: -50% lancement, mercury 97€, redirect Whop */}
+          <div className="price-reveal-wrap fadein">
+            <div className="price-reveal">
+              <div className="price-tag">
+                <span className="bolt" aria-hidden="true">⚡</span>
+                OFFRE LANCEMENT
               </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.h}</span>
-                <span className="label">heures</span>
+              <div className="price-stack">
+                <span className="price-old-big">197€</span>
+                <span className="price-new-huge mercury-text glow">
+                  97<small>€</small>
+                </span>
               </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.m}</span>
-                <span className="label">minutes</span>
+              <div className="price-save">
+                → Économise 100€ aujourd&apos;hui
               </div>
-              <span className="cd-sep">:</span>
-              <div className="cd-cell">
-                <span className="digits">{cd.s}</span>
-                <span className="label">sec.</span>
+              <a
+                href={WHOP_CHECKOUT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="chrome-cta lg"
+              >
+                <span>Rejoindre l&apos;académie</span>
+                <span className="arrow">→</span>
+              </a>
+              <div className="price-trust">
+                ✓ Immédiat · ✓ Garantie · ✓ À vie
               </div>
-            </div>
-          </div>
-
-          {/* 5.5 Ticket — Whop integrated, no duplicate CTA below */}
-          <div id="checkout" className="ticket-wrap" style={{ marginTop: "clamp(24px, 3vw, 40px)" }}>
-            <div className="ticket fadein">
-              <div className="ticket-row">
-                <div className="desc">
-                  La formation · 7 modules · 21 leçons · à vie
-                </div>
-                <div className="val">1 082€</div>
-              </div>
-              <div className="ticket-row">
-                <div className="desc">
-                  Les 3 bonus · GPT REVO + GPT Seedance + ManyChat
-                </div>
-                <div className="val">791€</div>
-              </div>
-              <div className="ticket-row bright">
-                <div className="desc">Valeur totale</div>
-                <div className="val">1 873€</div>
-              </div>
-              <div className="ticket-row dim">
-                <div className="desc">
-                  <span className="mono-tag" style={{ color: "var(--w-50)" }}>
-                    Prix habituel
-                  </span>
-                </div>
-                <div className="val-red">197€</div>
-              </div>
-              <div className="ticket-row final">
-                <div className="desc">Ton prix</div>
-                <div className="price mercury-green glow">97€</div>
-              </div>
-
-              <div className="ticket-cta">
-                <div className="ticket-checkout-wrap">
-                  <WhopCheckout />
-                </div>
-                <p className="trust">
-                  Accès immédiat · Garantie ou remboursé · Updates à vie
-                </p>
-              </div>
-              <div className="ticket-bottom-dots" />
             </div>
           </div>
         </div>
