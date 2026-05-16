@@ -248,12 +248,10 @@ export default function Page() {
       <section className="bg-mood section-pad" id="methode">
         <div className="wrap">
           <div className="section-head">
-            <span className="chrome-bubble">// LA MÉTHODE</span>
             <h2 className="h2">
               <span className="stroke-text">La méthode en</span>{" "}
               <span className="mercury-text glow">3 étapes.</span>
             </h2>
-            <p className="sub mono-tag">Crée · Génère · Monétise</p>
           </div>
 
           <div className="method-grid">
@@ -332,7 +330,6 @@ export default function Page() {
       <section className="section-pad" id="apprendre">
         <div className="wrap">
           <div className="section-head">
-            <span className="chrome-bubble">// APPRENDRE</span>
             <h2 className="h2">
               <span className="stroke-text">Ce que tu vas</span>
               <br />
@@ -448,7 +445,6 @@ export default function Page() {
             className="loadout-head section-head"
             style={{ alignItems: "flex-start", textAlign: "left" }}
           >
-            <span className="chrome-bubble">// AI CREATIVE ACADEMY</span>
             <h2 className="h2">
               <span className="l1 stroke-text">Tout ce que tu</span>
               <span className="l2 mercury-text glow">reçois.</span>
