@@ -784,11 +784,18 @@ export default function Page() {
             </article>
           </div>
 
+          <div className="mid-cta">
+            <a href="#checkout" className="chrome-bubble is-link">
+              <span>Je m&apos;inscris</span>
+              <span className="arrow">→</span>
+            </a>
+          </div>
+
           {/* 5.3 Témoignages — moved here, just above price */}
           <div
             id="temoignages"
             className="subhead-row"
-            style={{ marginTop: "clamp(48px, 6vw, 80px)" }}
+            style={{ marginTop: "clamp(20px, 2.5vw, 36px)" }}
           >
             <div className="left">
               <span className="num">03</span>
