@@ -214,7 +214,7 @@ export default function Page() {
 
           {/* Description */}
           <p className="hero-sub">
-            La méthode complète pour <strong>créer des vidéos ultra réalistes</strong> et les transformer en revenus, sans expérience et sans montrer ton visage.
+            La <strong>méthode complète</strong> pour créer des Vidéos IA Ultra Réalistes et les transformer en revenus sans expérience et sans montrer ton visage.
           </p>
 
           {/* CTA */}
