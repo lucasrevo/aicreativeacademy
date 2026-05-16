@@ -187,14 +187,11 @@
   font-weight: 700;
 }
 .aica-root .chrome-cta.cta-price .price-new {
-  font-size: 1.2em;
-  font-weight: 800;
+  font-size: 1.5em;
+  font-weight: 900;
   color: #0A0405;
-  letter-spacing: .04em;
-  background: linear-gradient(180deg, #fff5d6 0%, #e9c87b 40%, #a47331 75%, #f3d98e 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, .35));
+  letter-spacing: .02em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .4);
 }
 @media (max-width: 600px) {
   .aica-root .chrome-cta.cta-price {
@@ -202,7 +199,7 @@
     gap: 6px;
   }
   .aica-root .chrome-cta.cta-price .cta-label { font-size: .82em; }
-  .aica-root .chrome-cta.cta-price .price-new { font-size: 1.15em; }
+  .aica-root .chrome-cta.cta-price .price-new { font-size: 1.45em; }
 }
 @media (max-width: 600px) {
   .aica-root .chrome-cta { letter-spacing: .14em; gap: 10px; }
