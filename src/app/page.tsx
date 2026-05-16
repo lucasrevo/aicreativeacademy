@@ -320,7 +320,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-cta lg">
+            <a href="#checkout" className="chrome-bubble is-link">
               <span>Je crée mon avatar</span>
               <span className="arrow">→</span>
             </a>
@@ -433,7 +433,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-cta lg">
+            <a href="#checkout" className="chrome-bubble is-link">
               <span>Je commence maintenant</span>
               <span className="arrow">→</span>
             </a>
@@ -640,7 +640,7 @@ export default function Page() {
           </div>
 
           <div className="mid-cta">
-            <a href="#checkout" className="chrome-cta lg">
+            <a href="#checkout" className="chrome-bubble is-link">
               <span>Je me lance</span>
               <span className="arrow">→</span>
             </a>
