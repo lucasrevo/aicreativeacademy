@@ -524,12 +524,9 @@
   transition: transform .35s ease;
 }
 .aica-root .nav a:hover::after { transform: scaleX(1); }
-.aica-root .burger { display: none; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .18); }
-.aica-root .burger span { display: block; width: 14px; height: 1.4px; background: #fff; box-shadow: 0 5px 0 #fff, 0 -5px 0 #fff; }
+/* burger removed — header CTA is now "Rejoindre" visible on both desktop and mobile */
 @media (max-width: 880px) {
   .aica-root .nav { display: none; }
-  .aica-root .burger { display: flex; }
-  .aica-root .aica-header .chrome-cta.sm { display: none; }
 }
 
 /* Drawer */

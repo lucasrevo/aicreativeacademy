@@ -126,7 +126,7 @@ export default function Page() {
       <header className={`aica-header${scrolled ? " scrolled" : ""}`}>
         <a href="#top" className="brand">
           <span className="mark" />
-          <span>REVO LAB</span>
+          <span>REVO</span>
         </a>
         <nav className="nav" aria-label="Principal">
           <a href="#methode">Programme</a>
@@ -134,15 +134,15 @@ export default function Page() {
           <a href="#tarifs">Tarifs</a>
           <a href="#faq">FAQ</a>
         </nav>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <a href={WHOP_CHECKOUT_URL} target="_blank" rel="noopener noreferrer" className="chrome-cta sm">
-            <span>Commencer</span>
-            <span className="arrow">→</span>
-          </a>
-          <button className="burger" aria-label="Menu" onClick={() => setDrawerOpen(true)}>
-            <span />
-          </button>
-        </div>
+        <a
+          href={WHOP_CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="chrome-cta sm"
+        >
+          <span>Rejoindre</span>
+          <span className="arrow">→</span>
+        </a>
       </header>
 
       {/* Mobile drawer */}
